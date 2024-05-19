@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "group19.ssd.p2p.grpc";
+option java_outer_classname = "BlockchainGRPCProto";
+option objc_class_prefix = "BC";
+
+package ledger;
+
+service BlockchainService {
+
+  rpc ping(Ping) returns (Pong); // ping to check if the node is alive
+  rpc broadcast_block(Block) returns (Status); //broadcast block to all nodes
+  rpc broadcast_transaction(Transaction) returns (Status);
+  rpc broadcast_blockchain(BlockChain) returns (Status);
+  rpc findNodes(FindNode) returns (KBucket_GRPC);
+}
+
+message Ping {
+  string id = 1;
+  string ip = 2;
+  int32 port = 3;
+}
+
+message Pong{
+  bool pong = 1;
+  BlockChain blockchain = 2;
+}
+
+message IPAddres{
+  string ip = 1;
+  string port = 2;
+}
+
+message Block {
+  int32 index = 1;
+  string previousHash = 2;
+  string hash = 3;
+  string data = 4;
+  int64 timestamp = 5;
+}
+
+message TransactionsList{
+  repeated Transaction transactionList = 1;
+}
+
+message BlockChain{
+  repeated Block chain = 1;
+  TransactionsList pendingTransactions = 2;
+}
+
+message Transaction{
+  string hash = 1;
+  string senderPK = 2;
+  string receiverPK = 3;
+  bytes signature = 4;
+  int64 timestamp = 5;
+  int32 amount = 6;
+  string misc = 7;
+  string nodeId = 8;
+}
+
+message Status { //status of the block
+  bool success = 1;
+}
+
+message FindNode{
+  string id = 1;
+  string ip = 2;
+  int32 port = 3;
+  int32 proof = 4;
+  string pubKey = 5;
+  string targetId = 6;
+}
+
+message Node_GRPC{
+  string id = 1;
+  string ip = 2;
+  int32 port = 3;
+}
+
+message KBucket_GRPC{
+  repeated Node_GRPC kbucket = 1;
+}
