@@ -14,7 +14,7 @@ import io.grpc.internal.ServerImpl;
 import io.grpc.stub.StreamObserver;
 
 public class KademliaServer {
-    private static final Logger logger = Logger.getLogger(KademliaServer.getName());
+    private static final Logger logger = Logger.getLogger(KademliaServer.class.getName());
     private Server server;
     public String ip;
     public int port;
@@ -76,7 +76,47 @@ public class KademliaServer {
 
         @Override
         public void broadcastBlock(Block request, StreamObserver<Status> responseObserver) {
-            group19.ssd.blockchain.Block new_block = BCConverter.mkblock(r)
+            group19.ssd.blockchain.Block new_block = BCConverter.mkblock(request);
+            if(!(KademliaClient.blockchain.getLatestBlock().hash).equals(new_block.getHash())) {
+                KademliaClient.blockchain.addBlock(new_block);
+                KademliaClient.kbucket.getNode(request.getNodeId()).addSuccessfullInterations();
+                KademliaClient.blockchain.addBlock(new_block);
+                KademliaClient.ledger.updateLedger(new_block);
+                KademliaClient.shareBlock(new_block, request.getNodeId());
+            }else{
+                responseObserver.onNext(Status.newBuilder().setStatus("Block already exists").build());
+                responseObserver.onCompleted();
+                return;
+            }
+        }
+
+        @Override
+        public void broadcastTransaction(Transaction request, StreamObserver<Status> responseObserver){
+            group19.ssd.blockchain.transactions.Transaction new_transaction = BCConverter.mkTransaction(request);
+            if(Blockchain.pendingList.isEmpty()){
+                KademliaClient.blockchain.pendingList.add(new_transaction);
+            } else if(!KademliaClient.blockchain.pendingList.get(KademliaClient.blockchain.pendingList.size() - 1).equals(new_transaction)){
+                KademliaClient.blockchain.pendingList.add(new_transaction);
+            } else{
+                responseObserver.onNext(Status.newBuilder().setStatus("Transaction already exists").build());
+                responseObserver.onCompleted();
+                return;
+            }
+            responseObserver.onNext(Status.newBuilder().setStatus("Sent").build());
+            responseObserver.onCompleted();
+        }
+
+        @Override
+        public void broadcastBlockchain(Blockchain request, StreamObserver<Status> responseObserver){
+            super.broadcastBlockchain(request, responseObserver);
+        }
+
+        @Override
+        public void findNodes(FindNode request, StreamObserver<KBucket_GRPC> responseObserver){
+            if(KademliaClient.kbucket.checkNodeExistence(new Node(request.getId(), request.getIp(), request.getPort()), request.getProof(), request.getPubKey())){
+                responseObserver.onNext(NodeSerializable.KBucket_to_GRPC(KademliaClient.kbucket.getNeighboursByDistance(request.getTargetId(), KademliaClient.kbucket.identifiedLast)));
+            }
+            responseObserver.onCompleted();
         }
     }
 }

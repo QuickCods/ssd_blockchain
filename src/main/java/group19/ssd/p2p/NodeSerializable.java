@@ -15,7 +15,7 @@ public class NodeSerializable {
         return nodes;
     }
 
-    public KBucket_GRPC KBucket_to_GRPC(ArrayList<Node> List_of_nodes){
+    public static KBucket_GRPC KBucket_to_GRPC(ArrayList<Node> List_of_nodes){
         ArrayList<Node_GRPC> List_of_GRPCNodes = new ArrayList<>();
         for(Node node : List_of_nodes){
             List_of_GRPCNodes.add(Node_to_GRPC(node));
@@ -28,7 +28,7 @@ public class NodeSerializable {
         return new Node(node.getId(), node.getIp(), node.getPort());
     }
 
-    public Node_GRPC Node_to_GRPC(Node node) {
+    public static Node_GRPC Node_to_GRPC(Node node) {
         return new Node_GRPC.newBuilder().setId(node.id).setIp(node.ip).setPort(node.port).build();
     }
 }
