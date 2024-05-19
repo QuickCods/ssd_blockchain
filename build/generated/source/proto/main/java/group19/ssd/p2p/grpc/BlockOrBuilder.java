@@ -8,50 +8,89 @@ public interface BlockOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>int32 index = 1;</code>
-   * @return The index.
+   * <code>string hashId = 1;</code>
+   * @return The hashId.
    */
-  int getIndex();
-
+  java.lang.String getHashId();
   /**
-   * <code>string previousHash = 2;</code>
-   * @return The previousHash.
-   */
-  java.lang.String getPreviousHash();
-  /**
-   * <code>string previousHash = 2;</code>
-   * @return The bytes for previousHash.
+   * <code>string hashId = 1;</code>
+   * @return The bytes for hashId.
    */
   com.google.protobuf.ByteString
-      getPreviousHashBytes();
+      getHashIdBytes();
 
   /**
-   * <code>string hash = 3;</code>
+   * <code>string hash = 2;</code>
    * @return The hash.
    */
   java.lang.String getHash();
   /**
-   * <code>string hash = 3;</code>
+   * <code>string hash = 2;</code>
    * @return The bytes for hash.
    */
   com.google.protobuf.ByteString
       getHashBytes();
 
   /**
-   * <code>string data = 4;</code>
-   * @return The data.
+   * <code>string previousHash = 3;</code>
+   * @return The previousHash.
    */
-  java.lang.String getData();
+  java.lang.String getPreviousHash();
   /**
-   * <code>string data = 4;</code>
-   * @return The bytes for data.
+   * <code>string previousHash = 3;</code>
+   * @return The bytes for previousHash.
    */
   com.google.protobuf.ByteString
-      getDataBytes();
+      getPreviousHashBytes();
 
   /**
-   * <code>int64 timestamp = 5;</code>
+   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   * @return Whether the transactionsList field is set.
+   */
+  boolean hasTransactionsList();
+  /**
+   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   * @return The transactionsList.
+   */
+  group19.ssd.p2p.grpc.TransactionsList getTransactionsList();
+  /**
+   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   */
+  group19.ssd.p2p.grpc.TransactionsListOrBuilder getTransactionsListOrBuilder();
+
+  /**
+   * <code>int32 nonce = 5;</code>
+   * @return The nonce.
+   */
+  int getNonce();
+
+  /**
+   * <code>int64 timestamp = 6;</code>
    * @return The timestamp.
    */
   long getTimestamp();
+
+  /**
+   * <code>string publicKey = 7;</code>
+   * @return The publicKey.
+   */
+  java.lang.String getPublicKey();
+  /**
+   * <code>string publicKey = 7;</code>
+   * @return The bytes for publicKey.
+   */
+  com.google.protobuf.ByteString
+      getPublicKeyBytes();
+
+  /**
+   * <code>string nodeId = 8;</code>
+   * @return The nodeId.
+   */
+  java.lang.String getNodeId();
+  /**
+   * <code>string nodeId = 8;</code>
+   * @return The bytes for nodeId.
+   */
+  com.google.protobuf.ByteString
+      getNodeIdBytes();
 }

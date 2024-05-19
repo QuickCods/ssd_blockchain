@@ -16,9 +16,11 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private Block() {
-    previousHash_ = "";
+    hashId_ = "";
     hash_ = "";
-    data_ = "";
+    previousHash_ = "";
+    publicKey_ = "";
+    nodeId_ = "";
   }
 
   @java.lang.Override
@@ -46,59 +48,48 @@ private static final long serialVersionUID = 0L;
             group19.ssd.p2p.grpc.Block.class, group19.ssd.p2p.grpc.Block.Builder.class);
   }
 
-  public static final int INDEX_FIELD_NUMBER = 1;
-  private int index_;
+  public static final int HASHID_FIELD_NUMBER = 1;
+  private volatile java.lang.Object hashId_;
   /**
-   * <code>int32 index = 1;</code>
-   * @return The index.
+   * <code>string hashId = 1;</code>
+   * @return The hashId.
    */
   @java.lang.Override
-  public int getIndex() {
-    return index_;
-  }
-
-  public static final int PREVIOUSHASH_FIELD_NUMBER = 2;
-  private volatile java.lang.Object previousHash_;
-  /**
-   * <code>string previousHash = 2;</code>
-   * @return The previousHash.
-   */
-  @java.lang.Override
-  public java.lang.String getPreviousHash() {
-    java.lang.Object ref = previousHash_;
+  public java.lang.String getHashId() {
+    java.lang.Object ref = hashId_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      previousHash_ = s;
+      hashId_ = s;
       return s;
     }
   }
   /**
-   * <code>string previousHash = 2;</code>
-   * @return The bytes for previousHash.
+   * <code>string hashId = 1;</code>
+   * @return The bytes for hashId.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getPreviousHashBytes() {
-    java.lang.Object ref = previousHash_;
+      getHashIdBytes() {
+    java.lang.Object ref = hashId_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      previousHash_ = b;
+      hashId_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int HASH_FIELD_NUMBER = 3;
+  public static final int HASH_FIELD_NUMBER = 2;
   private volatile java.lang.Object hash_;
   /**
-   * <code>string hash = 3;</code>
+   * <code>string hash = 2;</code>
    * @return The hash.
    */
   @java.lang.Override
@@ -115,7 +106,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string hash = 3;</code>
+   * <code>string hash = 2;</code>
    * @return The bytes for hash.
    */
   @java.lang.Override
@@ -133,53 +124,166 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int DATA_FIELD_NUMBER = 4;
-  private volatile java.lang.Object data_;
+  public static final int PREVIOUSHASH_FIELD_NUMBER = 3;
+  private volatile java.lang.Object previousHash_;
   /**
-   * <code>string data = 4;</code>
-   * @return The data.
+   * <code>string previousHash = 3;</code>
+   * @return The previousHash.
    */
   @java.lang.Override
-  public java.lang.String getData() {
-    java.lang.Object ref = data_;
+  public java.lang.String getPreviousHash() {
+    java.lang.Object ref = previousHash_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      data_ = s;
+      previousHash_ = s;
       return s;
     }
   }
   /**
-   * <code>string data = 4;</code>
-   * @return The bytes for data.
+   * <code>string previousHash = 3;</code>
+   * @return The bytes for previousHash.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getDataBytes() {
-    java.lang.Object ref = data_;
+      getPreviousHashBytes() {
+    java.lang.Object ref = previousHash_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      data_ = b;
+      previousHash_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int TIMESTAMP_FIELD_NUMBER = 5;
+  public static final int TRANSACTIONSLIST_FIELD_NUMBER = 4;
+  private group19.ssd.p2p.grpc.TransactionsList transactionsList_;
+  /**
+   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   * @return Whether the transactionsList field is set.
+   */
+  @java.lang.Override
+  public boolean hasTransactionsList() {
+    return transactionsList_ != null;
+  }
+  /**
+   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   * @return The transactionsList.
+   */
+  @java.lang.Override
+  public group19.ssd.p2p.grpc.TransactionsList getTransactionsList() {
+    return transactionsList_ == null ? group19.ssd.p2p.grpc.TransactionsList.getDefaultInstance() : transactionsList_;
+  }
+  /**
+   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   */
+  @java.lang.Override
+  public group19.ssd.p2p.grpc.TransactionsListOrBuilder getTransactionsListOrBuilder() {
+    return getTransactionsList();
+  }
+
+  public static final int NONCE_FIELD_NUMBER = 5;
+  private int nonce_;
+  /**
+   * <code>int32 nonce = 5;</code>
+   * @return The nonce.
+   */
+  @java.lang.Override
+  public int getNonce() {
+    return nonce_;
+  }
+
+  public static final int TIMESTAMP_FIELD_NUMBER = 6;
   private long timestamp_;
   /**
-   * <code>int64 timestamp = 5;</code>
+   * <code>int64 timestamp = 6;</code>
    * @return The timestamp.
    */
   @java.lang.Override
   public long getTimestamp() {
     return timestamp_;
+  }
+
+  public static final int PUBLICKEY_FIELD_NUMBER = 7;
+  private volatile java.lang.Object publicKey_;
+  /**
+   * <code>string publicKey = 7;</code>
+   * @return The publicKey.
+   */
+  @java.lang.Override
+  public java.lang.String getPublicKey() {
+    java.lang.Object ref = publicKey_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      publicKey_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string publicKey = 7;</code>
+   * @return The bytes for publicKey.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getPublicKeyBytes() {
+    java.lang.Object ref = publicKey_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      publicKey_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int NODEID_FIELD_NUMBER = 8;
+  private volatile java.lang.Object nodeId_;
+  /**
+   * <code>string nodeId = 8;</code>
+   * @return The nodeId.
+   */
+  @java.lang.Override
+  public java.lang.String getNodeId() {
+    java.lang.Object ref = nodeId_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      nodeId_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string nodeId = 8;</code>
+   * @return The bytes for nodeId.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getNodeIdBytes() {
+    java.lang.Object ref = nodeId_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      nodeId_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   private byte memoizedIsInitialized = -1;
@@ -196,20 +300,29 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (index_ != 0) {
-      output.writeInt32(1, index_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(previousHash_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, previousHash_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hashId_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, hashId_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hash_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, hash_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, hash_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(data_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, data_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(previousHash_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, previousHash_);
+    }
+    if (transactionsList_ != null) {
+      output.writeMessage(4, getTransactionsList());
+    }
+    if (nonce_ != 0) {
+      output.writeInt32(5, nonce_);
     }
     if (timestamp_ != 0L) {
-      output.writeInt64(5, timestamp_);
+      output.writeInt64(6, timestamp_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicKey_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 7, publicKey_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nodeId_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 8, nodeId_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -220,22 +333,32 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (index_ != 0) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeInt32Size(1, index_);
-    }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(previousHash_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, previousHash_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hashId_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, hashId_);
     }
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hash_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, hash_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, hash_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(data_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, data_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(previousHash_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, previousHash_);
+    }
+    if (transactionsList_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(4, getTransactionsList());
+    }
+    if (nonce_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(5, nonce_);
     }
     if (timestamp_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
-        .computeInt64Size(5, timestamp_);
+        .computeInt64Size(6, timestamp_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(publicKey_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(7, publicKey_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(nodeId_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(8, nodeId_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -252,16 +375,25 @@ private static final long serialVersionUID = 0L;
     }
     group19.ssd.p2p.grpc.Block other = (group19.ssd.p2p.grpc.Block) obj;
 
-    if (getIndex()
-        != other.getIndex()) return false;
-    if (!getPreviousHash()
-        .equals(other.getPreviousHash())) return false;
+    if (!getHashId()
+        .equals(other.getHashId())) return false;
     if (!getHash()
         .equals(other.getHash())) return false;
-    if (!getData()
-        .equals(other.getData())) return false;
+    if (!getPreviousHash()
+        .equals(other.getPreviousHash())) return false;
+    if (hasTransactionsList() != other.hasTransactionsList()) return false;
+    if (hasTransactionsList()) {
+      if (!getTransactionsList()
+          .equals(other.getTransactionsList())) return false;
+    }
+    if (getNonce()
+        != other.getNonce()) return false;
     if (getTimestamp()
         != other.getTimestamp()) return false;
+    if (!getPublicKey()
+        .equals(other.getPublicKey())) return false;
+    if (!getNodeId()
+        .equals(other.getNodeId())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -273,17 +405,25 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + INDEX_FIELD_NUMBER;
-    hash = (53 * hash) + getIndex();
-    hash = (37 * hash) + PREVIOUSHASH_FIELD_NUMBER;
-    hash = (53 * hash) + getPreviousHash().hashCode();
+    hash = (37 * hash) + HASHID_FIELD_NUMBER;
+    hash = (53 * hash) + getHashId().hashCode();
     hash = (37 * hash) + HASH_FIELD_NUMBER;
     hash = (53 * hash) + getHash().hashCode();
-    hash = (37 * hash) + DATA_FIELD_NUMBER;
-    hash = (53 * hash) + getData().hashCode();
+    hash = (37 * hash) + PREVIOUSHASH_FIELD_NUMBER;
+    hash = (53 * hash) + getPreviousHash().hashCode();
+    if (hasTransactionsList()) {
+      hash = (37 * hash) + TRANSACTIONSLIST_FIELD_NUMBER;
+      hash = (53 * hash) + getTransactionsList().hashCode();
+    }
+    hash = (37 * hash) + NONCE_FIELD_NUMBER;
+    hash = (53 * hash) + getNonce();
     hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
     hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
         getTimestamp());
+    hash = (37 * hash) + PUBLICKEY_FIELD_NUMBER;
+    hash = (53 * hash) + getPublicKey().hashCode();
+    hash = (37 * hash) + NODEID_FIELD_NUMBER;
+    hash = (53 * hash) + getNodeId().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -412,15 +552,25 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      index_ = 0;
-
-      previousHash_ = "";
+      hashId_ = "";
 
       hash_ = "";
 
-      data_ = "";
+      previousHash_ = "";
+
+      if (transactionsListBuilder_ == null) {
+        transactionsList_ = null;
+      } else {
+        transactionsList_ = null;
+        transactionsListBuilder_ = null;
+      }
+      nonce_ = 0;
 
       timestamp_ = 0L;
+
+      publicKey_ = "";
+
+      nodeId_ = "";
 
       return this;
     }
@@ -448,11 +598,18 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public group19.ssd.p2p.grpc.Block buildPartial() {
       group19.ssd.p2p.grpc.Block result = new group19.ssd.p2p.grpc.Block(this);
-      result.index_ = index_;
-      result.previousHash_ = previousHash_;
+      result.hashId_ = hashId_;
       result.hash_ = hash_;
-      result.data_ = data_;
+      result.previousHash_ = previousHash_;
+      if (transactionsListBuilder_ == null) {
+        result.transactionsList_ = transactionsList_;
+      } else {
+        result.transactionsList_ = transactionsListBuilder_.build();
+      }
+      result.nonce_ = nonce_;
       result.timestamp_ = timestamp_;
+      result.publicKey_ = publicKey_;
+      result.nodeId_ = nodeId_;
       onBuilt();
       return result;
     }
@@ -501,23 +658,34 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(group19.ssd.p2p.grpc.Block other) {
       if (other == group19.ssd.p2p.grpc.Block.getDefaultInstance()) return this;
-      if (other.getIndex() != 0) {
-        setIndex(other.getIndex());
-      }
-      if (!other.getPreviousHash().isEmpty()) {
-        previousHash_ = other.previousHash_;
+      if (!other.getHashId().isEmpty()) {
+        hashId_ = other.hashId_;
         onChanged();
       }
       if (!other.getHash().isEmpty()) {
         hash_ = other.hash_;
         onChanged();
       }
-      if (!other.getData().isEmpty()) {
-        data_ = other.data_;
+      if (!other.getPreviousHash().isEmpty()) {
+        previousHash_ = other.previousHash_;
         onChanged();
+      }
+      if (other.hasTransactionsList()) {
+        mergeTransactionsList(other.getTransactionsList());
+      }
+      if (other.getNonce() != 0) {
+        setNonce(other.getNonce());
       }
       if (other.getTimestamp() != 0L) {
         setTimestamp(other.getTimestamp());
+      }
+      if (!other.getPublicKey().isEmpty()) {
+        publicKey_ = other.publicKey_;
+        onChanged();
+      }
+      if (!other.getNodeId().isEmpty()) {
+        nodeId_ = other.nodeId_;
+        onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -545,31 +713,48 @@ private static final long serialVersionUID = 0L;
             case 0:
               done = true;
               break;
-            case 8: {
-              index_ = input.readInt32();
+            case 10: {
+              hashId_ = input.readStringRequireUtf8();
 
               break;
-            } // case 8
+            } // case 10
             case 18: {
-              previousHash_ = input.readStringRequireUtf8();
+              hash_ = input.readStringRequireUtf8();
 
               break;
             } // case 18
             case 26: {
-              hash_ = input.readStringRequireUtf8();
+              previousHash_ = input.readStringRequireUtf8();
 
               break;
             } // case 26
             case 34: {
-              data_ = input.readStringRequireUtf8();
+              input.readMessage(
+                  getTransactionsListFieldBuilder().getBuilder(),
+                  extensionRegistry);
 
               break;
             } // case 34
             case 40: {
-              timestamp_ = input.readInt64();
+              nonce_ = input.readInt32();
 
               break;
             } // case 40
+            case 48: {
+              timestamp_ = input.readInt64();
+
+              break;
+            } // case 48
+            case 58: {
+              publicKey_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 58
+            case 66: {
+              nodeId_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 66
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -586,116 +771,85 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private int index_ ;
+    private java.lang.Object hashId_ = "";
     /**
-     * <code>int32 index = 1;</code>
-     * @return The index.
+     * <code>string hashId = 1;</code>
+     * @return The hashId.
      */
-    @java.lang.Override
-    public int getIndex() {
-      return index_;
-    }
-    /**
-     * <code>int32 index = 1;</code>
-     * @param value The index to set.
-     * @return This builder for chaining.
-     */
-    public Builder setIndex(int value) {
-      
-      index_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>int32 index = 1;</code>
-     * @return This builder for chaining.
-     */
-    public Builder clearIndex() {
-      
-      index_ = 0;
-      onChanged();
-      return this;
-    }
-
-    private java.lang.Object previousHash_ = "";
-    /**
-     * <code>string previousHash = 2;</code>
-     * @return The previousHash.
-     */
-    public java.lang.String getPreviousHash() {
-      java.lang.Object ref = previousHash_;
+    public java.lang.String getHashId() {
+      java.lang.Object ref = hashId_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        previousHash_ = s;
+        hashId_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string previousHash = 2;</code>
-     * @return The bytes for previousHash.
+     * <code>string hashId = 1;</code>
+     * @return The bytes for hashId.
      */
     public com.google.protobuf.ByteString
-        getPreviousHashBytes() {
-      java.lang.Object ref = previousHash_;
+        getHashIdBytes() {
+      java.lang.Object ref = hashId_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        previousHash_ = b;
+        hashId_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string previousHash = 2;</code>
-     * @param value The previousHash to set.
+     * <code>string hashId = 1;</code>
+     * @param value The hashId to set.
      * @return This builder for chaining.
      */
-    public Builder setPreviousHash(
+    public Builder setHashId(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      previousHash_ = value;
+      hashId_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string previousHash = 2;</code>
+     * <code>string hashId = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearPreviousHash() {
+    public Builder clearHashId() {
       
-      previousHash_ = getDefaultInstance().getPreviousHash();
+      hashId_ = getDefaultInstance().getHashId();
       onChanged();
       return this;
     }
     /**
-     * <code>string previousHash = 2;</code>
-     * @param value The bytes for previousHash to set.
+     * <code>string hashId = 1;</code>
+     * @param value The bytes for hashId to set.
      * @return This builder for chaining.
      */
-    public Builder setPreviousHashBytes(
+    public Builder setHashIdBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      previousHash_ = value;
+      hashId_ = value;
       onChanged();
       return this;
     }
 
     private java.lang.Object hash_ = "";
     /**
-     * <code>string hash = 3;</code>
+     * <code>string hash = 2;</code>
      * @return The hash.
      */
     public java.lang.String getHash() {
@@ -711,7 +865,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string hash = 3;</code>
+     * <code>string hash = 2;</code>
      * @return The bytes for hash.
      */
     public com.google.protobuf.ByteString
@@ -728,7 +882,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string hash = 3;</code>
+     * <code>string hash = 2;</code>
      * @param value The hash to set.
      * @return This builder for chaining.
      */
@@ -743,7 +897,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string hash = 3;</code>
+     * <code>string hash = 2;</code>
      * @return This builder for chaining.
      */
     public Builder clearHash() {
@@ -753,7 +907,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string hash = 3;</code>
+     * <code>string hash = 2;</code>
      * @param value The bytes for hash to set.
      * @return This builder for chaining.
      */
@@ -769,85 +923,235 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object data_ = "";
+    private java.lang.Object previousHash_ = "";
     /**
-     * <code>string data = 4;</code>
-     * @return The data.
+     * <code>string previousHash = 3;</code>
+     * @return The previousHash.
      */
-    public java.lang.String getData() {
-      java.lang.Object ref = data_;
+    public java.lang.String getPreviousHash() {
+      java.lang.Object ref = previousHash_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        data_ = s;
+        previousHash_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string data = 4;</code>
-     * @return The bytes for data.
+     * <code>string previousHash = 3;</code>
+     * @return The bytes for previousHash.
      */
     public com.google.protobuf.ByteString
-        getDataBytes() {
-      java.lang.Object ref = data_;
+        getPreviousHashBytes() {
+      java.lang.Object ref = previousHash_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        data_ = b;
+        previousHash_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string data = 4;</code>
-     * @param value The data to set.
+     * <code>string previousHash = 3;</code>
+     * @param value The previousHash to set.
      * @return This builder for chaining.
      */
-    public Builder setData(
+    public Builder setPreviousHash(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      data_ = value;
+      previousHash_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string data = 4;</code>
+     * <code>string previousHash = 3;</code>
      * @return This builder for chaining.
      */
-    public Builder clearData() {
+    public Builder clearPreviousHash() {
       
-      data_ = getDefaultInstance().getData();
+      previousHash_ = getDefaultInstance().getPreviousHash();
       onChanged();
       return this;
     }
     /**
-     * <code>string data = 4;</code>
-     * @param value The bytes for data to set.
+     * <code>string previousHash = 3;</code>
+     * @param value The bytes for previousHash to set.
      * @return This builder for chaining.
      */
-    public Builder setDataBytes(
+    public Builder setPreviousHashBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      data_ = value;
+      previousHash_ = value;
+      onChanged();
+      return this;
+    }
+
+    private group19.ssd.p2p.grpc.TransactionsList transactionsList_;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        group19.ssd.p2p.grpc.TransactionsList, group19.ssd.p2p.grpc.TransactionsList.Builder, group19.ssd.p2p.grpc.TransactionsListOrBuilder> transactionsListBuilder_;
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     * @return Whether the transactionsList field is set.
+     */
+    public boolean hasTransactionsList() {
+      return transactionsListBuilder_ != null || transactionsList_ != null;
+    }
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     * @return The transactionsList.
+     */
+    public group19.ssd.p2p.grpc.TransactionsList getTransactionsList() {
+      if (transactionsListBuilder_ == null) {
+        return transactionsList_ == null ? group19.ssd.p2p.grpc.TransactionsList.getDefaultInstance() : transactionsList_;
+      } else {
+        return transactionsListBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     */
+    public Builder setTransactionsList(group19.ssd.p2p.grpc.TransactionsList value) {
+      if (transactionsListBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        transactionsList_ = value;
+        onChanged();
+      } else {
+        transactionsListBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     */
+    public Builder setTransactionsList(
+        group19.ssd.p2p.grpc.TransactionsList.Builder builderForValue) {
+      if (transactionsListBuilder_ == null) {
+        transactionsList_ = builderForValue.build();
+        onChanged();
+      } else {
+        transactionsListBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     */
+    public Builder mergeTransactionsList(group19.ssd.p2p.grpc.TransactionsList value) {
+      if (transactionsListBuilder_ == null) {
+        if (transactionsList_ != null) {
+          transactionsList_ =
+            group19.ssd.p2p.grpc.TransactionsList.newBuilder(transactionsList_).mergeFrom(value).buildPartial();
+        } else {
+          transactionsList_ = value;
+        }
+        onChanged();
+      } else {
+        transactionsListBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     */
+    public Builder clearTransactionsList() {
+      if (transactionsListBuilder_ == null) {
+        transactionsList_ = null;
+        onChanged();
+      } else {
+        transactionsList_ = null;
+        transactionsListBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     */
+    public group19.ssd.p2p.grpc.TransactionsList.Builder getTransactionsListBuilder() {
+      
+      onChanged();
+      return getTransactionsListFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     */
+    public group19.ssd.p2p.grpc.TransactionsListOrBuilder getTransactionsListOrBuilder() {
+      if (transactionsListBuilder_ != null) {
+        return transactionsListBuilder_.getMessageOrBuilder();
+      } else {
+        return transactionsList_ == null ?
+            group19.ssd.p2p.grpc.TransactionsList.getDefaultInstance() : transactionsList_;
+      }
+    }
+    /**
+     * <code>.ledger.TransactionsList transactionsList = 4;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        group19.ssd.p2p.grpc.TransactionsList, group19.ssd.p2p.grpc.TransactionsList.Builder, group19.ssd.p2p.grpc.TransactionsListOrBuilder> 
+        getTransactionsListFieldBuilder() {
+      if (transactionsListBuilder_ == null) {
+        transactionsListBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            group19.ssd.p2p.grpc.TransactionsList, group19.ssd.p2p.grpc.TransactionsList.Builder, group19.ssd.p2p.grpc.TransactionsListOrBuilder>(
+                getTransactionsList(),
+                getParentForChildren(),
+                isClean());
+        transactionsList_ = null;
+      }
+      return transactionsListBuilder_;
+    }
+
+    private int nonce_ ;
+    /**
+     * <code>int32 nonce = 5;</code>
+     * @return The nonce.
+     */
+    @java.lang.Override
+    public int getNonce() {
+      return nonce_;
+    }
+    /**
+     * <code>int32 nonce = 5;</code>
+     * @param value The nonce to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNonce(int value) {
+      
+      nonce_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 nonce = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearNonce() {
+      
+      nonce_ = 0;
       onChanged();
       return this;
     }
 
     private long timestamp_ ;
     /**
-     * <code>int64 timestamp = 5;</code>
+     * <code>int64 timestamp = 6;</code>
      * @return The timestamp.
      */
     @java.lang.Override
@@ -855,7 +1159,7 @@ private static final long serialVersionUID = 0L;
       return timestamp_;
     }
     /**
-     * <code>int64 timestamp = 5;</code>
+     * <code>int64 timestamp = 6;</code>
      * @param value The timestamp to set.
      * @return This builder for chaining.
      */
@@ -866,12 +1170,164 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>int64 timestamp = 5;</code>
+     * <code>int64 timestamp = 6;</code>
      * @return This builder for chaining.
      */
     public Builder clearTimestamp() {
       
       timestamp_ = 0L;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object publicKey_ = "";
+    /**
+     * <code>string publicKey = 7;</code>
+     * @return The publicKey.
+     */
+    public java.lang.String getPublicKey() {
+      java.lang.Object ref = publicKey_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        publicKey_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string publicKey = 7;</code>
+     * @return The bytes for publicKey.
+     */
+    public com.google.protobuf.ByteString
+        getPublicKeyBytes() {
+      java.lang.Object ref = publicKey_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        publicKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string publicKey = 7;</code>
+     * @param value The publicKey to set.
+     * @return This builder for chaining.
+     */
+    public Builder setPublicKey(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      publicKey_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string publicKey = 7;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearPublicKey() {
+      
+      publicKey_ = getDefaultInstance().getPublicKey();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string publicKey = 7;</code>
+     * @param value The bytes for publicKey to set.
+     * @return This builder for chaining.
+     */
+    public Builder setPublicKeyBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      publicKey_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object nodeId_ = "";
+    /**
+     * <code>string nodeId = 8;</code>
+     * @return The nodeId.
+     */
+    public java.lang.String getNodeId() {
+      java.lang.Object ref = nodeId_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        nodeId_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string nodeId = 8;</code>
+     * @return The bytes for nodeId.
+     */
+    public com.google.protobuf.ByteString
+        getNodeIdBytes() {
+      java.lang.Object ref = nodeId_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        nodeId_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string nodeId = 8;</code>
+     * @param value The nodeId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNodeId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      nodeId_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string nodeId = 8;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearNodeId() {
+      
+      nodeId_ = getDefaultInstance().getNodeId();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string nodeId = 8;</code>
+     * @param value The bytes for nodeId to set.
+     * @return This builder for chaining.
+     */
+    public Builder setNodeIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      nodeId_ = value;
       onChanged();
       return this;
     }

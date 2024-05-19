@@ -28,7 +28,7 @@ public class KBucket {
         identifiedLast.add(node);
     }
     
-    public Node getNode(Node nodeId){
+    public Node getNode(String nodeId){
         for (Node node : this.identifiedLast){
             if (node.id.equals(nodeId))
                 return node;

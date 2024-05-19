@@ -82,31 +82,34 @@ public final class BlockchainGRPCProto {
       "\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"<\n\004Pong\022" +
       "\014\n\004pong\030\001 \001(\010\022&\n\nblockchain\030\002 \001(\0132\022.ledg" +
       "er.BlockChain\"$\n\010IPAddres\022\n\n\002ip\030\001 \001(\t\022\014\n" +
-      "\004port\030\002 \001(\t\"[\n\005Block\022\r\n\005index\030\001 \001(\005\022\024\n\014p" +
-      "reviousHash\030\002 \001(\t\022\014\n\004hash\030\003 \001(\t\022\014\n\004data\030" +
-      "\004 \001(\t\022\021\n\ttimestamp\030\005 \001(\003\"@\n\020Transactions" +
-      "List\022,\n\017transactionList\030\001 \003(\0132\023.ledger.T" +
-      "ransaction\"a\n\nBlockChain\022\034\n\005chain\030\001 \003(\0132" +
-      "\r.ledger.Block\0225\n\023pendingTransactions\030\002 " +
-      "\001(\0132\030.ledger.TransactionsList\"\225\001\n\013Transa" +
-      "ction\022\014\n\004hash\030\001 \001(\t\022\020\n\010senderPK\030\002 \001(\t\022\022\n" +
-      "\nreceiverPK\030\003 \001(\t\022\021\n\tsignature\030\004 \001(\014\022\021\n\t" +
-      "timestamp\030\005 \001(\003\022\016\n\006amount\030\006 \001(\005\022\014\n\004misc\030" +
-      "\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"\031\n\006Status\022\017\n\007succe" +
-      "ss\030\001 \001(\010\"a\n\010FindNode\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002" +
-      " \001(\t\022\014\n\004port\030\003 \001(\005\022\r\n\005proof\030\004 \001(\005\022\016\n\006pub" +
-      "Key\030\005 \001(\t\022\020\n\010targetId\030\006 \001(\t\"1\n\tNode_GRPC" +
-      "\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"2" +
-      "\n\014KBucket_GRPC\022\"\n\007kbucket\030\001 \003(\0132\021.ledger" +
-      ".Node_GRPC2\230\002\n\021BlockchainService\022\"\n\004ping" +
-      "\022\014.ledger.Ping\032\014.ledger.Pong\0220\n\017broadcas" +
-      "t_block\022\r.ledger.Block\032\016.ledger.Status\022<" +
-      "\n\025broadcast_transaction\022\023.ledger.Transac" +
-      "tion\032\016.ledger.Status\022:\n\024broadcast_blockc" +
-      "hain\022\022.ledger.BlockChain\032\016.ledger.Status" +
-      "\0223\n\tfindNodes\022\020.ledger.FindNode\032\024.ledger" +
-      ".KBucket_GRPCB2\n\024group19.ssd.p2p.grpcB\023B" +
-      "lockchainGRPCProtoP\001\242\002\002BCb\006proto3"
+      "\004port\030\002 \001(\t\"\264\001\n\005Block\022\016\n\006hashId\030\001 \001(\t\022\014\n" +
+      "\004hash\030\002 \001(\t\022\024\n\014previousHash\030\003 \001(\t\0222\n\020tra" +
+      "nsactionsList\030\004 \001(\0132\030.ledger.Transaction" +
+      "sList\022\r\n\005nonce\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022" +
+      "\021\n\tpublicKey\030\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"@\n\020Tr" +
+      "ansactionsList\022,\n\017transactionList\030\001 \003(\0132" +
+      "\023.ledger.Transaction\"a\n\nBlockChain\022\034\n\005ch" +
+      "ain\030\001 \003(\0132\r.ledger.Block\0225\n\023pendingTrans" +
+      "actions\030\002 \001(\0132\030.ledger.TransactionsList\"" +
+      "\225\001\n\013Transaction\022\014\n\004hash\030\001 \001(\t\022\020\n\010senderP" +
+      "K\030\002 \001(\t\022\022\n\nreceiverPK\030\003 \001(\t\022\021\n\tsignature" +
+      "\030\004 \001(\014\022\021\n\ttimestamp\030\005 \001(\003\022\016\n\006amount\030\006 \001(" +
+      "\005\022\014\n\004misc\030\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"\031\n\006Statu" +
+      "s\022\017\n\007success\030\001 \001(\010\"a\n\010FindNode\022\n\n\002id\030\001 \001" +
+      "(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\r\n\005proof\030\004 " +
+      "\001(\005\022\016\n\006pubKey\030\005 \001(\t\022\020\n\010targetId\030\006 \001(\t\"1\n" +
+      "\tNode_GRPC\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004po" +
+      "rt\030\003 \001(\005\"2\n\014KBucket_GRPC\022\"\n\007kbucket\030\001 \003(" +
+      "\0132\021.ledger.Node_GRPC2\230\002\n\021BlockchainServi" +
+      "ce\022\"\n\004ping\022\014.ledger.Ping\032\014.ledger.Pong\0220" +
+      "\n\017broadcast_block\022\r.ledger.Block\032\016.ledge" +
+      "r.Status\022<\n\025broadcast_transaction\022\023.ledg" +
+      "er.Transaction\032\016.ledger.Status\022:\n\024broadc" +
+      "ast_blockchain\022\022.ledger.BlockChain\032\016.led" +
+      "ger.Status\0223\n\tfindNodes\022\020.ledger.FindNod" +
+      "e\032\024.ledger.KBucket_GRPCB2\n\024group19.ssd.p" +
+      "2p.grpcB\023BlockchainGRPCProtoP\001\242\002\002BCb\006pro" +
+      "to3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -135,7 +138,7 @@ public final class BlockchainGRPCProto {
     internal_static_ledger_Block_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ledger_Block_descriptor,
-        new java.lang.String[] { "Index", "PreviousHash", "Hash", "Data", "Timestamp", });
+        new java.lang.String[] { "HashId", "Hash", "PreviousHash", "TransactionsList", "Nonce", "Timestamp", "PublicKey", "NodeId", });
     internal_static_ledger_TransactionsList_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_ledger_TransactionsList_fieldAccessorTable = new

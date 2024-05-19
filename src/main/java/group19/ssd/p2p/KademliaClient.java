@@ -9,6 +9,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+import group19.ssd.blockchain.Block;
+import group19.ssd.blockchain.Blockchain;
+import group19.ssd.blockchain.transactions.Transaction;
+import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.miscellaneous.Configuration;
 import group19.ssd.miscellaneous.Miscellaneous;
 
@@ -19,12 +23,12 @@ public class KademliaClient {
     public static int proof;
     public static String publicKey;
     public static KBucket kbucket = new KBucket();
-    // public static Wallet wallet = new Wallet();
-    // public static Blockchain blockchain;
-    // public static Ledger ledger;
-    // public static MineBlockThread mineBlockThread = new MineBlockThread();
-    // private static boolean alreadyRunningMineBlockThread = false;
-    // public static KeepAliveThread keepAliveThread = new KeepAliveThread();
+    public static Wallet wallet = new Wallet();
+    public static Blockchain blockchain;
+    public static Ledger ledger;
+    private static boolean alreadyRunningMineBlockThread = false;
+    public static MineBlockThread mineBlockThread = new MineBlockThread();
+    public static KeepAliveThread keepAliveThread = new KeepAliveThread();
 
     public String getHash() {
         return id;
@@ -34,7 +38,34 @@ public class KademliaClient {
 
     }
 
-    // public void setup(int node_port, String node_ip) throws InvalidKeySpecException, NoSuchAlgorithmException{}
+    public void setup(int node_port, String node_ip) throws InvalidKeySpecException, NoSuchAlgorithmException{
+        KademliaClient.proof = 0;
+        KademliaClient.port = node_port;
+        KademliaClient.ip = node_ip;
+        KademliaClient.publicKey = String.valueOf(KademliaClient.wallet.getPublicKey());  //porque publickey nao é to tipo string
+        KademliaClient.ledger = new Ledger();
+        try {
+            if (Configuration.knownNode.equals("")) {
+                KademliaClient.blockchain = new Blockchain(KademliaClient.wallet);
+            } else {
+                KademliaClient.blockchain = new Blockchain();
+            }
+        } catch (SignatureException | InvalidKeyException | UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        id = getNodeId();
+
+
+        System.out.println(Configuration.knownNode);
+
+        if (Configuration.knownNode.equals("")) {
+            Configuration.knownNode = KademliaClient.id;
+        } else {
+            KademliaClient.kbucket.addNode(new Node(Configuration.knownNode, node_ip, 8080));
+            Kademlia.pingNode(new Node(Configuration.knownNode, node_ip, 8080));
+        }
+    }
 
     private static String getNodeId(){
         return calculateHash(KademliaClient.ip, KademliaClient.proof,KademliaClient.port,KademliaClient.publicKey);
@@ -48,32 +79,133 @@ public class KademliaClient {
         return Miscellaneous.applyEncryption(ip + port + proof + publicKey);
     }
 
-    // public static void evaluateTrust(){}
+    public static void evaluateTrust(){
+        ArrayList<Node> bucket = kbucket.getCloneNodesList();
+        for (Node node : bucket) {
+            Blockchain newBlockchain = null;
 
-    // public static void shareBlock(Block block, String sender){}
+            try {
+                newBlockchain = new PeerOperations(node.ip, node.port).getBlockchain();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
 
-    // public static void shareTransaction(Transaction transaction, String sender){}
+            if (newBlockchain != null) {
+                if (newBlockchain.isChainValid())
+                    KademliaClient.kbucket.getNode(node.id).addSuccessfullInterations();
+                else {
+                    KademliaClient.kbucket.getNode(node.id).addNonSuccessfullInteractions();
+                }
+            }
+        }
+    }
 
-    // public static void startMining() {
-    //     if (!alreadyRunningMineBlockThread) {
-    //         alreadyRunningMineBlockThread = true;
-    //         KademliaClient.mineBlockThread.start();
-    //     } else {
-    //         System.out.println("Already Mining");
-    //     }
-    // }
+    public static void shareBlock(Block block, String sender){
+        ArrayList<Node> destinations = KademliaClient.kbucket.getCloneNodesList();
 
-    // public static void startPinging(){
-    //     KademliaClient.keepAliveThread.start();
-    // }
+        for (Node destination : destinations) {
+            if (!destination.id.equals(sender))
+                try {
+                    System.out.println("Send Block to " + destination.ip + ":" + destination.port);
+                    new PeerOperations(destination.ip, destination.port).sendBlock(block);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+    }
 
-    // private static class MineBlockThread extends Thread{
-    //     public MineBlockThread(){}
+    public static void shareTransaction(Transaction transaction, String sender){
+        ArrayList<Node> destinations = KademliaClient.kbucket.getCloneNodesList();
 
-    // }
+        try {
+            transaction.signTransaction(KademliaClient.wallet);        // podera ser generateSignature
+        } catch (UnsupportedEncodingException | NoSuchAlgorithmException |
+                 SignatureException | InvalidKeySpecException | InvalidKeyException e) {
+            e.printStackTrace();
+        }
 
-    // private static class KeepAliveThread extends Thread{
-    //     public KeepAliveThread(){}
+        Blockchain.pendingList.add(transaction);
 
-    // }
+        for (Node destination : destinations) {
+            System.out.println(destination.ip + ":" + destination.port);
+            if (!(destination.id.equals(sender)))
+                try {
+                    new PeerOperations(destination.ip, destination.port).sendTransaction(transaction);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+    }
+
+     public static void startMining() {
+         if (!alreadyRunningMineBlockThread) {
+             alreadyRunningMineBlockThread = true;
+             KademliaClient.mineBlockThread.start();
+         } else {
+             System.out.println("Already Mining");
+         }
+     }
+
+     public static void startPinging(){
+         KademliaClient.keepAliveThread.start();
+     }
+
+     private static class MineBlockThread extends Thread{
+         public MineBlockThread(){}
+
+         @Override
+         public void run() {
+
+             while (true) {
+                 try {
+
+                     TimeUnit.MICROSECONDS.sleep(500);
+
+                 } catch (InterruptedException e) {
+                     e.printStackTrace();
+                 }
+
+
+                 if (!KademliaClient.blockchain.getPendingTransactions().isEmpty()) {
+
+                     String blockHashId = Miscellaneous.applyEncryption(String.valueOf(new Date().getTime()));
+                     System.out.println("mining: " + blockHashId);
+
+                     KademliaClient.blockchain.minePendingTransactions(KademliaClient.wallet);
+                     KademliaClient.ledger.updateLedger(KademliaClient.blockchain.getLatestBlock());
+
+                     KademliaClient.shareBlock(KademliaClient.blockchain.getLatestBlock(), KademliaClient.id);
+                     KademliaClient.blockchain.printBlockChain();
+                 }
+             }
+         }
+     }
+
+     private static class KeepAliveThread extends Thread{
+         public KeepAliveThread(){}
+
+         @Override
+         public void run() {
+
+             while (true) {
+                 try {
+
+                     TimeUnit.MILLISECONDS.sleep(20000);
+
+                 } catch (InterruptedException e) {
+                     e.printStackTrace();
+                 }
+
+                 KademliaClient.evaluateTrust();
+
+                 for (int i = 0; i < KademliaClient.kbucket.identifiedSize(); i++) {
+                     if (!new PeerOperations(KademliaClient.kbucket.identifiedLast.get(i).ip, KademliaClient.kbucket.identifiedLast.get(i).port).ping()) {
+                         KademliaClient.kbucket.identifiedLast.remove(i);
+                         i--;
+                     }
+                 }
+
+             }
+         }
+     }
 }
