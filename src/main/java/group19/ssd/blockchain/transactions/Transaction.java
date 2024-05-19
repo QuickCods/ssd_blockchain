@@ -4,6 +4,7 @@ import group19.ssd.blockchain.utils.StringUtil;
 
 import java.security.*;
 import java.util.Base64;
+import java.util.Date;
 
 public class Transaction {
 
@@ -15,19 +16,28 @@ public class Transaction {
     public Long amount;
     public String signature; // This will store our signature
     public String transactionId; // This will store the hash of the transaction
+    public String misc = ""; //info adicional
+    public long timestamp;
 
     public Transaction(Wallet source, Wallet destination, Long amount) {
         this.source = source;
         this.destination = destination;
         this.amount = amount;
-        this.transactionId = calculateHash(); // Calculate hash when the transaction is created
+        validateTransaction();
+        this.misc = misc;
     }
 
     public Transaction(String sender, String receiver, Long amount) {
         this.sender = sender;
         this.receiver = receiver;
         this.amount = amount;
-        this.transactionId = calculateHash();
+        validateTransaction();
+        this.misc = misc;
+    }
+
+    public void validateTransaction() {
+        this.timestamp = new Date().getTime();
+        this.transactionId = calculateHash(); // Calculate hash when the transaction is created
     }
 
     // Method to generate a digital signature for the transaction
@@ -77,7 +87,7 @@ public class Transaction {
     }
 
     public void printTransaction() {
-        System.out.println("hash:" + this.hash);
+        System.out.println("hash:" + this.transactionId);
         System.out.println("from:" + this.source);
         System.out.println("to:" + this.destination);
         System.out.println("amount:" + this.amount);
