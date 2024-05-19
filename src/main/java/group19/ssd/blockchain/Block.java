@@ -12,6 +12,7 @@ public class Block {
     }
 
     public String hash;
+    // public String publicKey;
 
     public String getPreviousHash() {
         return previousHash;

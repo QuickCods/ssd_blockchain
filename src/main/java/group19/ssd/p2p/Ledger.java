@@ -2,7 +2,6 @@ package group19.ssd.p2p;
 
 import group19.ssd.blockchain.Block;
 import group19.ssd.blockchain.transactions.Transaction;
-import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.miscellaneous.Configuration;
 
 import java.util.Hashtable;
@@ -12,7 +11,7 @@ public class Ledger {
     int minCoin = 15;
 
     public Ledger() {
-        users.put(KademliaClient.publicKey, minCoin);
+        users.put(KademliaClient.publicKey, (long) minCoin);
     }
 
     public Long getBalance(String pubKey) {
@@ -21,7 +20,7 @@ public class Ledger {
 
     public void reset() {
         users.clear();
-        users.put(KademliaClient.publicKey, minCoin);
+        users.put(KademliaClient.publicKey, (long) minCoin);
     }
 
     public void restartLedger() {
@@ -37,17 +36,17 @@ public class Ledger {
             if (users.get(transaction.sender) != null) {        //source é o senderPK
                 senderAmount = users.get(transaction.sender);
             } else {
-                senderAmount = minCoin;
+                senderAmount = (long) minCoin;
             }
             if (users.get(transaction.receiver) != null) {
                 receiverAmount = users.get(transaction.receiver);
             } else {
-                receiverAmount = minCoin;
+                receiverAmount = (long) minCoin;
             }
             users.put(transaction.sender, (senderAmount - transaction.amount));
             users.put(transaction.receiver, (receiverAmount + transaction.amount));
         }
-
+        // é preciso fazer coisas no block e blockchain
         if (users.get(block.publicKey) != null) {
             users.put(block.publicKey, users.get(block.publicKey) + 1);
         } else {
