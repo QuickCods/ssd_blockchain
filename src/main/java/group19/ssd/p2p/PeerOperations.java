@@ -47,8 +47,8 @@ public class PeerOperations {
                     .setIp(KademliaClient.ip)
                     .setPort(KademliaClient.port)
                     .setProof(KademliaClient.proof)
-                    .setPubKey(KademliaClient.pubKey)
-                    .setTarget(id)
+                    .setPubKey(KademliaClient.publicKey)
+                    .setTargetId(id)
                     .build());  
                 return NodeSerializable.GRPC_to_KBucket(NodesFound);
             } catch(StatusRuntimeException e){
@@ -98,9 +98,9 @@ public class PeerOperations {
                     .setIp(KademliaClient.ip)
                     .setPort(KademliaClient.port)
                     .setProof(KademliaClient.proof)
-                    .setPubKey(KademliaClient.pubKey)
+                    .setPubKey(KademliaClient.publicKey)
                     .build();
-                Pong response = blockingStub.Ping(request);
+                Pong response = blockingStub.ping(request);
                 if(response.getPong()){
                     Blockchain blockchain_received = BCConverter.mkBlockChain(response.getBlockchain());
                     if(blockchain_received.getChain().size() > KademliaClient.blockchain.getChain().size()){
@@ -129,9 +129,9 @@ public class PeerOperations {
                 .setIp(KademliaClient.ip)
                 .setPort(KademliaClient.port)
                 .setProof(KademliaClient.proof)
-                .setPubKey(KademliaClient.pubKey)
+                .setPubKey(KademliaClient.publicKey)
                 .build();
-            Pong response = blockingStub.Ping(request);
+            Pong response = blockingStub.ping(request);
             if(response.getPong()){
                 Blockchain blockchain_received = null;
                 try{

@@ -22,6 +22,7 @@ public class Blockchain {
     // create empty blockchain
     public Blockchain() {
         chain = new ArrayList<>();
+        //adicionar aqui pendingList = new ArrayList<>();
     }
 
     public ArrayList<Block> getChain() {
