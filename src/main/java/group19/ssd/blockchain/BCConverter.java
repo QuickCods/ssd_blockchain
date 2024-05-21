@@ -42,7 +42,7 @@ public class BCConverter {
                 transaction.getSender(),
                 transaction.getReceiver(),
                 transaction.getSignature().toByteArray(),
-                transaction.getTimeStamp(),
+                transaction.getTimestamp(),
                 transaction.getAmount(),
                 transaction.getMisc());
     }
