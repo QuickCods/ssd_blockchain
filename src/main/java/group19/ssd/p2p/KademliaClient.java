@@ -166,12 +166,12 @@ public class KademliaClient {
                  }
 
 
-                 if (!KademliaClient.blockchain.getPendingTransactions().isEmpty()) {
+                 if (!KademliaClient.blockchain.getPendingList().isEmpty()) {
 
                      String blockHashId = Miscellaneous.applyEncryption(String.valueOf(new Date().getTime()));
                      System.out.println("mining: " + blockHashId);
 
-                     KademliaClient.blockchain.minePendingTransactions(KademliaClient.wallet);
+                     KademliaClient.blockchain.minePendingTransaction(KademliaClient.wallet);
                      KademliaClient.ledger.updateLedger(KademliaClient.blockchain.getLatestBlock());
 
                      KademliaClient.shareBlock(KademliaClient.blockchain.getLatestBlock(), KademliaClient.id);

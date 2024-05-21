@@ -2,6 +2,7 @@ package group19.ssd.blockchain;
 
 import group19.ssd.blockchain.transactions.Transaction;
 import group19.ssd.blockchain.utils.StringUtil;
+import group19.ssd.miscellaneous.Configuration;
 
 import java.util.*;
 
@@ -11,6 +12,7 @@ public class Block {
         return hash;
     }
 
+    public String hashId; //identifier
     public String hash;
     public String publicKey;
 
@@ -88,10 +90,10 @@ public class Block {
     }
 
     //create a hash with dificulty that i want to impose
-    public void mineBlock(int difficulty) {
-        String target = new String(new char[difficulty]).replace('\0', '0'); //Create a string with difficulty * "0"
+    public void mineBlock() {
+        String target = new String(new char[Configuration.MINING_DIFFICULTY]).replace('\0', '0'); //Create a string with difficulty * "0"
         System.out.println("Starting to mine with difficulty target: " + target);
-        while(!hash.substring( 0, difficulty).equals(target)) {
+        while(!hash.substring( 0, Configuration.MINING_DIFFICULTY).equals(target)) {
             nonce ++;
             hash = calculateHash();
         }

@@ -2,19 +2,21 @@ package group19.ssd.blockchain;
 
 import group19.ssd.blockchain.transactions.Transaction;
 import group19.ssd.blockchain.transactions.Wallet;
+import group19.ssd.miscellaneous.Configuration;
+import group19.ssd.p2p.KademliaClient;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SignatureException;
 import java.util.ArrayList;
+import java.util.Base64;
 
 public class Blockchain {
 
     public static ArrayList<Block> chain = new ArrayList<>(); //blocos em cadeia
 
     public static ArrayList<Transaction> pendingList = new ArrayList<>(); //before enter in the block
-    public static int difficulty = 5;
 
     public Blockchain(Wallet wallet) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, UnsupportedEncodingException {
         createGenesisBlock(wallet);
@@ -22,7 +24,7 @@ public class Blockchain {
     // create empty blockchain
     public Blockchain() {
         chain = new ArrayList<>();
-        //adicionar aqui pendingList = new ArrayList<>();
+        pendingList = new ArrayList<>();
     }
 
     public ArrayList<Block> getChain() {
@@ -33,6 +35,22 @@ public class Blockchain {
         Wallet tempWallet = new Wallet();
         this.addTransaction(tempWallet, wallet,100);
         this.minePendingTransaction(wallet);
+    }
+
+    // ddefine pending transactions and makes a copy
+    public void setPendingTransactions(ArrayList<Transaction> oldTransactionArrayList) {
+        for (Transaction curTransaction : oldTransactionArrayList) {
+            pendingList.add(new Transaction(curTransaction.sender, curTransaction.receiver, curTransaction.signature.getBytes(), curTransaction.timestamp, curTransaction.amount, curTransaction.misc));
+                                                                                                // nao sei se é preciso dar algum encode aqui no signature
+        }
+    }
+
+    public ArrayList<Transaction> getPendingList() {
+        return pendingList;
+    }
+
+    public int getPendingListSize() {
+        return pendingList.size();
     }
 
     public Block getLatestBlock() {
@@ -48,7 +66,7 @@ public class Blockchain {
         block.verifyBlock();
 
         // Minerar o bloco
-        block.mineBlock(difficulty);
+        block.mineBlock();
 
         if (chain.isEmpty()) {
             // If the blockchain is empty, add the new block directly
@@ -58,7 +76,7 @@ public class Blockchain {
             String previousHash = getLatestBlock().hash;
             block.previousHash = previousHash;
             // Mine the new block
-            block.mineBlock(difficulty);
+            block.mineBlock();
             // Add the new block to the blockchain
             chain.add(block);
         }
@@ -87,14 +105,10 @@ public class Blockchain {
         }
     }
 
-    public ArrayList<Transaction> getPendingTransactions() {
-        return pendingList;
-    }
-
     public Boolean isChainValid() {
         Block currentBlock;
         Block previousBlock;
-        String hashTarget = new String(new char[difficulty]).replace('\0', '0');
+        String hashTarget = new String(new char[Configuration.MINING_DIFFICULTY]).replace('\0', '0');
 
         //loop through blockchain to check hashes:
         for(int i=1; i < chain.size(); i++) {
@@ -111,7 +125,7 @@ public class Blockchain {
                 return false;
             }
             //check if hash is solved
-            if(!currentBlock.hash.substring( 0, difficulty).equals(hashTarget)) {
+            if(!currentBlock.hash.substring( 0, Configuration.MINING_DIFFICULTY).equals(hashTarget)) {
                 System.out.println("This block hasn't been mined");
                 return false;
             }
@@ -132,7 +146,37 @@ public class Blockchain {
         }
     }
 
+    //Minera as transações pendentes num bloco novo
+    public Block minePendingTransaction(Wallet miner) {
+        int pendingTransactionsLength = getPendingListSize();
+        if (pendingTransactionsLength == 0) {
+            System.out.println("Não há transações pendentes");
+            return null;
+        }
 
+        ArrayList<Transaction> newBlockTransactions = new ArrayList<>();
+        if (pendingTransactionsLength >= Configuration.MAX_TRANSACTIONS_PER_BLOCK) {
+            for (int i = 0; i < Configuration.MAX_TRANSACTIONS_PER_BLOCK; i++) {
+                newBlockTransactions.add(pendingList.get(i));
+            }
+        } else {
+            System.out.println("Não há transições suficientes (" + Configuration.MAX_TRANSACTIONS_PER_BLOCK + "), há apenas " + pendingTransactionsLength);
+            newBlockTransactions.addAll(pendingList);
+        }
+
+        //criar novo bloco com as transações pendentes e adicona á cadeia
+        Block newBlock;
+        if (chain.size() == 0) {
+            newBlock = new Block(0 + "", newBlockTransactions, "", Base64.getEncoder().encodeToString(KademliaClient.wallet.getPublicKey().getEncoded()));   // Base64... is to convert PublicKey to String
+        } else {
+            newBlock = new Block(chain.size() + "", newBlockTransactions, this.getLatestBlock().hash, Base64.getEncoder().encodeToString(KademliaClient.wallet.getPublicKey().getEncoded()));
+        }
+        newBlock.mineBlock();
+        chain.add(newBlock);
+        pendingList.subList(0, newBlockTransactions.size()).clear();
+        System.out.println("FEITO");
+        return newBlock;
+    }
 
 
 }
