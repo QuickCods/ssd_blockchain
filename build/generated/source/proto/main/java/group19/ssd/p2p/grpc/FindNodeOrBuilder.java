@@ -4,7 +4,7 @@
 package group19.ssd.p2p.grpc;
 
 public interface FindNodeOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.FindNode)
+    // @@protoc_insertion_point(interface_extends:blockchain.FindNode)
     com.google.protobuf.MessageOrBuilder {
 
   /**

@@ -15,60 +15,60 @@ public final class BlockchainGRPCProto {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_Ping_descriptor;
+    internal_static_blockchain_Ping_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_Ping_fieldAccessorTable;
+      internal_static_blockchain_Ping_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_Pong_descriptor;
+    internal_static_blockchain_Pong_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_Pong_fieldAccessorTable;
+      internal_static_blockchain_Pong_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_IPAddres_descriptor;
+    internal_static_blockchain_IPAddres_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_IPAddres_fieldAccessorTable;
+      internal_static_blockchain_IPAddres_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_Block_descriptor;
+    internal_static_blockchain_BlockChain_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_Block_fieldAccessorTable;
+      internal_static_blockchain_BlockChain_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_TransactionsList_descriptor;
+    internal_static_blockchain_Block_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_TransactionsList_fieldAccessorTable;
+      internal_static_blockchain_Block_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_BlockChain_descriptor;
+    internal_static_blockchain_TransactionsList_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_BlockChain_fieldAccessorTable;
+      internal_static_blockchain_TransactionsList_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_Transaction_descriptor;
+    internal_static_blockchain_Transaction_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_Transaction_fieldAccessorTable;
+      internal_static_blockchain_Transaction_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_Status_descriptor;
+    internal_static_blockchain_Status_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_Status_fieldAccessorTable;
+      internal_static_blockchain_Status_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_FindNode_descriptor;
+    internal_static_blockchain_FindNode_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_FindNode_fieldAccessorTable;
+      internal_static_blockchain_FindNode_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_Node_GRPC_descriptor;
+    internal_static_blockchain_Node_GRPC_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_Node_GRPC_fieldAccessorTable;
+      internal_static_blockchain_Node_GRPC_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_ledger_KBucket_GRPC_descriptor;
+    internal_static_blockchain_KBucket_GRPC_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_ledger_KBucket_GRPC_fieldAccessorTable;
+      internal_static_blockchain_KBucket_GRPC_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -78,108 +78,110 @@ public final class BlockchainGRPCProto {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\017resources.proto\022\006ledger\",\n\004Ping\022\n\n\002id\030" +
-      "\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\"<\n\004Pong\022" +
-      "\014\n\004pong\030\001 \001(\010\022&\n\nblockchain\030\002 \001(\0132\022.ledg" +
-      "er.BlockChain\"$\n\010IPAddres\022\n\n\002ip\030\001 \001(\t\022\014\n" +
-      "\004port\030\002 \001(\t\"\264\001\n\005Block\022\016\n\006hashId\030\001 \001(\t\022\014\n" +
-      "\004hash\030\002 \001(\t\022\024\n\014previousHash\030\003 \001(\t\0222\n\020tra" +
-      "nsactionsList\030\004 \001(\0132\030.ledger.Transaction" +
-      "sList\022\r\n\005nonce\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022" +
-      "\021\n\tpublicKey\030\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"@\n\020Tr" +
-      "ansactionsList\022,\n\017transactionList\030\001 \003(\0132" +
-      "\023.ledger.Transaction\"a\n\nBlockChain\022\034\n\005ch" +
-      "ain\030\001 \003(\0132\r.ledger.Block\0225\n\023pendingTrans" +
-      "actions\030\002 \001(\0132\030.ledger.TransactionsList\"" +
-      "\225\001\n\013Transaction\022\014\n\004hash\030\001 \001(\t\022\020\n\010senderP" +
-      "K\030\002 \001(\t\022\022\n\nreceiverPK\030\003 \001(\t\022\021\n\tsignature" +
-      "\030\004 \001(\014\022\021\n\ttimestamp\030\005 \001(\003\022\016\n\006amount\030\006 \001(" +
-      "\005\022\014\n\004misc\030\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"\031\n\006Statu" +
-      "s\022\017\n\007success\030\001 \001(\010\"a\n\010FindNode\022\n\n\002id\030\001 \001" +
-      "(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\r\n\005proof\030\004 " +
-      "\001(\005\022\016\n\006pubKey\030\005 \001(\t\022\020\n\010targetId\030\006 \001(\t\"1\n" +
-      "\tNode_GRPC\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004po" +
-      "rt\030\003 \001(\005\"2\n\014KBucket_GRPC\022\"\n\007kbucket\030\001 \003(" +
-      "\0132\021.ledger.Node_GRPC2\230\002\n\021BlockchainServi" +
-      "ce\022\"\n\004ping\022\014.ledger.Ping\032\014.ledger.Pong\0220" +
-      "\n\017broadcast_block\022\r.ledger.Block\032\016.ledge" +
-      "r.Status\022<\n\025broadcast_transaction\022\023.ledg" +
-      "er.Transaction\032\016.ledger.Status\022:\n\024broadc" +
-      "ast_blockchain\022\022.ledger.BlockChain\032\016.led" +
-      "ger.Status\0223\n\tfindNodes\022\020.ledger.FindNod" +
-      "e\032\024.ledger.KBucket_GRPCB2\n\024group19.ssd.p" +
-      "2p.grpcB\023BlockchainGRPCProtoP\001\242\002\002BCb\006pro" +
-      "to3"
+      "\n\017resources.proto\022\nblockchain\"K\n\004Ping\022\n\n" +
+      "\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\r\n\005p" +
+      "roof\030\004 \001(\005\022\016\n\006pubKey\030\005 \001(\t\"@\n\004Pong\022\014\n\004po" +
+      "ng\030\001 \001(\010\022*\n\nblockchain\030\002 \001(\0132\026.blockchai" +
+      "n.BlockChain\"$\n\010IPAddres\022\n\n\002ip\030\001 \001(\t\022\014\n\004" +
+      "port\030\002 \001(\t\"i\n\nBlockChain\022 \n\005chain\030\001 \003(\0132" +
+      "\021.blockchain.Block\0229\n\023pendingTransaction" +
+      "s\030\002 \001(\0132\034.blockchain.TransactionsList\"\270\001" +
+      "\n\005Block\022\016\n\006hashId\030\001 \001(\t\022\014\n\004hash\030\002 \001(\t\022\024\n" +
+      "\014previousHash\030\003 \001(\t\0226\n\020transactionsList\030" +
+      "\004 \001(\0132\034.blockchain.TransactionsList\022\r\n\005n" +
+      "once\030\005 \001(\005\022\021\n\ttimestamp\030\006 \001(\003\022\021\n\tpublicK" +
+      "ey\030\007 \001(\t\022\016\n\006nodeId\030\010 \001(\t\"D\n\020Transactions" +
+      "List\0220\n\017transactionList\030\001 \003(\0132\027.blockcha" +
+      "in.Transaction\"\221\001\n\013Transaction\022\014\n\004hash\030\001" +
+      " \001(\t\022\016\n\006sender\030\002 \001(\t\022\020\n\010receiver\030\003 \001(\t\022\021" +
+      "\n\tsignature\030\004 \001(\014\022\021\n\ttimestamp\030\005 \001(\003\022\016\n\006" +
+      "amount\030\006 \001(\005\022\014\n\004misc\030\007 \001(\t\022\016\n\006nodeId\030\010 \001" +
+      "(\t\"\030\n\006Status\022\016\n\006status\030\001 \001(\t\"a\n\010FindNode" +
+      "\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\r" +
+      "\n\005proof\030\004 \001(\005\022\016\n\006pubKey\030\005 \001(\t\022\020\n\010targetI" +
+      "d\030\006 \001(\t\"1\n\tNode_GRPC\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002" +
+      " \001(\t\022\014\n\004port\030\003 \001(\005\"6\n\014KBucket_GRPC\022&\n\007kb" +
+      "ucket\030\001 \003(\0132\025.blockchain.Node_GRPC2\275\002\n\004P" +
+      "eer\022,\n\004ping\022\020.blockchain.Ping\032\020.blockcha" +
+      "in.Pong\"\000\022:\n\017broadcast_block\022\021.blockchai" +
+      "n.Block\032\022.blockchain.Status\"\000\022F\n\025broadca" +
+      "st_transaction\022\027.blockchain.Transaction\032" +
+      "\022.blockchain.Status\"\000\022D\n\024broadcast_block" +
+      "chain\022\026.blockchain.BlockChain\032\022.blockcha" +
+      "in.Status\"\000\022=\n\tfindNodes\022\024.blockchain.Fi" +
+      "ndNode\032\030.blockchain.KBucket_GRPC\"\000B2\n\024gr" +
+      "oup19.ssd.p2p.grpcB\023BlockchainGRPCProtoP" +
+      "\001\242\002\002BCb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         });
-    internal_static_ledger_Ping_descriptor =
+    internal_static_blockchain_Ping_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_ledger_Ping_fieldAccessorTable = new
+    internal_static_blockchain_Ping_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_Ping_descriptor,
-        new java.lang.String[] { "Id", "Ip", "Port", });
-    internal_static_ledger_Pong_descriptor =
+        internal_static_blockchain_Ping_descriptor,
+        new java.lang.String[] { "Id", "Ip", "Port", "Proof", "PubKey", });
+    internal_static_blockchain_Pong_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_ledger_Pong_fieldAccessorTable = new
+    internal_static_blockchain_Pong_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_Pong_descriptor,
+        internal_static_blockchain_Pong_descriptor,
         new java.lang.String[] { "Pong", "Blockchain", });
-    internal_static_ledger_IPAddres_descriptor =
+    internal_static_blockchain_IPAddres_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_ledger_IPAddres_fieldAccessorTable = new
+    internal_static_blockchain_IPAddres_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_IPAddres_descriptor,
+        internal_static_blockchain_IPAddres_descriptor,
         new java.lang.String[] { "Ip", "Port", });
-    internal_static_ledger_Block_descriptor =
+    internal_static_blockchain_BlockChain_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_ledger_Block_fieldAccessorTable = new
+    internal_static_blockchain_BlockChain_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_Block_descriptor,
-        new java.lang.String[] { "HashId", "Hash", "PreviousHash", "TransactionsList", "Nonce", "Timestamp", "PublicKey", "NodeId", });
-    internal_static_ledger_TransactionsList_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_ledger_TransactionsList_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_TransactionsList_descriptor,
-        new java.lang.String[] { "TransactionList", });
-    internal_static_ledger_BlockChain_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_ledger_BlockChain_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_BlockChain_descriptor,
+        internal_static_blockchain_BlockChain_descriptor,
         new java.lang.String[] { "Chain", "PendingTransactions", });
-    internal_static_ledger_Transaction_descriptor =
+    internal_static_blockchain_Block_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_blockchain_Block_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_blockchain_Block_descriptor,
+        new java.lang.String[] { "HashId", "Hash", "PreviousHash", "TransactionsList", "Nonce", "Timestamp", "PublicKey", "NodeId", });
+    internal_static_blockchain_TransactionsList_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_blockchain_TransactionsList_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_blockchain_TransactionsList_descriptor,
+        new java.lang.String[] { "TransactionList", });
+    internal_static_blockchain_Transaction_descriptor =
       getDescriptor().getMessageTypes().get(6);
-    internal_static_ledger_Transaction_fieldAccessorTable = new
+    internal_static_blockchain_Transaction_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_Transaction_descriptor,
-        new java.lang.String[] { "Hash", "SenderPK", "ReceiverPK", "Signature", "Timestamp", "Amount", "Misc", "NodeId", });
-    internal_static_ledger_Status_descriptor =
+        internal_static_blockchain_Transaction_descriptor,
+        new java.lang.String[] { "Hash", "Sender", "Receiver", "Signature", "Timestamp", "Amount", "Misc", "NodeId", });
+    internal_static_blockchain_Status_descriptor =
       getDescriptor().getMessageTypes().get(7);
-    internal_static_ledger_Status_fieldAccessorTable = new
+    internal_static_blockchain_Status_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_Status_descriptor,
-        new java.lang.String[] { "Success", });
-    internal_static_ledger_FindNode_descriptor =
+        internal_static_blockchain_Status_descriptor,
+        new java.lang.String[] { "Status", });
+    internal_static_blockchain_FindNode_descriptor =
       getDescriptor().getMessageTypes().get(8);
-    internal_static_ledger_FindNode_fieldAccessorTable = new
+    internal_static_blockchain_FindNode_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_FindNode_descriptor,
+        internal_static_blockchain_FindNode_descriptor,
         new java.lang.String[] { "Id", "Ip", "Port", "Proof", "PubKey", "TargetId", });
-    internal_static_ledger_Node_GRPC_descriptor =
+    internal_static_blockchain_Node_GRPC_descriptor =
       getDescriptor().getMessageTypes().get(9);
-    internal_static_ledger_Node_GRPC_fieldAccessorTable = new
+    internal_static_blockchain_Node_GRPC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_Node_GRPC_descriptor,
+        internal_static_blockchain_Node_GRPC_descriptor,
         new java.lang.String[] { "Id", "Ip", "Port", });
-    internal_static_ledger_KBucket_GRPC_descriptor =
+    internal_static_blockchain_KBucket_GRPC_descriptor =
       getDescriptor().getMessageTypes().get(10);
-    internal_static_ledger_KBucket_GRPC_fieldAccessorTable = new
+    internal_static_blockchain_KBucket_GRPC_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_ledger_KBucket_GRPC_descriptor,
+        internal_static_blockchain_KBucket_GRPC_descriptor,
         new java.lang.String[] { "Kbucket", });
   }
 

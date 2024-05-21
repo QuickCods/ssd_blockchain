@@ -4,11 +4,11 @@
 package group19.ssd.p2p.grpc;
 
 /**
- * Protobuf type {@code ledger.Ping}
+ * Protobuf type {@code blockchain.Ping}
  */
 public final class Ping extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ledger.Ping)
+    // @@protoc_insertion_point(message_implements:blockchain.Ping)
     PingOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use Ping.newBuilder() to construct.
@@ -18,6 +18,7 @@ private static final long serialVersionUID = 0L;
   private Ping() {
     id_ = "";
     ip_ = "";
+    pubKey_ = "";
   }
 
   @java.lang.Override
@@ -34,13 +35,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Ping_descriptor;
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Ping_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Ping_fieldAccessorTable
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Ping_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             group19.ssd.p2p.grpc.Ping.class, group19.ssd.p2p.grpc.Ping.Builder.class);
   }
@@ -132,6 +133,55 @@ private static final long serialVersionUID = 0L;
     return port_;
   }
 
+  public static final int PROOF_FIELD_NUMBER = 4;
+  private int proof_;
+  /**
+   * <code>int32 proof = 4;</code>
+   * @return The proof.
+   */
+  @java.lang.Override
+  public int getProof() {
+    return proof_;
+  }
+
+  public static final int PUBKEY_FIELD_NUMBER = 5;
+  private volatile java.lang.Object pubKey_;
+  /**
+   * <code>string pubKey = 5;</code>
+   * @return The pubKey.
+   */
+  @java.lang.Override
+  public java.lang.String getPubKey() {
+    java.lang.Object ref = pubKey_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      pubKey_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string pubKey = 5;</code>
+   * @return The bytes for pubKey.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getPubKeyBytes() {
+    java.lang.Object ref = pubKey_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      pubKey_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -155,6 +205,12 @@ private static final long serialVersionUID = 0L;
     if (port_ != 0) {
       output.writeInt32(3, port_);
     }
+    if (proof_ != 0) {
+      output.writeInt32(4, proof_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(pubKey_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, pubKey_);
+    }
     getUnknownFields().writeTo(output);
   }
 
@@ -173,6 +229,13 @@ private static final long serialVersionUID = 0L;
     if (port_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(3, port_);
+    }
+    if (proof_ != 0) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt32Size(4, proof_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(pubKey_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, pubKey_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -195,6 +258,10 @@ private static final long serialVersionUID = 0L;
         .equals(other.getIp())) return false;
     if (getPort()
         != other.getPort()) return false;
+    if (getProof()
+        != other.getProof()) return false;
+    if (!getPubKey()
+        .equals(other.getPubKey())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -212,6 +279,10 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getIp().hashCode();
     hash = (37 * hash) + PORT_FIELD_NUMBER;
     hash = (53 * hash) + getPort();
+    hash = (37 * hash) + PROOF_FIELD_NUMBER;
+    hash = (53 * hash) + getProof();
+    hash = (37 * hash) + PUBKEY_FIELD_NUMBER;
+    hash = (53 * hash) + getPubKey().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -308,21 +379,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ledger.Ping}
+   * Protobuf type {@code blockchain.Ping}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ledger.Ping)
+      // @@protoc_insertion_point(builder_implements:blockchain.Ping)
       group19.ssd.p2p.grpc.PingOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Ping_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Ping_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Ping_fieldAccessorTable
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Ping_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               group19.ssd.p2p.grpc.Ping.class, group19.ssd.p2p.grpc.Ping.Builder.class);
     }
@@ -346,13 +417,17 @@ private static final long serialVersionUID = 0L;
 
       port_ = 0;
 
+      proof_ = 0;
+
+      pubKey_ = "";
+
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Ping_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Ping_descriptor;
     }
 
     @java.lang.Override
@@ -375,6 +450,8 @@ private static final long serialVersionUID = 0L;
       result.id_ = id_;
       result.ip_ = ip_;
       result.port_ = port_;
+      result.proof_ = proof_;
+      result.pubKey_ = pubKey_;
       onBuilt();
       return result;
     }
@@ -434,6 +511,13 @@ private static final long serialVersionUID = 0L;
       if (other.getPort() != 0) {
         setPort(other.getPort());
       }
+      if (other.getProof() != 0) {
+        setProof(other.getProof());
+      }
+      if (!other.getPubKey().isEmpty()) {
+        pubKey_ = other.pubKey_;
+        onChanged();
+      }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
       return this;
@@ -475,6 +559,16 @@ private static final long serialVersionUID = 0L;
 
               break;
             } // case 24
+            case 32: {
+              proof_ = input.readInt32();
+
+              break;
+            } // case 32
+            case 42: {
+              pubKey_ = input.readStringRequireUtf8();
+
+              break;
+            } // case 42
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -673,6 +767,113 @@ private static final long serialVersionUID = 0L;
       onChanged();
       return this;
     }
+
+    private int proof_ ;
+    /**
+     * <code>int32 proof = 4;</code>
+     * @return The proof.
+     */
+    @java.lang.Override
+    public int getProof() {
+      return proof_;
+    }
+    /**
+     * <code>int32 proof = 4;</code>
+     * @param value The proof to set.
+     * @return This builder for chaining.
+     */
+    public Builder setProof(int value) {
+      
+      proof_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>int32 proof = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearProof() {
+      
+      proof_ = 0;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object pubKey_ = "";
+    /**
+     * <code>string pubKey = 5;</code>
+     * @return The pubKey.
+     */
+    public java.lang.String getPubKey() {
+      java.lang.Object ref = pubKey_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        pubKey_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string pubKey = 5;</code>
+     * @return The bytes for pubKey.
+     */
+    public com.google.protobuf.ByteString
+        getPubKeyBytes() {
+      java.lang.Object ref = pubKey_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        pubKey_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string pubKey = 5;</code>
+     * @param value The pubKey to set.
+     * @return This builder for chaining.
+     */
+    public Builder setPubKey(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      pubKey_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string pubKey = 5;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearPubKey() {
+      
+      pubKey_ = getDefaultInstance().getPubKey();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string pubKey = 5;</code>
+     * @param value The bytes for pubKey to set.
+     * @return This builder for chaining.
+     */
+    public Builder setPubKeyBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      pubKey_ = value;
+      onChanged();
+      return this;
+    }
     @java.lang.Override
     public final Builder setUnknownFields(
         final com.google.protobuf.UnknownFieldSet unknownFields) {
@@ -686,10 +887,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ledger.Ping)
+    // @@protoc_insertion_point(builder_scope:blockchain.Ping)
   }
 
-  // @@protoc_insertion_point(class_scope:ledger.Ping)
+  // @@protoc_insertion_point(class_scope:blockchain.Ping)
   private static final group19.ssd.p2p.grpc.Ping DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new group19.ssd.p2p.grpc.Ping();

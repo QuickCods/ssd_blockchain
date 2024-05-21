@@ -12,7 +12,7 @@ public class Block {
     }
 
     public String hash;
-    // public String publicKey;
+    public String publicKey;
 
     public String getPreviousHash() {
         return previousHash;
@@ -22,10 +22,29 @@ public class Block {
     public static ArrayList<Transaction> data = new ArrayList<>();
 
     private String merkleRoot;
-    private int nonce;
-    private long timestamp;     //as number of milliseconds since 1/1/1970..
+    public int nonce;
+    public long timestamp;     //as number of milliseconds since 1/1/1970..
 
+    //new block
+    public Block(String hashId, ArrayList<Transaction> transactions, String lastBlockHash, String miner) {
+        this.hashId = hashId;
+        this.data = transactions;
+        this.previousHash = lastBlockHash;
+        this.timestamp = new Date().getTime();
+        this.hash = calculateHash();
+        this.publicKey = miner;
+    }
 
+    // new block from another block received by other node
+    public Block(String hashId, String hash, String lastBlockHash, ArrayList<Transaction> transactions, int nonce, long timestamp, String miner) {
+        this.hashId = hashId;
+        this.data = transactions;
+        this.previousHash = lastBlockHash;
+        this.timestamp = timestamp;
+        this.hash = hash;
+        this.publicKey = miner;
+        this.nonce = nonce;
+    }
 
     public Block(ArrayList<Transaction> data, String previousHash) {
         this.previousHash = previousHash;

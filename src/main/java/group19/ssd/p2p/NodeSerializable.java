@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class NodeSerializable {
     public static ArrayList<Node> GRPC_to_KBucket(KBucket_GRPC grpc) {
-        ArrayList<Node_GRPC> List_of_Nodes = new ArrayList<>(KbucketGrpc.getKbucketList());
+        ArrayList<Node_GRPC> List_of_Nodes = new ArrayList<>(grpc.getKbucketList());
         ArrayList<Node> nodes = new ArrayList<>();
         for(Node_GRPC node: List_of_Nodes) {
             nodes.add(GRPC_To_Node(node));

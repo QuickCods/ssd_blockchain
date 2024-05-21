@@ -4,11 +4,11 @@
 package group19.ssd.p2p.grpc;
 
 /**
- * Protobuf type {@code ledger.Node_GRPC}
+ * Protobuf type {@code blockchain.Node_GRPC}
  */
 public final class Node_GRPC extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ledger.Node_GRPC)
+    // @@protoc_insertion_point(message_implements:blockchain.Node_GRPC)
     Node_GRPCOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use Node_GRPC.newBuilder() to construct.
@@ -34,13 +34,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Node_GRPC_descriptor;
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Node_GRPC_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Node_GRPC_fieldAccessorTable
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Node_GRPC_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             group19.ssd.p2p.grpc.Node_GRPC.class, group19.ssd.p2p.grpc.Node_GRPC.Builder.class);
   }
@@ -308,21 +308,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ledger.Node_GRPC}
+   * Protobuf type {@code blockchain.Node_GRPC}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ledger.Node_GRPC)
+      // @@protoc_insertion_point(builder_implements:blockchain.Node_GRPC)
       group19.ssd.p2p.grpc.Node_GRPCOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Node_GRPC_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Node_GRPC_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Node_GRPC_fieldAccessorTable
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Node_GRPC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               group19.ssd.p2p.grpc.Node_GRPC.class, group19.ssd.p2p.grpc.Node_GRPC.Builder.class);
     }
@@ -352,7 +352,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Node_GRPC_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Node_GRPC_descriptor;
     }
 
     @java.lang.Override
@@ -686,10 +686,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ledger.Node_GRPC)
+    // @@protoc_insertion_point(builder_scope:blockchain.Node_GRPC)
   }
 
-  // @@protoc_insertion_point(class_scope:ledger.Node_GRPC)
+  // @@protoc_insertion_point(class_scope:blockchain.Node_GRPC)
   private static final group19.ssd.p2p.grpc.Node_GRPC DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new group19.ssd.p2p.grpc.Node_GRPC();

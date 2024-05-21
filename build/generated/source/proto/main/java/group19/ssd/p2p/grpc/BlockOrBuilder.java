@@ -4,7 +4,7 @@
 package group19.ssd.p2p.grpc;
 
 public interface BlockOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.Block)
+    // @@protoc_insertion_point(interface_extends:blockchain.Block)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -44,17 +44,17 @@ public interface BlockOrBuilder extends
       getPreviousHashBytes();
 
   /**
-   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   * <code>.blockchain.TransactionsList transactionsList = 4;</code>
    * @return Whether the transactionsList field is set.
    */
   boolean hasTransactionsList();
   /**
-   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   * <code>.blockchain.TransactionsList transactionsList = 4;</code>
    * @return The transactionsList.
    */
   group19.ssd.p2p.grpc.TransactionsList getTransactionsList();
   /**
-   * <code>.ledger.TransactionsList transactionsList = 4;</code>
+   * <code>.blockchain.TransactionsList transactionsList = 4;</code>
    */
   group19.ssd.p2p.grpc.TransactionsListOrBuilder getTransactionsListOrBuilder();
 

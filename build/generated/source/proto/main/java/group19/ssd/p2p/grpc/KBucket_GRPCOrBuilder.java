@@ -4,29 +4,29 @@
 package group19.ssd.p2p.grpc;
 
 public interface KBucket_GRPCOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.KBucket_GRPC)
+    // @@protoc_insertion_point(interface_extends:blockchain.KBucket_GRPC)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   java.util.List<group19.ssd.p2p.grpc.Node_GRPC> 
       getKbucketList();
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   group19.ssd.p2p.grpc.Node_GRPC getKbucket(int index);
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   int getKbucketCount();
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   java.util.List<? extends group19.ssd.p2p.grpc.Node_GRPCOrBuilder> 
       getKbucketOrBuilderList();
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   group19.ssd.p2p.grpc.Node_GRPCOrBuilder getKbucketOrBuilder(
       int index);

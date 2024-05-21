@@ -4,7 +4,7 @@
 package group19.ssd.p2p.grpc;
 
 public interface PingOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.Ping)
+    // @@protoc_insertion_point(interface_extends:blockchain.Ping)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -36,4 +36,22 @@ public interface PingOrBuilder extends
    * @return The port.
    */
   int getPort();
+
+  /**
+   * <code>int32 proof = 4;</code>
+   * @return The proof.
+   */
+  int getProof();
+
+  /**
+   * <code>string pubKey = 5;</code>
+   * @return The pubKey.
+   */
+  java.lang.String getPubKey();
+  /**
+   * <code>string pubKey = 5;</code>
+   * @return The bytes for pubKey.
+   */
+  com.google.protobuf.ByteString
+      getPubKeyBytes();
 }

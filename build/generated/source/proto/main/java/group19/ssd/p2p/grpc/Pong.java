@@ -4,11 +4,11 @@
 package group19.ssd.p2p.grpc;
 
 /**
- * Protobuf type {@code ledger.Pong}
+ * Protobuf type {@code blockchain.Pong}
  */
 public final class Pong extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ledger.Pong)
+    // @@protoc_insertion_point(message_implements:blockchain.Pong)
     PongOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use Pong.newBuilder() to construct.
@@ -32,13 +32,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Pong_descriptor;
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Pong_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Pong_fieldAccessorTable
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Pong_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             group19.ssd.p2p.grpc.Pong.class, group19.ssd.p2p.grpc.Pong.Builder.class);
   }
@@ -57,7 +57,7 @@ private static final long serialVersionUID = 0L;
   public static final int BLOCKCHAIN_FIELD_NUMBER = 2;
   private group19.ssd.p2p.grpc.BlockChain blockchain_;
   /**
-   * <code>.ledger.BlockChain blockchain = 2;</code>
+   * <code>.blockchain.BlockChain blockchain = 2;</code>
    * @return Whether the blockchain field is set.
    */
   @java.lang.Override
@@ -65,7 +65,7 @@ private static final long serialVersionUID = 0L;
     return blockchain_ != null;
   }
   /**
-   * <code>.ledger.BlockChain blockchain = 2;</code>
+   * <code>.blockchain.BlockChain blockchain = 2;</code>
    * @return The blockchain.
    */
   @java.lang.Override
@@ -73,7 +73,7 @@ private static final long serialVersionUID = 0L;
     return blockchain_ == null ? group19.ssd.p2p.grpc.BlockChain.getDefaultInstance() : blockchain_;
   }
   /**
-   * <code>.ledger.BlockChain blockchain = 2;</code>
+   * <code>.blockchain.BlockChain blockchain = 2;</code>
    */
   @java.lang.Override
   public group19.ssd.p2p.grpc.BlockChainOrBuilder getBlockchainOrBuilder() {
@@ -253,21 +253,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ledger.Pong}
+   * Protobuf type {@code blockchain.Pong}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ledger.Pong)
+      // @@protoc_insertion_point(builder_implements:blockchain.Pong)
       group19.ssd.p2p.grpc.PongOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Pong_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Pong_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Pong_fieldAccessorTable
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Pong_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               group19.ssd.p2p.grpc.Pong.class, group19.ssd.p2p.grpc.Pong.Builder.class);
     }
@@ -299,7 +299,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Pong_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Pong_descriptor;
     }
 
     @java.lang.Override
@@ -468,14 +468,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         group19.ssd.p2p.grpc.BlockChain, group19.ssd.p2p.grpc.BlockChain.Builder, group19.ssd.p2p.grpc.BlockChainOrBuilder> blockchainBuilder_;
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      * @return Whether the blockchain field is set.
      */
     public boolean hasBlockchain() {
       return blockchainBuilder_ != null || blockchain_ != null;
     }
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      * @return The blockchain.
      */
     public group19.ssd.p2p.grpc.BlockChain getBlockchain() {
@@ -486,7 +486,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      */
     public Builder setBlockchain(group19.ssd.p2p.grpc.BlockChain value) {
       if (blockchainBuilder_ == null) {
@@ -502,7 +502,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      */
     public Builder setBlockchain(
         group19.ssd.p2p.grpc.BlockChain.Builder builderForValue) {
@@ -516,7 +516,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      */
     public Builder mergeBlockchain(group19.ssd.p2p.grpc.BlockChain value) {
       if (blockchainBuilder_ == null) {
@@ -534,7 +534,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      */
     public Builder clearBlockchain() {
       if (blockchainBuilder_ == null) {
@@ -548,7 +548,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      */
     public group19.ssd.p2p.grpc.BlockChain.Builder getBlockchainBuilder() {
       
@@ -556,7 +556,7 @@ private static final long serialVersionUID = 0L;
       return getBlockchainFieldBuilder().getBuilder();
     }
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      */
     public group19.ssd.p2p.grpc.BlockChainOrBuilder getBlockchainOrBuilder() {
       if (blockchainBuilder_ != null) {
@@ -567,7 +567,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.ledger.BlockChain blockchain = 2;</code>
+     * <code>.blockchain.BlockChain blockchain = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         group19.ssd.p2p.grpc.BlockChain, group19.ssd.p2p.grpc.BlockChain.Builder, group19.ssd.p2p.grpc.BlockChainOrBuilder> 
@@ -595,10 +595,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ledger.Pong)
+    // @@protoc_insertion_point(builder_scope:blockchain.Pong)
   }
 
-  // @@protoc_insertion_point(class_scope:ledger.Pong)
+  // @@protoc_insertion_point(class_scope:blockchain.Pong)
   private static final group19.ssd.p2p.grpc.Pong DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new group19.ssd.p2p.grpc.Pong();

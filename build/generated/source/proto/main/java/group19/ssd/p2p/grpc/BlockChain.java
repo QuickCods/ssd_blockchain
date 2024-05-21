@@ -4,11 +4,11 @@
 package group19.ssd.p2p.grpc;
 
 /**
- * Protobuf type {@code ledger.BlockChain}
+ * Protobuf type {@code blockchain.BlockChain}
  */
 public final class BlockChain extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ledger.BlockChain)
+    // @@protoc_insertion_point(message_implements:blockchain.BlockChain)
     BlockChainOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use BlockChain.newBuilder() to construct.
@@ -33,13 +33,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_BlockChain_descriptor;
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_BlockChain_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_BlockChain_fieldAccessorTable
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_BlockChain_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             group19.ssd.p2p.grpc.BlockChain.class, group19.ssd.p2p.grpc.BlockChain.Builder.class);
   }
@@ -47,14 +47,14 @@ private static final long serialVersionUID = 0L;
   public static final int CHAIN_FIELD_NUMBER = 1;
   private java.util.List<group19.ssd.p2p.grpc.Block> chain_;
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   @java.lang.Override
   public java.util.List<group19.ssd.p2p.grpc.Block> getChainList() {
     return chain_;
   }
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   @java.lang.Override
   public java.util.List<? extends group19.ssd.p2p.grpc.BlockOrBuilder> 
@@ -62,21 +62,21 @@ private static final long serialVersionUID = 0L;
     return chain_;
   }
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   @java.lang.Override
   public int getChainCount() {
     return chain_.size();
   }
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   @java.lang.Override
   public group19.ssd.p2p.grpc.Block getChain(int index) {
     return chain_.get(index);
   }
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   @java.lang.Override
   public group19.ssd.p2p.grpc.BlockOrBuilder getChainOrBuilder(
@@ -87,7 +87,7 @@ private static final long serialVersionUID = 0L;
   public static final int PENDINGTRANSACTIONS_FIELD_NUMBER = 2;
   private group19.ssd.p2p.grpc.TransactionsList pendingTransactions_;
   /**
-   * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+   * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
    * @return Whether the pendingTransactions field is set.
    */
   @java.lang.Override
@@ -95,7 +95,7 @@ private static final long serialVersionUID = 0L;
     return pendingTransactions_ != null;
   }
   /**
-   * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+   * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
    * @return The pendingTransactions.
    */
   @java.lang.Override
@@ -103,7 +103,7 @@ private static final long serialVersionUID = 0L;
     return pendingTransactions_ == null ? group19.ssd.p2p.grpc.TransactionsList.getDefaultInstance() : pendingTransactions_;
   }
   /**
-   * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+   * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
    */
   @java.lang.Override
   public group19.ssd.p2p.grpc.TransactionsListOrBuilder getPendingTransactionsOrBuilder() {
@@ -284,21 +284,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ledger.BlockChain}
+   * Protobuf type {@code blockchain.BlockChain}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ledger.BlockChain)
+      // @@protoc_insertion_point(builder_implements:blockchain.BlockChain)
       group19.ssd.p2p.grpc.BlockChainOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_BlockChain_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_BlockChain_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_BlockChain_fieldAccessorTable
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_BlockChain_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               group19.ssd.p2p.grpc.BlockChain.class, group19.ssd.p2p.grpc.BlockChain.Builder.class);
     }
@@ -335,7 +335,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_BlockChain_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_BlockChain_descriptor;
     }
 
     @java.lang.Override
@@ -523,7 +523,7 @@ private static final long serialVersionUID = 0L;
         group19.ssd.p2p.grpc.Block, group19.ssd.p2p.grpc.Block.Builder, group19.ssd.p2p.grpc.BlockOrBuilder> chainBuilder_;
 
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public java.util.List<group19.ssd.p2p.grpc.Block> getChainList() {
       if (chainBuilder_ == null) {
@@ -533,7 +533,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public int getChainCount() {
       if (chainBuilder_ == null) {
@@ -543,7 +543,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public group19.ssd.p2p.grpc.Block getChain(int index) {
       if (chainBuilder_ == null) {
@@ -553,7 +553,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder setChain(
         int index, group19.ssd.p2p.grpc.Block value) {
@@ -570,7 +570,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder setChain(
         int index, group19.ssd.p2p.grpc.Block.Builder builderForValue) {
@@ -584,7 +584,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder addChain(group19.ssd.p2p.grpc.Block value) {
       if (chainBuilder_ == null) {
@@ -600,7 +600,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder addChain(
         int index, group19.ssd.p2p.grpc.Block value) {
@@ -617,7 +617,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder addChain(
         group19.ssd.p2p.grpc.Block.Builder builderForValue) {
@@ -631,7 +631,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder addChain(
         int index, group19.ssd.p2p.grpc.Block.Builder builderForValue) {
@@ -645,7 +645,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder addAllChain(
         java.lang.Iterable<? extends group19.ssd.p2p.grpc.Block> values) {
@@ -660,7 +660,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder clearChain() {
       if (chainBuilder_ == null) {
@@ -673,7 +673,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public Builder removeChain(int index) {
       if (chainBuilder_ == null) {
@@ -686,14 +686,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public group19.ssd.p2p.grpc.Block.Builder getChainBuilder(
         int index) {
       return getChainFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public group19.ssd.p2p.grpc.BlockOrBuilder getChainOrBuilder(
         int index) {
@@ -703,7 +703,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public java.util.List<? extends group19.ssd.p2p.grpc.BlockOrBuilder> 
          getChainOrBuilderList() {
@@ -714,14 +714,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public group19.ssd.p2p.grpc.Block.Builder addChainBuilder() {
       return getChainFieldBuilder().addBuilder(
           group19.ssd.p2p.grpc.Block.getDefaultInstance());
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public group19.ssd.p2p.grpc.Block.Builder addChainBuilder(
         int index) {
@@ -729,7 +729,7 @@ private static final long serialVersionUID = 0L;
           index, group19.ssd.p2p.grpc.Block.getDefaultInstance());
     }
     /**
-     * <code>repeated .ledger.Block chain = 1;</code>
+     * <code>repeated .blockchain.Block chain = 1;</code>
      */
     public java.util.List<group19.ssd.p2p.grpc.Block.Builder> 
          getChainBuilderList() {
@@ -754,14 +754,14 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         group19.ssd.p2p.grpc.TransactionsList, group19.ssd.p2p.grpc.TransactionsList.Builder, group19.ssd.p2p.grpc.TransactionsListOrBuilder> pendingTransactionsBuilder_;
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      * @return Whether the pendingTransactions field is set.
      */
     public boolean hasPendingTransactions() {
       return pendingTransactionsBuilder_ != null || pendingTransactions_ != null;
     }
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      * @return The pendingTransactions.
      */
     public group19.ssd.p2p.grpc.TransactionsList getPendingTransactions() {
@@ -772,7 +772,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      */
     public Builder setPendingTransactions(group19.ssd.p2p.grpc.TransactionsList value) {
       if (pendingTransactionsBuilder_ == null) {
@@ -788,7 +788,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      */
     public Builder setPendingTransactions(
         group19.ssd.p2p.grpc.TransactionsList.Builder builderForValue) {
@@ -802,7 +802,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      */
     public Builder mergePendingTransactions(group19.ssd.p2p.grpc.TransactionsList value) {
       if (pendingTransactionsBuilder_ == null) {
@@ -820,7 +820,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      */
     public Builder clearPendingTransactions() {
       if (pendingTransactionsBuilder_ == null) {
@@ -834,7 +834,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      */
     public group19.ssd.p2p.grpc.TransactionsList.Builder getPendingTransactionsBuilder() {
       
@@ -842,7 +842,7 @@ private static final long serialVersionUID = 0L;
       return getPendingTransactionsFieldBuilder().getBuilder();
     }
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      */
     public group19.ssd.p2p.grpc.TransactionsListOrBuilder getPendingTransactionsOrBuilder() {
       if (pendingTransactionsBuilder_ != null) {
@@ -853,7 +853,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+     * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
         group19.ssd.p2p.grpc.TransactionsList, group19.ssd.p2p.grpc.TransactionsList.Builder, group19.ssd.p2p.grpc.TransactionsListOrBuilder> 
@@ -881,10 +881,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ledger.BlockChain)
+    // @@protoc_insertion_point(builder_scope:blockchain.BlockChain)
   }
 
-  // @@protoc_insertion_point(class_scope:ledger.BlockChain)
+  // @@protoc_insertion_point(class_scope:blockchain.BlockChain)
   private static final group19.ssd.p2p.grpc.BlockChain DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new group19.ssd.p2p.grpc.BlockChain();

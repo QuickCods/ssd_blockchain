@@ -4,7 +4,7 @@
 package group19.ssd.p2p.grpc;
 
 public interface PongOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.Pong)
+    // @@protoc_insertion_point(interface_extends:blockchain.Pong)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -14,17 +14,17 @@ public interface PongOrBuilder extends
   boolean getPong();
 
   /**
-   * <code>.ledger.BlockChain blockchain = 2;</code>
+   * <code>.blockchain.BlockChain blockchain = 2;</code>
    * @return Whether the blockchain field is set.
    */
   boolean hasBlockchain();
   /**
-   * <code>.ledger.BlockChain blockchain = 2;</code>
+   * <code>.blockchain.BlockChain blockchain = 2;</code>
    * @return The blockchain.
    */
   group19.ssd.p2p.grpc.BlockChain getBlockchain();
   /**
-   * <code>.ledger.BlockChain blockchain = 2;</code>
+   * <code>.blockchain.BlockChain blockchain = 2;</code>
    */
   group19.ssd.p2p.grpc.BlockChainOrBuilder getBlockchainOrBuilder();
 }

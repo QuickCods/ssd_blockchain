@@ -4,11 +4,11 @@
 package group19.ssd.p2p.grpc;
 
 /**
- * Protobuf type {@code ledger.KBucket_GRPC}
+ * Protobuf type {@code blockchain.KBucket_GRPC}
  */
 public final class KBucket_GRPC extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ledger.KBucket_GRPC)
+    // @@protoc_insertion_point(message_implements:blockchain.KBucket_GRPC)
     KBucket_GRPCOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use KBucket_GRPC.newBuilder() to construct.
@@ -33,13 +33,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_KBucket_GRPC_descriptor;
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_KBucket_GRPC_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_KBucket_GRPC_fieldAccessorTable
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_KBucket_GRPC_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             group19.ssd.p2p.grpc.KBucket_GRPC.class, group19.ssd.p2p.grpc.KBucket_GRPC.Builder.class);
   }
@@ -47,14 +47,14 @@ private static final long serialVersionUID = 0L;
   public static final int KBUCKET_FIELD_NUMBER = 1;
   private java.util.List<group19.ssd.p2p.grpc.Node_GRPC> kbucket_;
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   @java.lang.Override
   public java.util.List<group19.ssd.p2p.grpc.Node_GRPC> getKbucketList() {
     return kbucket_;
   }
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   @java.lang.Override
   public java.util.List<? extends group19.ssd.p2p.grpc.Node_GRPCOrBuilder> 
@@ -62,21 +62,21 @@ private static final long serialVersionUID = 0L;
     return kbucket_;
   }
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   @java.lang.Override
   public int getKbucketCount() {
     return kbucket_.size();
   }
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   @java.lang.Override
   public group19.ssd.p2p.grpc.Node_GRPC getKbucket(int index) {
     return kbucket_.get(index);
   }
   /**
-   * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+   * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
    */
   @java.lang.Override
   public group19.ssd.p2p.grpc.Node_GRPCOrBuilder getKbucketOrBuilder(
@@ -242,21 +242,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ledger.KBucket_GRPC}
+   * Protobuf type {@code blockchain.KBucket_GRPC}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ledger.KBucket_GRPC)
+      // @@protoc_insertion_point(builder_implements:blockchain.KBucket_GRPC)
       group19.ssd.p2p.grpc.KBucket_GRPCOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_KBucket_GRPC_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_KBucket_GRPC_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_KBucket_GRPC_fieldAccessorTable
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_KBucket_GRPC_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               group19.ssd.p2p.grpc.KBucket_GRPC.class, group19.ssd.p2p.grpc.KBucket_GRPC.Builder.class);
     }
@@ -287,7 +287,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_KBucket_GRPC_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_KBucket_GRPC_descriptor;
     }
 
     @java.lang.Override
@@ -460,7 +460,7 @@ private static final long serialVersionUID = 0L;
         group19.ssd.p2p.grpc.Node_GRPC, group19.ssd.p2p.grpc.Node_GRPC.Builder, group19.ssd.p2p.grpc.Node_GRPCOrBuilder> kbucketBuilder_;
 
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public java.util.List<group19.ssd.p2p.grpc.Node_GRPC> getKbucketList() {
       if (kbucketBuilder_ == null) {
@@ -470,7 +470,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public int getKbucketCount() {
       if (kbucketBuilder_ == null) {
@@ -480,7 +480,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public group19.ssd.p2p.grpc.Node_GRPC getKbucket(int index) {
       if (kbucketBuilder_ == null) {
@@ -490,7 +490,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder setKbucket(
         int index, group19.ssd.p2p.grpc.Node_GRPC value) {
@@ -507,7 +507,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder setKbucket(
         int index, group19.ssd.p2p.grpc.Node_GRPC.Builder builderForValue) {
@@ -521,7 +521,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder addKbucket(group19.ssd.p2p.grpc.Node_GRPC value) {
       if (kbucketBuilder_ == null) {
@@ -537,7 +537,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder addKbucket(
         int index, group19.ssd.p2p.grpc.Node_GRPC value) {
@@ -554,7 +554,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder addKbucket(
         group19.ssd.p2p.grpc.Node_GRPC.Builder builderForValue) {
@@ -568,7 +568,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder addKbucket(
         int index, group19.ssd.p2p.grpc.Node_GRPC.Builder builderForValue) {
@@ -582,7 +582,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder addAllKbucket(
         java.lang.Iterable<? extends group19.ssd.p2p.grpc.Node_GRPC> values) {
@@ -597,7 +597,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder clearKbucket() {
       if (kbucketBuilder_ == null) {
@@ -610,7 +610,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public Builder removeKbucket(int index) {
       if (kbucketBuilder_ == null) {
@@ -623,14 +623,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public group19.ssd.p2p.grpc.Node_GRPC.Builder getKbucketBuilder(
         int index) {
       return getKbucketFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public group19.ssd.p2p.grpc.Node_GRPCOrBuilder getKbucketOrBuilder(
         int index) {
@@ -640,7 +640,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public java.util.List<? extends group19.ssd.p2p.grpc.Node_GRPCOrBuilder> 
          getKbucketOrBuilderList() {
@@ -651,14 +651,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public group19.ssd.p2p.grpc.Node_GRPC.Builder addKbucketBuilder() {
       return getKbucketFieldBuilder().addBuilder(
           group19.ssd.p2p.grpc.Node_GRPC.getDefaultInstance());
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public group19.ssd.p2p.grpc.Node_GRPC.Builder addKbucketBuilder(
         int index) {
@@ -666,7 +666,7 @@ private static final long serialVersionUID = 0L;
           index, group19.ssd.p2p.grpc.Node_GRPC.getDefaultInstance());
     }
     /**
-     * <code>repeated .ledger.Node_GRPC kbucket = 1;</code>
+     * <code>repeated .blockchain.Node_GRPC kbucket = 1;</code>
      */
     public java.util.List<group19.ssd.p2p.grpc.Node_GRPC.Builder> 
          getKbucketBuilderList() {
@@ -699,10 +699,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ledger.KBucket_GRPC)
+    // @@protoc_insertion_point(builder_scope:blockchain.KBucket_GRPC)
   }
 
-  // @@protoc_insertion_point(class_scope:ledger.KBucket_GRPC)
+  // @@protoc_insertion_point(class_scope:blockchain.KBucket_GRPC)
   private static final group19.ssd.p2p.grpc.KBucket_GRPC DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new group19.ssd.p2p.grpc.KBucket_GRPC();

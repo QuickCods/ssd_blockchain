@@ -4,12 +4,18 @@
 package group19.ssd.p2p.grpc;
 
 public interface StatusOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.Status)
+    // @@protoc_insertion_point(interface_extends:blockchain.Status)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>bool success = 1;</code>
-   * @return The success.
+   * <code>string status = 1;</code>
+   * @return The status.
    */
-  boolean getSuccess();
+  java.lang.String getStatus();
+  /**
+   * <code>string status = 1;</code>
+   * @return The bytes for status.
+   */
+  com.google.protobuf.ByteString
+      getStatusBytes();
 }

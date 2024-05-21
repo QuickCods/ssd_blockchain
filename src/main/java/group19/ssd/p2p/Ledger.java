@@ -8,7 +8,7 @@ import java.util.Hashtable;
 
 public class Ledger {
     Hashtable<String, Long> users = new Hashtable<>();   //String vs Wallet
-    int minCoin = 15;
+    long minCoin = 15;
 
     public Ledger() {
         users.put(KademliaClient.publicKey, (long) minCoin);

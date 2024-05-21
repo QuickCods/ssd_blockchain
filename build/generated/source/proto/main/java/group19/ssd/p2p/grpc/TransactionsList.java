@@ -4,11 +4,11 @@
 package group19.ssd.p2p.grpc;
 
 /**
- * Protobuf type {@code ledger.TransactionsList}
+ * Protobuf type {@code blockchain.TransactionsList}
  */
 public final class TransactionsList extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ledger.TransactionsList)
+    // @@protoc_insertion_point(message_implements:blockchain.TransactionsList)
     TransactionsListOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use TransactionsList.newBuilder() to construct.
@@ -33,13 +33,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_TransactionsList_descriptor;
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_TransactionsList_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_TransactionsList_fieldAccessorTable
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_TransactionsList_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             group19.ssd.p2p.grpc.TransactionsList.class, group19.ssd.p2p.grpc.TransactionsList.Builder.class);
   }
@@ -47,14 +47,14 @@ private static final long serialVersionUID = 0L;
   public static final int TRANSACTIONLIST_FIELD_NUMBER = 1;
   private java.util.List<group19.ssd.p2p.grpc.Transaction> transactionList_;
   /**
-   * <code>repeated .ledger.Transaction transactionList = 1;</code>
+   * <code>repeated .blockchain.Transaction transactionList = 1;</code>
    */
   @java.lang.Override
   public java.util.List<group19.ssd.p2p.grpc.Transaction> getTransactionListList() {
     return transactionList_;
   }
   /**
-   * <code>repeated .ledger.Transaction transactionList = 1;</code>
+   * <code>repeated .blockchain.Transaction transactionList = 1;</code>
    */
   @java.lang.Override
   public java.util.List<? extends group19.ssd.p2p.grpc.TransactionOrBuilder> 
@@ -62,21 +62,21 @@ private static final long serialVersionUID = 0L;
     return transactionList_;
   }
   /**
-   * <code>repeated .ledger.Transaction transactionList = 1;</code>
+   * <code>repeated .blockchain.Transaction transactionList = 1;</code>
    */
   @java.lang.Override
   public int getTransactionListCount() {
     return transactionList_.size();
   }
   /**
-   * <code>repeated .ledger.Transaction transactionList = 1;</code>
+   * <code>repeated .blockchain.Transaction transactionList = 1;</code>
    */
   @java.lang.Override
   public group19.ssd.p2p.grpc.Transaction getTransactionList(int index) {
     return transactionList_.get(index);
   }
   /**
-   * <code>repeated .ledger.Transaction transactionList = 1;</code>
+   * <code>repeated .blockchain.Transaction transactionList = 1;</code>
    */
   @java.lang.Override
   public group19.ssd.p2p.grpc.TransactionOrBuilder getTransactionListOrBuilder(
@@ -242,21 +242,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ledger.TransactionsList}
+   * Protobuf type {@code blockchain.TransactionsList}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ledger.TransactionsList)
+      // @@protoc_insertion_point(builder_implements:blockchain.TransactionsList)
       group19.ssd.p2p.grpc.TransactionsListOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_TransactionsList_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_TransactionsList_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_TransactionsList_fieldAccessorTable
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_TransactionsList_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               group19.ssd.p2p.grpc.TransactionsList.class, group19.ssd.p2p.grpc.TransactionsList.Builder.class);
     }
@@ -287,7 +287,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_TransactionsList_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_TransactionsList_descriptor;
     }
 
     @java.lang.Override
@@ -460,7 +460,7 @@ private static final long serialVersionUID = 0L;
         group19.ssd.p2p.grpc.Transaction, group19.ssd.p2p.grpc.Transaction.Builder, group19.ssd.p2p.grpc.TransactionOrBuilder> transactionListBuilder_;
 
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public java.util.List<group19.ssd.p2p.grpc.Transaction> getTransactionListList() {
       if (transactionListBuilder_ == null) {
@@ -470,7 +470,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public int getTransactionListCount() {
       if (transactionListBuilder_ == null) {
@@ -480,7 +480,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public group19.ssd.p2p.grpc.Transaction getTransactionList(int index) {
       if (transactionListBuilder_ == null) {
@@ -490,7 +490,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder setTransactionList(
         int index, group19.ssd.p2p.grpc.Transaction value) {
@@ -507,7 +507,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder setTransactionList(
         int index, group19.ssd.p2p.grpc.Transaction.Builder builderForValue) {
@@ -521,7 +521,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder addTransactionList(group19.ssd.p2p.grpc.Transaction value) {
       if (transactionListBuilder_ == null) {
@@ -537,7 +537,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder addTransactionList(
         int index, group19.ssd.p2p.grpc.Transaction value) {
@@ -554,7 +554,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder addTransactionList(
         group19.ssd.p2p.grpc.Transaction.Builder builderForValue) {
@@ -568,7 +568,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder addTransactionList(
         int index, group19.ssd.p2p.grpc.Transaction.Builder builderForValue) {
@@ -582,7 +582,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder addAllTransactionList(
         java.lang.Iterable<? extends group19.ssd.p2p.grpc.Transaction> values) {
@@ -597,7 +597,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder clearTransactionList() {
       if (transactionListBuilder_ == null) {
@@ -610,7 +610,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public Builder removeTransactionList(int index) {
       if (transactionListBuilder_ == null) {
@@ -623,14 +623,14 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public group19.ssd.p2p.grpc.Transaction.Builder getTransactionListBuilder(
         int index) {
       return getTransactionListFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public group19.ssd.p2p.grpc.TransactionOrBuilder getTransactionListOrBuilder(
         int index) {
@@ -640,7 +640,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public java.util.List<? extends group19.ssd.p2p.grpc.TransactionOrBuilder> 
          getTransactionListOrBuilderList() {
@@ -651,14 +651,14 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public group19.ssd.p2p.grpc.Transaction.Builder addTransactionListBuilder() {
       return getTransactionListFieldBuilder().addBuilder(
           group19.ssd.p2p.grpc.Transaction.getDefaultInstance());
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public group19.ssd.p2p.grpc.Transaction.Builder addTransactionListBuilder(
         int index) {
@@ -666,7 +666,7 @@ private static final long serialVersionUID = 0L;
           index, group19.ssd.p2p.grpc.Transaction.getDefaultInstance());
     }
     /**
-     * <code>repeated .ledger.Transaction transactionList = 1;</code>
+     * <code>repeated .blockchain.Transaction transactionList = 1;</code>
      */
     public java.util.List<group19.ssd.p2p.grpc.Transaction.Builder> 
          getTransactionListBuilderList() {
@@ -699,10 +699,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ledger.TransactionsList)
+    // @@protoc_insertion_point(builder_scope:blockchain.TransactionsList)
   }
 
-  // @@protoc_insertion_point(class_scope:ledger.TransactionsList)
+  // @@protoc_insertion_point(class_scope:blockchain.TransactionsList)
   private static final group19.ssd.p2p.grpc.TransactionsList DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new group19.ssd.p2p.grpc.TransactionsList();

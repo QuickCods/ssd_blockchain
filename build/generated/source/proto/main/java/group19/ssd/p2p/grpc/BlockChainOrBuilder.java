@@ -4,45 +4,45 @@
 package group19.ssd.p2p.grpc;
 
 public interface BlockChainOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.BlockChain)
+    // @@protoc_insertion_point(interface_extends:blockchain.BlockChain)
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   java.util.List<group19.ssd.p2p.grpc.Block> 
       getChainList();
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   group19.ssd.p2p.grpc.Block getChain(int index);
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   int getChainCount();
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   java.util.List<? extends group19.ssd.p2p.grpc.BlockOrBuilder> 
       getChainOrBuilderList();
   /**
-   * <code>repeated .ledger.Block chain = 1;</code>
+   * <code>repeated .blockchain.Block chain = 1;</code>
    */
   group19.ssd.p2p.grpc.BlockOrBuilder getChainOrBuilder(
       int index);
 
   /**
-   * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+   * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
    * @return Whether the pendingTransactions field is set.
    */
   boolean hasPendingTransactions();
   /**
-   * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+   * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
    * @return The pendingTransactions.
    */
   group19.ssd.p2p.grpc.TransactionsList getPendingTransactions();
   /**
-   * <code>.ledger.TransactionsList pendingTransactions = 2;</code>
+   * <code>.blockchain.TransactionsList pendingTransactions = 2;</code>
    */
   group19.ssd.p2p.grpc.TransactionsListOrBuilder getPendingTransactionsOrBuilder();
 }

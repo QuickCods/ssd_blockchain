@@ -4,7 +4,7 @@
 package group19.ssd.p2p.grpc;
 
 public interface IPAddresOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.IPAddres)
+    // @@protoc_insertion_point(interface_extends:blockchain.IPAddres)
     com.google.protobuf.MessageOrBuilder {
 
   /**

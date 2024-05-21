@@ -4,7 +4,7 @@
 package group19.ssd.p2p.grpc;
 
 public interface Node_GRPCOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.Node_GRPC)
+    // @@protoc_insertion_point(interface_extends:blockchain.Node_GRPC)
     com.google.protobuf.MessageOrBuilder {
 
   /**

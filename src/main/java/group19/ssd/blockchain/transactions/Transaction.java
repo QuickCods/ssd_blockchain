@@ -35,6 +35,15 @@ public class Transaction {
         this.misc = misc;
     }
 
+    public Transaction(String sender, String receiver, byte[] byteArray, long timestamp, long amount, String misc) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.signature = byteArray.toString();
+        this.timestamp = timestamp;
+        this.amount = amount;
+        this.misc = misc;
+    }
+
     public void validateTransaction() {
         this.timestamp = new Date().getTime();
         this.transactionId = calculateHash(); // Calculate hash when the transaction is created

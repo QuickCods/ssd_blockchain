@@ -102,7 +102,7 @@ public class PeerOperations {
                     .build();
                 Pong response = blockingStub.ping(request);
                 if(response.getPong()){
-                    Blockchain blockchain_received = BCConverter.mkBlockChain(response.getBlockchain());
+                    Blockchain blockchain_received = BCConverter.mkBlockchain(response.getBlockchain());
                     if(blockchain_received.getChain().size() > KademliaClient.blockchain.getChain().size()){
                         KademliaClient.blockchain = blockchain_received;
                         KademliaClient.ledger.restartLedger();
@@ -135,7 +135,7 @@ public class PeerOperations {
             if(response.getPong()){
                 Blockchain blockchain_received = null;
                 try{
-                    blockchain_received = BCConverter.mkBlockChain(response.getBlockchain());
+                    blockchain_received = BCConverter.mkBlockchain(response.getBlockchain());
                 } catch (InvalidKeySpecException | NoSuchAlgorithmException e){
                     e.printStackTrace();
                 }

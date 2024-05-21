@@ -4,11 +4,11 @@
 package group19.ssd.p2p.grpc;
 
 /**
- * Protobuf type {@code ledger.IPAddres}
+ * Protobuf type {@code blockchain.IPAddres}
  */
 public final class IPAddres extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ledger.IPAddres)
+    // @@protoc_insertion_point(message_implements:blockchain.IPAddres)
     IPAddresOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use IPAddres.newBuilder() to construct.
@@ -34,13 +34,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_IPAddres_descriptor;
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_IPAddres_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_IPAddres_fieldAccessorTable
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_IPAddres_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             group19.ssd.p2p.grpc.IPAddres.class, group19.ssd.p2p.grpc.IPAddres.Builder.class);
   }
@@ -286,21 +286,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ledger.IPAddres}
+   * Protobuf type {@code blockchain.IPAddres}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ledger.IPAddres)
+      // @@protoc_insertion_point(builder_implements:blockchain.IPAddres)
       group19.ssd.p2p.grpc.IPAddresOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_IPAddres_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_IPAddres_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_IPAddres_fieldAccessorTable
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_IPAddres_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               group19.ssd.p2p.grpc.IPAddres.class, group19.ssd.p2p.grpc.IPAddres.Builder.class);
     }
@@ -328,7 +328,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_IPAddres_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_IPAddres_descriptor;
     }
 
     @java.lang.Override
@@ -622,10 +622,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ledger.IPAddres)
+    // @@protoc_insertion_point(builder_scope:blockchain.IPAddres)
   }
 
-  // @@protoc_insertion_point(class_scope:ledger.IPAddres)
+  // @@protoc_insertion_point(class_scope:blockchain.IPAddres)
   private static final group19.ssd.p2p.grpc.IPAddres DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new group19.ssd.p2p.grpc.IPAddres();

@@ -69,14 +69,14 @@ public class KademliaServer {
         @Override
         public void ping(Ping request, StreamObserver<Pong> responseObserver) {
             KademliaClient.kbucket.checkNodeExistence(new Node(request.getId(), request.getIp(), request.getPort(), request.getProof(), request.getPubKey()));
-            Blockchain blockchain = GRPCConverter.mkBlockchain(KademliaClient.blockchain);
+            BlockChain blockchain = GRPCConverter.mkBlockChain(KademliaClient.blockchain);
             responseObserver.onNext(Pong.newBuilder().setPong(true).setBlockchain(blockchain).build());
             responseObserver.onCompleted();
         }
 
         @Override
         public void broadcastBlock(Block request, StreamObserver<Status> responseObserver) {
-            group19.ssd.blockchain.Block new_block = BCConverter.mkblock(request);
+            group19.ssd.blockchain.Block new_block = BCConverter.mkBlock(request);
             if(!(KademliaClient.blockchain.getLatestBlock().hash).equals(new_block.getHash())) {
                 KademliaClient.blockchain.addBlock(new_block);
                 KademliaClient.kbucket.getNode(request.getNodeId()).addSuccessfullInterations();

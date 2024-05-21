@@ -4,11 +4,11 @@
 package group19.ssd.p2p.grpc;
 
 /**
- * Protobuf type {@code ledger.Transaction}
+ * Protobuf type {@code blockchain.Transaction}
  */
 public final class Transaction extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:ledger.Transaction)
+    // @@protoc_insertion_point(message_implements:blockchain.Transaction)
     TransactionOrBuilder {
 private static final long serialVersionUID = 0L;
   // Use Transaction.newBuilder() to construct.
@@ -17,8 +17,8 @@ private static final long serialVersionUID = 0L;
   }
   private Transaction() {
     hash_ = "";
-    senderPK_ = "";
-    receiverPK_ = "";
+    sender_ = "";
+    receiver_ = "";
     signature_ = com.google.protobuf.ByteString.EMPTY;
     misc_ = "";
     nodeId_ = "";
@@ -38,13 +38,13 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Transaction_descriptor;
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Transaction_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Transaction_fieldAccessorTable
+    return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Transaction_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
             group19.ssd.p2p.grpc.Transaction.class, group19.ssd.p2p.grpc.Transaction.Builder.class);
   }
@@ -87,76 +87,76 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int SENDERPK_FIELD_NUMBER = 2;
-  private volatile java.lang.Object senderPK_;
+  public static final int SENDER_FIELD_NUMBER = 2;
+  private volatile java.lang.Object sender_;
   /**
-   * <code>string senderPK = 2;</code>
-   * @return The senderPK.
+   * <code>string sender = 2;</code>
+   * @return The sender.
    */
   @java.lang.Override
-  public java.lang.String getSenderPK() {
-    java.lang.Object ref = senderPK_;
+  public java.lang.String getSender() {
+    java.lang.Object ref = sender_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      senderPK_ = s;
+      sender_ = s;
       return s;
     }
   }
   /**
-   * <code>string senderPK = 2;</code>
-   * @return The bytes for senderPK.
+   * <code>string sender = 2;</code>
+   * @return The bytes for sender.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getSenderPKBytes() {
-    java.lang.Object ref = senderPK_;
+      getSenderBytes() {
+    java.lang.Object ref = sender_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      senderPK_ = b;
+      sender_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int RECEIVERPK_FIELD_NUMBER = 3;
-  private volatile java.lang.Object receiverPK_;
+  public static final int RECEIVER_FIELD_NUMBER = 3;
+  private volatile java.lang.Object receiver_;
   /**
-   * <code>string receiverPK = 3;</code>
-   * @return The receiverPK.
+   * <code>string receiver = 3;</code>
+   * @return The receiver.
    */
   @java.lang.Override
-  public java.lang.String getReceiverPK() {
-    java.lang.Object ref = receiverPK_;
+  public java.lang.String getReceiver() {
+    java.lang.Object ref = receiver_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      receiverPK_ = s;
+      receiver_ = s;
       return s;
     }
   }
   /**
-   * <code>string receiverPK = 3;</code>
-   * @return The bytes for receiverPK.
+   * <code>string receiver = 3;</code>
+   * @return The bytes for receiver.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getReceiverPKBytes() {
-    java.lang.Object ref = receiverPK_;
+      getReceiverBytes() {
+    java.lang.Object ref = receiver_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      receiverPK_ = b;
+      receiver_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -289,11 +289,11 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hash_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 1, hash_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(senderPK_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, senderPK_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sender_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, sender_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiverPK_)) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, receiverPK_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiver_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, receiver_);
     }
     if (!signature_.isEmpty()) {
       output.writeBytes(4, signature_);
@@ -322,11 +322,11 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(hash_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, hash_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(senderPK_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, senderPK_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(sender_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, sender_);
     }
-    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiverPK_)) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, receiverPK_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiver_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, receiver_);
     }
     if (!signature_.isEmpty()) {
       size += com.google.protobuf.CodedOutputStream
@@ -363,10 +363,10 @@ private static final long serialVersionUID = 0L;
 
     if (!getHash()
         .equals(other.getHash())) return false;
-    if (!getSenderPK()
-        .equals(other.getSenderPK())) return false;
-    if (!getReceiverPK()
-        .equals(other.getReceiverPK())) return false;
+    if (!getSender()
+        .equals(other.getSender())) return false;
+    if (!getReceiver()
+        .equals(other.getReceiver())) return false;
     if (!getSignature()
         .equals(other.getSignature())) return false;
     if (getTimestamp()
@@ -390,10 +390,10 @@ private static final long serialVersionUID = 0L;
     hash = (19 * hash) + getDescriptor().hashCode();
     hash = (37 * hash) + HASH_FIELD_NUMBER;
     hash = (53 * hash) + getHash().hashCode();
-    hash = (37 * hash) + SENDERPK_FIELD_NUMBER;
-    hash = (53 * hash) + getSenderPK().hashCode();
-    hash = (37 * hash) + RECEIVERPK_FIELD_NUMBER;
-    hash = (53 * hash) + getReceiverPK().hashCode();
+    hash = (37 * hash) + SENDER_FIELD_NUMBER;
+    hash = (53 * hash) + getSender().hashCode();
+    hash = (37 * hash) + RECEIVER_FIELD_NUMBER;
+    hash = (53 * hash) + getReceiver().hashCode();
     hash = (37 * hash) + SIGNATURE_FIELD_NUMBER;
     hash = (53 * hash) + getSignature().hashCode();
     hash = (37 * hash) + TIMESTAMP_FIELD_NUMBER;
@@ -501,21 +501,21 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code ledger.Transaction}
+   * Protobuf type {@code blockchain.Transaction}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:ledger.Transaction)
+      // @@protoc_insertion_point(builder_implements:blockchain.Transaction)
       group19.ssd.p2p.grpc.TransactionOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Transaction_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Transaction_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Transaction_fieldAccessorTable
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Transaction_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
               group19.ssd.p2p.grpc.Transaction.class, group19.ssd.p2p.grpc.Transaction.Builder.class);
     }
@@ -535,9 +535,9 @@ private static final long serialVersionUID = 0L;
       super.clear();
       hash_ = "";
 
-      senderPK_ = "";
+      sender_ = "";
 
-      receiverPK_ = "";
+      receiver_ = "";
 
       signature_ = com.google.protobuf.ByteString.EMPTY;
 
@@ -555,7 +555,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_ledger_Transaction_descriptor;
+      return group19.ssd.p2p.grpc.BlockchainGRPCProto.internal_static_blockchain_Transaction_descriptor;
     }
 
     @java.lang.Override
@@ -576,8 +576,8 @@ private static final long serialVersionUID = 0L;
     public group19.ssd.p2p.grpc.Transaction buildPartial() {
       group19.ssd.p2p.grpc.Transaction result = new group19.ssd.p2p.grpc.Transaction(this);
       result.hash_ = hash_;
-      result.senderPK_ = senderPK_;
-      result.receiverPK_ = receiverPK_;
+      result.sender_ = sender_;
+      result.receiver_ = receiver_;
       result.signature_ = signature_;
       result.timestamp_ = timestamp_;
       result.amount_ = amount_;
@@ -635,12 +635,12 @@ private static final long serialVersionUID = 0L;
         hash_ = other.hash_;
         onChanged();
       }
-      if (!other.getSenderPK().isEmpty()) {
-        senderPK_ = other.senderPK_;
+      if (!other.getSender().isEmpty()) {
+        sender_ = other.sender_;
         onChanged();
       }
-      if (!other.getReceiverPK().isEmpty()) {
-        receiverPK_ = other.receiverPK_;
+      if (!other.getReceiver().isEmpty()) {
+        receiver_ = other.receiver_;
         onChanged();
       }
       if (other.getSignature() != com.google.protobuf.ByteString.EMPTY) {
@@ -692,12 +692,12 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 10
             case 18: {
-              senderPK_ = input.readStringRequireUtf8();
+              sender_ = input.readStringRequireUtf8();
 
               break;
             } // case 18
             case 26: {
-              receiverPK_ = input.readStringRequireUtf8();
+              receiver_ = input.readStringRequireUtf8();
 
               break;
             } // case 26
@@ -818,154 +818,154 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object senderPK_ = "";
+    private java.lang.Object sender_ = "";
     /**
-     * <code>string senderPK = 2;</code>
-     * @return The senderPK.
+     * <code>string sender = 2;</code>
+     * @return The sender.
      */
-    public java.lang.String getSenderPK() {
-      java.lang.Object ref = senderPK_;
+    public java.lang.String getSender() {
+      java.lang.Object ref = sender_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        senderPK_ = s;
+        sender_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string senderPK = 2;</code>
-     * @return The bytes for senderPK.
+     * <code>string sender = 2;</code>
+     * @return The bytes for sender.
      */
     public com.google.protobuf.ByteString
-        getSenderPKBytes() {
-      java.lang.Object ref = senderPK_;
+        getSenderBytes() {
+      java.lang.Object ref = sender_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        senderPK_ = b;
+        sender_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string senderPK = 2;</code>
-     * @param value The senderPK to set.
+     * <code>string sender = 2;</code>
+     * @param value The sender to set.
      * @return This builder for chaining.
      */
-    public Builder setSenderPK(
+    public Builder setSender(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      senderPK_ = value;
+      sender_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string senderPK = 2;</code>
+     * <code>string sender = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearSenderPK() {
+    public Builder clearSender() {
       
-      senderPK_ = getDefaultInstance().getSenderPK();
+      sender_ = getDefaultInstance().getSender();
       onChanged();
       return this;
     }
     /**
-     * <code>string senderPK = 2;</code>
-     * @param value The bytes for senderPK to set.
+     * <code>string sender = 2;</code>
+     * @param value The bytes for sender to set.
      * @return This builder for chaining.
      */
-    public Builder setSenderPKBytes(
+    public Builder setSenderBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      senderPK_ = value;
+      sender_ = value;
       onChanged();
       return this;
     }
 
-    private java.lang.Object receiverPK_ = "";
+    private java.lang.Object receiver_ = "";
     /**
-     * <code>string receiverPK = 3;</code>
-     * @return The receiverPK.
+     * <code>string receiver = 3;</code>
+     * @return The receiver.
      */
-    public java.lang.String getReceiverPK() {
-      java.lang.Object ref = receiverPK_;
+    public java.lang.String getReceiver() {
+      java.lang.Object ref = receiver_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        receiverPK_ = s;
+        receiver_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string receiverPK = 3;</code>
-     * @return The bytes for receiverPK.
+     * <code>string receiver = 3;</code>
+     * @return The bytes for receiver.
      */
     public com.google.protobuf.ByteString
-        getReceiverPKBytes() {
-      java.lang.Object ref = receiverPK_;
+        getReceiverBytes() {
+      java.lang.Object ref = receiver_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        receiverPK_ = b;
+        receiver_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string receiverPK = 3;</code>
-     * @param value The receiverPK to set.
+     * <code>string receiver = 3;</code>
+     * @param value The receiver to set.
      * @return This builder for chaining.
      */
-    public Builder setReceiverPK(
+    public Builder setReceiver(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      receiverPK_ = value;
+      receiver_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string receiverPK = 3;</code>
+     * <code>string receiver = 3;</code>
      * @return This builder for chaining.
      */
-    public Builder clearReceiverPK() {
+    public Builder clearReceiver() {
       
-      receiverPK_ = getDefaultInstance().getReceiverPK();
+      receiver_ = getDefaultInstance().getReceiver();
       onChanged();
       return this;
     }
     /**
-     * <code>string receiverPK = 3;</code>
-     * @param value The bytes for receiverPK to set.
+     * <code>string receiver = 3;</code>
+     * @param value The bytes for receiver to set.
      * @return This builder for chaining.
      */
-    public Builder setReceiverPKBytes(
+    public Builder setReceiverBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      receiverPK_ = value;
+      receiver_ = value;
       onChanged();
       return this;
     }
@@ -1230,10 +1230,10 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:ledger.Transaction)
+    // @@protoc_insertion_point(builder_scope:blockchain.Transaction)
   }
 
-  // @@protoc_insertion_point(class_scope:ledger.Transaction)
+  // @@protoc_insertion_point(class_scope:blockchain.Transaction)
   private static final group19.ssd.p2p.grpc.Transaction DEFAULT_INSTANCE;
   static {
     DEFAULT_INSTANCE = new group19.ssd.p2p.grpc.Transaction();

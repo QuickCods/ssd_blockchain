@@ -4,7 +4,7 @@
 package group19.ssd.p2p.grpc;
 
 public interface TransactionOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:ledger.Transaction)
+    // @@protoc_insertion_point(interface_extends:blockchain.Transaction)
     com.google.protobuf.MessageOrBuilder {
 
   /**
@@ -20,28 +20,28 @@ public interface TransactionOrBuilder extends
       getHashBytes();
 
   /**
-   * <code>string senderPK = 2;</code>
-   * @return The senderPK.
+   * <code>string sender = 2;</code>
+   * @return The sender.
    */
-  java.lang.String getSenderPK();
+  java.lang.String getSender();
   /**
-   * <code>string senderPK = 2;</code>
-   * @return The bytes for senderPK.
+   * <code>string sender = 2;</code>
+   * @return The bytes for sender.
    */
   com.google.protobuf.ByteString
-      getSenderPKBytes();
+      getSenderBytes();
 
   /**
-   * <code>string receiverPK = 3;</code>
-   * @return The receiverPK.
+   * <code>string receiver = 3;</code>
+   * @return The receiver.
    */
-  java.lang.String getReceiverPK();
+  java.lang.String getReceiver();
   /**
-   * <code>string receiverPK = 3;</code>
-   * @return The bytes for receiverPK.
+   * <code>string receiver = 3;</code>
+   * @return The bytes for receiver.
    */
   com.google.protobuf.ByteString
-      getReceiverPKBytes();
+      getReceiverBytes();
 
   /**
    * <code>bytes signature = 4;</code>
