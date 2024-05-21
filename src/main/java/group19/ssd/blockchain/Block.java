@@ -145,7 +145,6 @@ public class Block {
         }
     }
 
-
     public String getMerkleRoot() {
         return calculateMerkleRoot();
     }

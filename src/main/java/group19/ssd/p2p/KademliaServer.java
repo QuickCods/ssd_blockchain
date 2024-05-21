@@ -107,7 +107,7 @@ public class KademliaServer {
         }
 
         @Override
-        public void broadcastBlockchain(Blockchain request, StreamObserver<Status> responseObserver){
+        public void broadcastBlockchain(BlockChain request, StreamObserver<Status> responseObserver){
             super.broadcastBlockchain(request, responseObserver);
         }
 

@@ -11,7 +11,6 @@ import group19.ssd.blockchain.Block;
 import group19.ssd.blockchain.Blockchain;
 import group19.ssd.blockchain.transactions.Transaction;
 import group19.ssd.p2p.grpc.*;
-import org.w3c.dom.Node;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
@@ -67,7 +66,7 @@ public class PeerOperations {
     public void sendBlock(Block block){
         try{
             group19.ssd.p2p.grpc.Block request = GRPCConverter.mkBlock(block);
-            blockingStub.broadcast_block(request);
+            blockingStub.broadcastBlock(request);
         }finally{
             try{
                 PeerOperations.this.shutdown();
@@ -80,7 +79,7 @@ public class PeerOperations {
     public void sendTransaction(Transaction transaction){
         try{
             group19.ssd.p2p.grpc.Transaction request = GRPCConverter.mkTransaction(transaction);
-            blockingStub.broadcast_transaction(request);
+            blockingStub. broadcastTransaction(request);
         }finally{
             try{
                 PeerOperations.this.shutdown();
@@ -93,7 +92,7 @@ public class PeerOperations {
     public boolean ping(){
         try{
             try{
-                Ping request = Ping.newbuilder()
+                Ping request = Ping.newBuilder()
                     .setId(KademliaClient.id)
                     .setIp(KademliaClient.ip)
                     .setPort(KademliaClient.port)
@@ -124,7 +123,7 @@ public class PeerOperations {
 
     public Blockchain getBlockchain(){
         try{
-            Ping request = Ping.newbuilder()
+            Ping request = Ping.newBuilder()
                 .setId(KademliaClient.id)
                 .setIp(KademliaClient.ip)
                 .setPort(KademliaClient.port)

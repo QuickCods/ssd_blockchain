@@ -14,7 +14,7 @@ public class Transaction {
     public String sender;
     public String receiver;
     public Long amount;
-    public String signature; // This will store our signature
+    public String signature; // This will store our signature;              Byte[] Type or String Type?
     public String transactionId; // This will store the hash of the transaction
     public String misc = ""; //info adicional
     public long timestamp;
@@ -58,7 +58,7 @@ public class Transaction {
     }
 
     // Calculate the hash of the transaction which serves as its ID
-    private String calculateHash() {
+    public String calculateHash() {
         String srcEncoded = Base64.getEncoder().encodeToString(source.getPublicKey().getEncoded());
         String destEncoded = Base64.getEncoder().encodeToString(destination.getPublicKey().getEncoded());
         String data = srcEncoded + destEncoded + amount + signature; // Include the signature to ensure integrity

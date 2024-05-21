@@ -29,6 +29,6 @@ public class NodeSerializable {
     }
 
     public static Node_GRPC Node_to_GRPC(Node node) {
-        return new Node_GRPC.newBuilder().setId(node.id).setIp(node.ip).setPort(node.port).build();
+        return Node_GRPC.newBuilder().setId(node.id).setIp(node.ip).setPort(node.port).build();
     }
 }
