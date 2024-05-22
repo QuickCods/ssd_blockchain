@@ -1,5 +1,7 @@
 package group19.ssd.blockchain;
 
+import group19.ssd.blockchain.auctions.Auction;
+import group19.ssd.blockchain.auctions.AuctionManager;
 import group19.ssd.blockchain.transactions.Transaction;
 import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.miscellaneous.Configuration;
@@ -18,9 +20,11 @@ public class Blockchain {
 
     public static ArrayList<Transaction> pendingList = new ArrayList<>(); //before enter in the block
 
-    public Blockchain(Wallet wallet) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, UnsupportedEncodingException {
+    AuctionManager auctionManager = new AuctionManager();
+
+    /*public Blockchain(Wallet wallet) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, UnsupportedEncodingException {
         createGenesisBlock(wallet);
-    }
+    }*/
     // create empty blockchain
     public Blockchain() {
         chain = new ArrayList<>();
@@ -30,10 +34,10 @@ public class Blockchain {
     public ArrayList<Block> getChain() {
         return chain;
     }
-
+/*
     public void createGenesisBlock(Wallet wallet) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, UnsupportedEncodingException {
         Wallet tempWallet = new Wallet();
-        this.addTransaction(tempWallet, wallet,100);
+        this.addTransaction();
         this.minePendingTransaction(wallet);
     }
 */
@@ -105,7 +109,7 @@ public class Blockchain {
         }
     }
 
-    public Boolean isChainValid() {
+    public static Boolean isChainValid() {
         Block currentBlock;
         Block previousBlock;
         String hashTarget = new String(new char[Configuration.MINING_DIFFICULTY]).replace('\0', '0');

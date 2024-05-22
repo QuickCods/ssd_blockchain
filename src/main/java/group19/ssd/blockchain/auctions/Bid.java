@@ -5,23 +5,19 @@ import group19.ssd.blockchain.transactions.Wallet;
 public class Bid {
     private final byte[] transactionId;
     private final byte[] auctionHash;
-    private final byte[] senderAddress;
     private long timestamp;
 
     private static AuctionManager auctionManager;  // Reference to the AuctionManager
 
-    public Bid(byte[] transactionId, byte[] auctionHash, byte[] senderAddress, long timestamp) {
+    public Bid(byte[] transactionId, byte[] auctionHash, long timestamp) {
         this.transactionId = transactionId;
         this.auctionHash = auctionHash;
-        this.senderAddress = senderAddress;
         this.timestamp = timestamp;
     }
 
-    public Bid(byte[] transactionId, byte[] auctionHash, byte[] senderAddress, Wallet sender) {
+    public Bid(byte[] transactionId, byte[] auctionHash, Wallet sender) {
         this.transactionId = transactionId;
         this.auctionHash = auctionHash;
-        this.senderAddress = sender.getPublicKey().getEncoded();
-        this.timestamp = timestamp;
     }
 
     public static void setAuctionManager(AuctionManager auctionManager) {
@@ -51,9 +47,6 @@ public class Bid {
         return auctionHash;
     }
 
-    public byte[] getSenderAddress() {
-        return senderAddress;
-    }
 
     public long getTimestamp() {
         return timestamp;

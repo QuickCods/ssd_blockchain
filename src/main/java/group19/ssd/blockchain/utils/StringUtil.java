@@ -25,11 +25,11 @@ public class StringUtil {
         }
     }
 
-    public static String applyECDSASig(PrivateKey privateKey, String input) {
+    public static byte[] applyECDSASig(PrivateKey privateKey, String input) {
         Signature dsa;
         byte[] output = new byte[0];
         try {
-            dsa = Signature.getInstance("SHA256withRSA");
+            dsa = Signature.getInstance("SHA256withECDSA");
             dsa.initSign(privateKey);
             byte[] strByte = input.getBytes();
             dsa.update(strByte);
@@ -38,10 +38,11 @@ public class StringUtil {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return Base64.getEncoder().encodeToString(output);
+        return output;
     }
 
-    public static boolean verifyECDSASig(PublicKey publicKey, String data, String signature) {
+
+    public static boolean verifyECDSASig(PublicKey publicKey, String data, byte[] signature) {
         try {
             Signature ecdsaVerify = Signature.getInstance("SHA256withRSA");
             ecdsaVerify.initVerify(publicKey);

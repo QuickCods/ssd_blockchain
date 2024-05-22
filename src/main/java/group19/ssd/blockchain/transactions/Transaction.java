@@ -13,11 +13,19 @@ public class Transaction {
     public Wallet destination;
     public String sender;
     public String receiver;
-    public Long amount;
-    public String signature; // This will store our signature;              Byte[] Type or String Type?
-    public String transactionId; // This will store the hash of the transaction
+    public int amount;
+    public byte[] signature; // This will store our signature;
+    public String hash; // This will store the hash of the transaction
     public String misc = ""; //info adicional
     public long timestamp;
+    private TransactionType type; // Include transaction type
+
+    public enum TransactionType {
+        AUCTION_START,
+        AUCTION_END,
+        BID_START,
+        BID_END
+    }
 
     public Transaction(Wallet source, Wallet destination, int amount) {
         this.source = source;
@@ -25,6 +33,11 @@ public class Transaction {
         this.amount = amount;
         validateTransaction();
         this.misc = misc;
+    }
+    public Transaction(Wallet source, TransactionType type) {
+        this.source = source;
+        this.type = type;
+        this.timestamp = new Date().getTime();
     }
 
     public Transaction(String sender, String receiver, int amount) {
@@ -38,7 +51,7 @@ public class Transaction {
     public Transaction(String sender, String receiver, byte[] byteArray, long timestamp, int amount, String misc) {
         this.sender = sender;
         this.receiver = receiver;
-        this.signature = byteArray.toString();
+        this.signature = byteArray;
         this.timestamp = timestamp;
         this.amount = amount;
         this.misc = misc;
@@ -46,7 +59,7 @@ public class Transaction {
 
     public void validateTransaction() {
         this.timestamp = new Date().getTime();
-        this.transactionId = calculateHash(); // Calculate hash when the transaction is created
+        this.hash = calculateHash(); // Calculate hash when the transaction is created
     }
 
     // Method to generate a digital signature for the transaction
@@ -96,7 +109,7 @@ public class Transaction {
     }
 
     public void printTransaction() {
-        System.out.println("hash:" + this.transactionId);
+        System.out.println("hash:" + this.hash);
         System.out.println("from:" + this.source);
         System.out.println("to:" + this.destination);
         System.out.println("amount:" + this.amount);
@@ -128,8 +141,7 @@ public class Transaction {
         this.amount = amount;
     }
     public String getTransactionId() {
-        return transactionId;
+        return hash;
     }
-
 }
 

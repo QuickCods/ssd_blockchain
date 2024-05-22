@@ -44,15 +44,8 @@ public class KademliaClient {
         KademliaClient.ip = node_ip;
         KademliaClient.publicKey = String.valueOf(KademliaClient.wallet.getPublicKey());  //porque publickey nao é to tipo string
         KademliaClient.ledger = new Ledger();
-        try {
-            if (Configuration.knownNode.equals("")) {
-                KademliaClient.blockchain = new Blockchain(KademliaClient.wallet);
-            } else {
-                KademliaClient.blockchain = new Blockchain();
-            }
-        } catch (SignatureException | InvalidKeyException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
+        KademliaClient.blockchain = new Blockchain();
+
 
         id = getNodeId();
 
@@ -113,7 +106,7 @@ public class KademliaClient {
                 }
         }
     }
-
+/*
     public static void shareTransaction(Transaction transaction, String sender){
         ArrayList<Node> destinations = KademliaClient.kbucket.getCloneNodesList();
 
@@ -135,7 +128,7 @@ public class KademliaClient {
                     e.printStackTrace();
                 }
         }
-    }
+    }*/
 
      public static void startMining() {
          if (!alreadyRunningMineBlockThread) {

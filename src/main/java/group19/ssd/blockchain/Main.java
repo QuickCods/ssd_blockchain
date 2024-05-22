@@ -20,29 +20,57 @@ public class Main {
             Wallet sellerWallet = new Wallet();
             Wallet bidderWallet = new Wallet();
 
-            // Create a sample auction
-            byte[] itemId = Base64.getEncoder().encode("Item1".getBytes());
-            long timeout = System.currentTimeMillis() + 1000; // Auction expires in 10 seconds
+            for (int i = 1; i <= 2; i++) {
+                // Create a sample auction
+                byte[] itemId = Base64.getEncoder().encode(("Item" + i).getBytes());
+                long timeout = System.currentTimeMillis() + 5000; // Auction expires in 10 seconds
 
-            // Create hash for the auction (simplistically using itemID here)
-            String auctionData = Base64.getEncoder().encodeToString(itemId) + timeout + Base64.getEncoder().encodeToString(sellerWallet.getPublicKey().getEncoded());
-            byte[] auctionHash = StringUtil.applySha256(auctionData).getBytes();
-            byte[] auctionSignature = StringUtil.applyECDSASig(sellerWallet.getPrivateKey(), auctionData).getBytes();
+                // Create hash for the auction (simplistically using itemID here)
+                String auctionData = Base64.getEncoder().encodeToString(itemId) + timeout + Base64.getEncoder().encodeToString(sellerWallet.getPublicKey().getEncoded());
+                byte[] auctionHash = StringUtil.applySha256(auctionData).getBytes();
+                byte[] auctionSignature = StringUtil.applyECDSASig(sellerWallet.getPrivateKey(), auctionData);
 
-            Auction auction = new Auction(itemId, timeout, sellerWallet.getPublicKey().getEncoded(), auctionHash, auctionSignature);
-            auctionManager.addAuction(auction);
+                Auction auction = new Auction(itemId, timeout, auctionHash, auctionSignature, sellerWallet);
+                auctionManager.startAuction(auction, sellerWallet);
 
-            // Adding a valid bid
-            long bidTimestamp = System.currentTimeMillis();
-            Bid validBid = new Bid(Base64.getEncoder().encode("Transaction1".getBytes()), auctionHash, bidderWallet.getPublicKey().getEncoded(), bidTimestamp);
-            auctionManager.addBidToAuction(validBid, auctionHash);
+                /*
+                // Testing End auction
+                // Simulate waiting for auction to end
+                try {
+                    Thread.sleep(6000);  // Wait 6 seconds to pass the auction timeout
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
 
-            // Check validity of the auction and bid
-            boolean isAuctionValid = auction.isValidAuction();
-            boolean isBidValid = validBid.isValidBid();
+                // End the auction
+                auctionManager.endAuction(auction.getHash(), sellerWallet);
+*/
 
-            System.out.println("Is Auction Valid? " + isAuctionValid);
-            System.out.println("Is Bid Valid? " + isBidValid);
+                //adding Bids
+                for(int p = 1; p <= 9; p++) {
+                    // Place a bid
+                    byte[] transactionId = ("tx_id"+p).getBytes(); // This should be generated
+                    long bidTimestamp = System.currentTimeMillis();
+                    Bid bid = new Bid(transactionId, auction.getHash(), bidTimestamp);
+                    auctionManager.placeBid(bid, bidderWallet);
+                }
+            }
+
+            // Check Blockchain's transaction list size
+            if (Blockchain.pendingList.size() > 4) {
+                System.out.println("All transactions were successfully added.\n");
+            } else {
+                System.out.println("Expected 5 transactions but found: " + Blockchain.pendingList.size());
+            }
+
+
+            // Verify blockchain is valid after adding a block
+            if (Blockchain.isChainValid()) {
+                System.out.println("Blockchain is valid after adding auctions.");
+            } else {
+                System.out.println("Blockchain validation failed.");
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
