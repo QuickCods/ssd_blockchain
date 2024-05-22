@@ -36,11 +36,11 @@ public class Blockchain {
         this.addTransaction(tempWallet, wallet,100);
         this.minePendingTransaction(wallet);
     }
-
-    // ddefine pending transactions and makes a copy
+*/
+    // define pending transactions and makes a copy
     public void setPendingTransactions(ArrayList<Transaction> oldTransactionArrayList) {
         for (Transaction curTransaction : oldTransactionArrayList) {
-            pendingList.add(new Transaction(curTransaction.sender, curTransaction.receiver, curTransaction.signature.getBytes(), curTransaction.timestamp, curTransaction.amount, curTransaction.misc));
+            pendingList.add(new Transaction(curTransaction.sender, curTransaction.receiver, curTransaction.signature, curTransaction.timestamp, curTransaction.amount, curTransaction.misc));
                                                                                                 // nao sei se é preciso dar algum encode aqui no signature
         }
     }

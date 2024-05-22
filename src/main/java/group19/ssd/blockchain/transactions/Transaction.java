@@ -27,7 +27,7 @@ public class Transaction {
         this.misc = misc;
     }
 
-    public Transaction(String sender, String receiver, Long amount) {
+    public Transaction(String sender, String receiver, int amount) {
         this.sender = sender;
         this.receiver = receiver;
         this.amount = amount;
@@ -120,11 +120,11 @@ public class Transaction {
         return destination;
     }
 
-    public Long getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(int amount) {
         this.amount = amount;
     }
     public String getTransactionId() {

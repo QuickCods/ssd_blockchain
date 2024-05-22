@@ -39,12 +39,13 @@ public class GRPCConverter {
         for (group19.ssd.blockchain.transactions.Transaction t : transactions) {
             tlist.add(Transaction.newBuilder()
                     .setHash(t.hash)
-                    .setSenderPK(t.sender)
-                    .setReceiverPK(t.receiver)
+                    .setSender(t.sender)
+                    .setReceiver(t.receiver)
                     .setSignature(ByteString.copyFrom(t.signature))
                     .setTimestamp(t.timestamp)
                     .setAmount(t.amount)
-                    .setMisc(t.misc).build());
+                    .setMisc(t.misc)
+                    .build());
         }
         return TransactionsList.newBuilder().addAllTransactionList(tlist).build();
     }
@@ -52,8 +53,8 @@ public class GRPCConverter {
     public static Transaction mkTransaction(group19.ssd.blockchain.transactions.Transaction t) {
         Transaction new_t = Transaction.newBuilder()
                 .setHash(t.hash)
-                .setSenderPK(t.sender)
-                .setReceiverPK(t.receiver)
+                .setSender(t.sender)
+                .setReceiver(t.receiver)
                 .setSignature(ByteString.copyFrom(t.signature))
                 .setTimestamp(t.timestamp)
                 .setAmount(t.amount)
