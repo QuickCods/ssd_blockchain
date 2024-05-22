@@ -19,7 +19,7 @@ public class Transaction {
     public String misc = ""; //info adicional
     public long timestamp;
 
-    public Transaction(Wallet source, Wallet destination, Long amount) {
+    public Transaction(Wallet source, Wallet destination, int amount) {
         this.source = source;
         this.destination = destination;
         this.amount = amount;
@@ -35,7 +35,7 @@ public class Transaction {
         this.misc = misc;
     }
 
-    public Transaction(String sender, String receiver, byte[] byteArray, long timestamp, long amount, String misc) {
+    public Transaction(String sender, String receiver, byte[] byteArray, long timestamp, int amount, String misc) {
         this.sender = sender;
         this.receiver = receiver;
         this.signature = byteArray.toString();
@@ -53,7 +53,7 @@ public class Transaction {
     public void generateSignature(PrivateKey senderprivateKey) {
         String srcEncoded = Base64.getEncoder().encodeToString(source.getPublicKey().getEncoded());
         String destEncoded = Base64.getEncoder().encodeToString(destination.getPublicKey().getEncoded());
-        String data = srcEncoded + destEncoded + amount.toString();
+        String data = srcEncoded + destEncoded + amount;
         signature = StringUtil.applyECDSASig(senderprivateKey, data);
     }
 
@@ -70,7 +70,7 @@ public class Transaction {
     public boolean verifySignature(PublicKey publicKey) {
         String srcEncoded = Base64.getEncoder().encodeToString(source.getPublicKey().getEncoded());
         String destEncoded = Base64.getEncoder().encodeToString(destination.getPublicKey().getEncoded());
-        String data = srcEncoded + destEncoded + amount.toString();
+        String data = srcEncoded + destEncoded + amount;
         return StringUtil.verifyECDSASig(publicKey, data, signature);
     }
 

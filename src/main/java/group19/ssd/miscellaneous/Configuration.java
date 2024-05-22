@@ -10,4 +10,5 @@ public class Configuration {
     public static final int MINING_REWARD = 1;
     //    public static String knownNode = "68877c08a35cd7e60bcd2ab63082c93f79238d1b487fc13a645c0b7dbe488b18";
     public static String knownNode = "";
+
 }
