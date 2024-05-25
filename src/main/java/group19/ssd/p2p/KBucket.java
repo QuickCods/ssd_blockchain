@@ -45,6 +45,7 @@ public class KBucket {
     }
 
     public ArrayList<Node> getNeighboursByDistance(String id, ArrayList<Node> list){
+        @SuppressWarnings("unchecked")
         ArrayList<Node> result = (ArrayList<Node>) list.clone();
 
         if (list.size() == 1){
@@ -93,32 +94,6 @@ public class KBucket {
             }
         }
 
-        return true;
-    }
-
-    public boolean checkNodeExistence(Node node, int proof, String publicKey){
-        if(node.id.equals(KademliaClient.id)){
-            return true;
-        }
-        if(proof != -1){
-            if(!Kademlia.checkNodeValidity(node.id,node.ip,node.port,proof,publicKey)){
-                return false;
-            }
-        }
-        if(identifiedLast.contains(node)){
-            sendToLast(node);
-            return true;
-        }
-        if(identifiedSize() < Configuration.MAX_NODES_BUCKET){
-            addNode(node);
-        } else{
-            if(Kademlia.pingNode(oldestNode())){
-                sendToLast(oldestNode());
-            } else {
-                removeNode(oldestNode());
-                addNode(node);
-            }
-        }
         return true;
     }
 

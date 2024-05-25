@@ -7,11 +7,12 @@ import group19.ssd.blockchain.Blockchain;
 import group19.ssd.blockchain.utils.Pair;
 import group19.ssd.blockchain.utils.StringUtil;
 
-import java.security.KeyPair;
-import java.security.NoSuchAlgorithmException;
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class Wallet {
@@ -54,5 +55,37 @@ public class Wallet {
         return publicKey;
     }
 
+    public void printWalletBalance() {
+        System.out.print("Your account balance is: ");
+        System.out.println(getBalance());
+    }
 
+    public Long getBalance() {
+        String pubKey = Base64.getEncoder().encodeToString(publicKey.getEncoded());
+        System.out.println(pubKey);
+        return KademliaClient.ledger.getBalance(Base64.getEncoder().encodeToString(publicKey.getEncoded()));
+    }
+
+    public byte[][] sign(String message) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, InvalidKeySpecException {
+
+        String pubKey = Base64.getEncoder().encodeToString(publicKey.getEncoded());
+
+        byte[] msgHash = Miscellaneous.applyEncryption(pubKey.concat(String.valueOf(message))).getBytes();
+        Signature signature = Signature.getInstance("RSA");
+
+        System.out.println(privateKey);
+
+        String privKey = Base64.getEncoder().encodeToString(privateKey.getEncoded());
+
+        byte[] keyBytes = Base64.getDecoder().decode(privKey.getBytes(StandardCharsets.UTF_8));
+        PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(keyBytes);
+        KeyFactory fact = KeyFactory.getInstance("RSA");
+        PrivateKey privateKey = fact.generatePrivate(keySpec);
+
+        signature.initSign(privateKey);
+        signature.update(msgHash);
+        byte[] signatureBytes = signature.sign();
+        return new byte[][]{msgHash, signatureBytes};
+
+    }
 }

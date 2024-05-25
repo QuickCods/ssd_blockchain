@@ -68,7 +68,7 @@ public class KademliaServer {
     class PeerImplementation extends PeerGrpc.PeerImplBase{
         @Override
         public void ping(Ping request, StreamObserver<Pong> responseObserver) {
-            KademliaClient.kbucket.checkNodeExistence(new Node(request.getId(), request.getIp(), request.getPort()), request.getProof(), request.getPubKey());
+            KademliaClient.kbucket.checkNode(new Node(request.getId(), request.getIp(), request.getPort()), request.getProof(), request.getPubKey());
             BlockChain blockchain = GRPCConverter.mkBlockChain(KademliaClient.blockchain);
             responseObserver.onNext(Pong.newBuilder().setPong(true).setBlockchain(blockchain).build());
             responseObserver.onCompleted();
@@ -113,7 +113,7 @@ public class KademliaServer {
 
         @Override
         public void findNodes(FindNode request, StreamObserver<KBucket_GRPC> responseObserver){
-            if(KademliaClient.kbucket.checkNodeExistence(new Node(request.getId(), request.getIp(), request.getPort()), request.getProof(), request.getPubKey())){
+            if(KademliaClient.kbucket.checkNode(new Node(request.getId(), request.getIp(), request.getPort()), request.getProof(), request.getPubKey())){
                 responseObserver.onNext(NodeSerializable.KBucket_to_GRPC(KademliaClient.kbucket.getNeighboursByDistance(request.getTargetId(), KademliaClient.kbucket.identifiedLast)));
             }
             responseObserver.onCompleted();

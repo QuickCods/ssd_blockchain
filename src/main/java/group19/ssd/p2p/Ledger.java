@@ -11,7 +11,7 @@ public class Ledger {
     long minCoin = 15;
 
     public Ledger() {
-        users.put(KademliaClient.publicKey, (long) minCoin);
+        users.put(KademliaClient.publicKey, minCoin);
     }
 
     public Long getBalance(String pubKey) {
@@ -46,7 +46,6 @@ public class Ledger {
             users.put(transaction.sender, (senderAmount - transaction.amount));
             users.put(transaction.receiver, (receiverAmount + transaction.amount));
         }
-        // é preciso fazer coisas no block e blockchain
         if (users.get(block.publicKey) != null) {
             users.put(block.publicKey, users.get(block.publicKey) + 1);
         } else {
