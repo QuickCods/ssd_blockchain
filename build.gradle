@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.google.protobuf' version '0.8.18'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group 'group19.ssd'
@@ -42,5 +43,16 @@ sourceSets {
         java {
             srcDirs 'src/main/java', 'build/generated/source/proto/main/grpc', 'build/generated/source/proto/main/java'
         }
+    }
+}
+
+shadowJar {
+    archiveClassifier.set('')
+    mergeServiceFiles()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'group19.ssd.App'
     }
 }
