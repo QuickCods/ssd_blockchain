@@ -1,5 +1,6 @@
 package group19.ssd.blockchain.transactions;
 
+import group19.ssd.miscellaneous.Miscellaneous;
 import group19.ssd.p2p.KademliaClient;
 import group19.ssd.blockchain.auctions.Auction;
 import group19.ssd.blockchain.auctions.Bid;

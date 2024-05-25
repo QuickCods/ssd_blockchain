@@ -2,7 +2,9 @@ package group19.ssd.blockchain.transactions;
 
 import group19.ssd.blockchain.utils.StringUtil;
 
+import java.io.UnsupportedEncodingException;
 import java.security.*;
+import java.security.spec.InvalidKeySpecException;
 import java.util.Base64;
 import java.util.Date;
 
@@ -68,6 +70,18 @@ public class Transaction {
         String destEncoded = Base64.getEncoder().encodeToString(destination.getPublicKey().getEncoded());
         String data = srcEncoded + destEncoded + amount;
         signature = StringUtil.applyECDSASig(senderprivateKey, data);
+    }
+
+    public boolean signTransaction(Wallet signer) throws NoSuchAlgorithmException, SignatureException, InvalidKeyException, InvalidKeySpecException, UnsupportedEncodingException {
+        if (!this.hash.equals(this.calculateHash())) { //garantir que transação não foi modificada
+            System.out.println("ERRO");
+            return false;
+        }
+        System.out.println(signer.getPublicKey());
+        System.out.println(this.sender);
+
+        this.signature = signer.sign(hash)[1];
+        return true;
     }
 
     // Calculate the hash of the transaction which serves as its ID

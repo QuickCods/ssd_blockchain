@@ -36,12 +36,12 @@ public class Ledger {
             if (users.get(transaction.sender) != null) {        //source é o senderPK
                 senderAmount = users.get(transaction.sender);
             } else {
-                senderAmount = (long) minCoin;
+                senderAmount = minCoin;
             }
             if (users.get(transaction.receiver) != null) {
                 receiverAmount = users.get(transaction.receiver);
             } else {
-                receiverAmount = (long) minCoin;
+                receiverAmount = minCoin;
             }
             users.put(transaction.sender, (senderAmount - transaction.amount));
             users.put(transaction.receiver, (receiverAmount + transaction.amount));

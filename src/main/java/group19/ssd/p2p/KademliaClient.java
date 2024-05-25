@@ -106,7 +106,7 @@ public class KademliaClient {
                 }
         }
     }
-/*
+
     public static void shareTransaction(Transaction transaction, String sender){
         ArrayList<Node> destinations = KademliaClient.kbucket.getCloneNodesList();
 
@@ -128,7 +128,7 @@ public class KademliaClient {
                     e.printStackTrace();
                 }
         }
-    }*/
+    }
 
      public static void startMining() {
          if (!alreadyRunningMineBlockThread) {
