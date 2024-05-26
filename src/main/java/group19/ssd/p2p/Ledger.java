@@ -7,7 +7,7 @@ import group19.ssd.miscellaneous.Configuration;
 import java.util.Hashtable;
 
 public class Ledger {
-    Hashtable<String, Long> users = new Hashtable<>();   //String vs Wallet
+    Hashtable<String, Long> users = new Hashtable<>();
     long minCoin = 15;
 
     public Ledger() {

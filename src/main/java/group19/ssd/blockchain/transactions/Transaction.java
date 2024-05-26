@@ -36,6 +36,7 @@ public class Transaction {
         validateTransaction();
         this.misc = misc;
     }
+
     public Transaction(Wallet source, TransactionType type) {
         this.source = source;
         this.type = type;
