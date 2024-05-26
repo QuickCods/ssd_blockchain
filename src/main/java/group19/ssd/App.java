@@ -104,8 +104,10 @@ public class App {
                     } else {
                         System.out.println("Error on creation of Bid!\n");
                     }
-                } else {
-                    System.out.println("Invalid auction selection.");
+                } else if(Auction_to_bid == 0) {
+                    System.out.println("Back to main menu");
+                } else{
+                    System.out.println("Invalid Auction\n");
                 }
             }
         } catch (Exception e) {
@@ -121,21 +123,27 @@ public class App {
         } else {
             for (int j = 0; j < myAuctions.size(); j++) {
                 Auction a = myAuctions.get(j);
-                System.out.println(j + ": " + new String(a.getItemId()) + ", Timeout: " + a.getTimeout());
+                System.out.println((j + 1) + ": " + new String(a.getItemId()) + ", Timeout: " + a.getTimeout());
             }
+            System.out.println("Type 0 to go back to main menu");
             System.out.println("Enter the index of the auction to close:");
             int auctionIndex = scanner.nextInt();
             scanner.nextLine(); // Consume newline
 
-            if (auctionIndex >= 0 && auctionIndex < myAuctions.size()) {
-                Auction auctionToClose = myAuctions.get(auctionIndex);
+            if (auctionIndex == 0) {
+                System.out.println("Returning to main menu...");
+                return; // Go back to main menu
+            } else if (auctionIndex > 0 && auctionIndex <= myAuctions.size()) {
+                Auction auctionToClose = myAuctions.get(auctionIndex - 1);
                 auctionManager.endAuction(auctionToClose.getHash(), KademliaClient.wallet);
                 System.out.println("Auction closed successfully!");
+                return; // Go back to main menu after closing the auction
             } else {
                 System.out.println("Invalid index.");
             }
         }
     }
+
 
     public static void main(String[] args) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException, InterruptedException {
         if (args.length > 0 && args[0].equals("--server")) {
@@ -196,9 +204,6 @@ public class App {
             }
         });
         serverMonitor.start();
-        System.out.println("Private Key Type: " + KademliaClient.wallet.getPrivateKey().getAlgorithm());
-        System.out.println("Public Key Type: " + KademliaClient.wallet.getPublicKey().getAlgorithm());
-
         Scanner scanner = new Scanner(System.in);
 
         while (true) {

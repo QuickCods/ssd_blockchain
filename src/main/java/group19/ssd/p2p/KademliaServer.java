@@ -1,6 +1,8 @@
 package group19.ssd.p2p;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -8,8 +10,8 @@ import group19.ssd.blockchain.BCConverter;
 import group19.ssd.blockchain.Blockchain;
 import group19.ssd.blockchain.GRPCConverter;
 import group19.ssd.p2p.grpc.*;
-import io.grpc.Server;
-import io.grpc.ServerBuilder;
+import group19.ssd.p2p.grpc.Status;
+import io.grpc.*;
 import io.grpc.internal.ServerImpl;
 import io.grpc.stub.StreamObserver;
 
@@ -19,6 +21,7 @@ public class KademliaServer {
     public String ip;
     public int port;
     PeerImplementation broker = new PeerImplementation();
+    private final Set<String> activeClients = new HashSet<>();
 
     public KademliaServer(String ip, int port) {
         this.ip = ip + ":" + port;
@@ -28,6 +31,7 @@ public class KademliaServer {
     public void start() throws IOException {
         server = ServerBuilder.forPort(this.port)
                 .addService(broker)
+                .intercept(new ClientInterceptor(this))
                 .build()
                 .start();
         logger.info("Server started, listening on " + ip);
@@ -62,6 +66,18 @@ public class KademliaServer {
     private void blockUntilShutdown() throws InterruptedException {
         if (server != null) {
             server.awaitTermination();
+        }
+    }
+
+    private synchronized void logClientConnect(String clientAddress) {
+        if (activeClients.add(clientAddress)) {
+            logger.info("Client connected: " + clientAddress);
+        }
+    }
+
+    private synchronized void logClientDisconnect(String clientAddress) {
+        if (activeClients.remove(clientAddress)) {
+            logger.info("Client disconnected: " + clientAddress);
         }
     }
 
@@ -117,6 +133,36 @@ public class KademliaServer {
                 responseObserver.onNext(NodeSerializable.KBucket_to_GRPC(KademliaClient.kbucket.getNeighboursByDistance(request.getTargetId(), KademliaClient.kbucket.identifiedLast)));
             }
             responseObserver.onCompleted();
+        }
+    }
+
+    class ClientInterceptor implements ServerInterceptor {
+        private final KademliaServer server;
+
+        public ClientInterceptor(KademliaServer server) {
+            this.server = server;
+        }
+
+        @Override
+        public <ReqT, RespT> ServerCall.Listener<ReqT> interceptCall(
+                ServerCall<ReqT, RespT> call, Metadata headers, ServerCallHandler<ReqT, RespT> next) {
+            String clientAddress = call.getAttributes().get(Grpc.TRANSPORT_ATTR_REMOTE_ADDR).toString();
+            server.logClientConnect(clientAddress);
+            ServerCall.Listener<ReqT> listener = next.startCall(call, headers);
+
+            return new ForwardingServerCallListener.SimpleForwardingServerCallListener<ReqT>(listener) {
+                @Override
+                public void onComplete() {
+                    server.logClientDisconnect(clientAddress);
+                    super.onComplete();
+                }
+
+                @Override
+                public void onCancel() {
+                    server.logClientDisconnect(clientAddress);
+                    super.onCancel();
+                }
+            };
         }
     }
 }
