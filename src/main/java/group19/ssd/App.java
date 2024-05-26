@@ -1,15 +1,17 @@
 package group19.ssd;
 
+import group19.ssd.blockchain.Block;
+import group19.ssd.blockchain.Blockchain;
 import group19.ssd.blockchain.transactions.Transaction;
+import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.blockchain.utils.Pair;
 import group19.ssd.blockchain.utils.StringUtil;
 import group19.ssd.miscellaneous.Configuration;
-import group19.ssd.p2p.Kademlia;
-import group19.ssd.p2p.KademliaClient;
-import group19.ssd.p2p.KademliaServer;
+import group19.ssd.p2p.*;
 import group19.ssd.blockchain.auctions.AuctionManager;
 import group19.ssd.blockchain.auctions.Auction;
 import group19.ssd.blockchain.auctions.Bid;
+import group19.ssd.blockchain.utils.D;
 
 import java.net.Socket;
 import java.util.*;
@@ -21,6 +23,7 @@ import java.util.Scanner;
 
 public class App {
     public static AuctionManager auctionManager = new AuctionManager();
+    public static ArrayList<Transaction> transactions = new ArrayList<>();
     public static void CreateMenu() {
         StringBuilder menu = new StringBuilder("Menu\n");
         menu.append("1 -> Personal Information\n")
@@ -35,7 +38,7 @@ public class App {
         System.out.println(menu);
     }
 
-    public static void CreateAuctionMenu(Scanner scanner){
+    public static void CreateAuctionMenu(KademliaClient client, Scanner scanner){
         try {
             System.out.println("Create Auction:");
             System.out.println("Enter item name:");
@@ -45,27 +48,24 @@ public class App {
             long timeout = scanner.nextLong();
             scanner.nextLine(); // Consume newline
             byte[] itemId = Base64.getEncoder().encode(itemName.getBytes());
-            String sellerPublicKeyBase64 = Base64.getEncoder().encodeToString(KademliaClient.wallet.getPublicKey().getEncoded());
+            String sellerPublicKeyBase64 = Base64.getEncoder().encodeToString(client.wallet.getPublicKey().getEncoded());
             String auctionData = itemName + timeout + sellerPublicKeyBase64;
             byte[] auctionHash = StringUtil.applySha256(auctionData).getBytes();
-            byte[] auctionSignature = StringUtil.applyECDSASig(KademliaClient.wallet.getPrivateKey(), auctionData);
+            byte[] auctionSignature = StringUtil.applyECDSASig(client.wallet.getPrivateKey(), auctionData);
             // Create Auction object
             Auction auction = new Auction(itemId, timeout, sellerPublicKeyBase64.getBytes(), auctionHash, auctionSignature);
             boolean isAuctionValid = auction.isValidAuction();
-            if(isAuctionValid) {
-                // Call AuctionManager to start the auction
-                auctionManager.addAuction(auction);
-                auctionManager.startAuction(auction,KademliaClient.wallet);
-                System.out.println("Auction valid and created successfully!");
-            } else{
-                System.out.println("Auction not valid!");
-            }
+            // Call AuctionManager to start the auction
+            auctionManager.addAuction(auction);
+            //auctionManager.startAuction(auction,client.wallet);
+            System.out.println("Auction valid and created successfully!");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void SeeAuctions_n_Bid(Scanner scanner){
+    public static void SeeAuctions_n_Bid(KademliaClient client, Scanner scanner){
         try {
             int i = 1;
             System.out.println("Auctions available for bidding:\n");
@@ -99,7 +99,7 @@ public class App {
                     Bid n_bid = new Bid(Base64.getEncoder().encode(transaction.getBytes()), a.getHash(), bid_Time);
                     boolean is_BidValid = n_bid.isValidBid();
                     if (is_BidValid) {
-                        auctionManager.placeBid(n_bid, KademliaClient.wallet);
+                        auctionManager.placeBid(n_bid, client.wallet);
                         System.out.println("Bid valid and created successfully!\n");
                     } else {
                         System.out.println("Error on creation of Bid!\n");
@@ -115,9 +115,9 @@ public class App {
         }
     }
 
-    public static void CloseYAuctions(Scanner scanner){
+    public static void CloseYAuctions(KademliaClient client, Scanner scanner){
         System.out.println("Your Auctions: ");
-        List<Auction> myAuctions = auctionManager.getAuctionsBySeller(KademliaClient.wallet.getPublicKey().getEncoded());
+        List<Auction> myAuctions = auctionManager.getAuctionsBySeller(client.wallet.getPublicKey().getEncoded());
         if (myAuctions.isEmpty()) {
             System.out.println("No auctions found.");
         } else {
@@ -144,12 +144,12 @@ public class App {
         }
     }
 
-
-    public static void main(String[] args) throws InvalidKeySpecException, NoSuchAlgorithmException, IOException, InterruptedException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         if (args.length > 0 && args[0].equals("--server")) {
             startServer();
         } else if (args.length > 0 && args[0].equals("--client")) {
-            startClient();
+            KademliaClient client = new KademliaClient();
+            startClient(client);
         } else {
             System.out.println("Usage: java -jar your-jar-file-name.jar --server|--client");
         }
@@ -162,7 +162,9 @@ public class App {
         }
 
         KademliaServer server = new KademliaServer("localhost", port);
+        // Initialize the interceptor
         server.start();
+
         System.out.println("Server started on port " + port);
 
         // Keep the server running
@@ -175,7 +177,7 @@ public class App {
         System.out.println("Server stopped.");
     }
 
-    public static void startClient() throws NoSuchAlgorithmException, InvalidKeySpecException {
+    public static void startClient(KademliaClient client) {
         int port;
         if (Objects.equals(Configuration.knownNode, "")) {
             port = 8080;
@@ -183,11 +185,10 @@ public class App {
             port = 8888;
         }
 
-        KademliaClient client = new KademliaClient();
         client.setup(port, "localhost");
-        KademliaClient.startPinging();
-
-        Kademlia.findNode(KademliaClient.id);
+        client.startPinging();
+        System.out.println("Client started on port " + port);
+        Kademlia.findNode(client.id);
         // Start a thread to monitor the server status
         Thread serverMonitor = new Thread(() -> {
             while (true) {
@@ -205,7 +206,7 @@ public class App {
         });
         serverMonitor.start();
         Scanner scanner = new Scanner(System.in);
-
+        //
         while (true) {
             CreateMenu();
 
@@ -214,28 +215,27 @@ public class App {
 
             switch (input) {
                 case 1:     // Personal Information
-                    System.out.println("ID: " + KademliaClient.id);
-                    System.out.println(KademliaClient.ip + ":" + KademliaClient.port);
-                    System.out.println("Public Key: " + KademliaClient.publicKey);
+                    System.out.println("ID: " + client.id);
+                    System.out.println(client.ip + ":" + client.port);
+                    System.out.println("Public Key: " + client.publicKey);
                     break;
                 case 2:     // Start Mining
-                    KademliaClient.startMining();
-                    System.out.println("Started Mining");
+                    client.startMining();
                     break;
                 case 3:     // See Blockchain
-                    KademliaClient.blockchain.printBlockChain();
+                    client.blockchain.printBlockChain();
                     break;
                 case 4:     // See KBucket
-                    KademliaClient.kbucket.print();
+                    client.kbucket.print();
                     break;
                 case 5: // Create Auction
-                    CreateAuctionMenu(scanner);
+                    CreateAuctionMenu(client, scanner);
                     break;
                 case 6: //See available Auctions and choose auction to play bid on
-                    SeeAuctions_n_Bid(scanner);
+                    SeeAuctions_n_Bid(client, scanner);
                     break;
                 case 7: //Close your Auctions
-                    CloseYAuctions(scanner);
+                    CloseYAuctions(client, scanner);
                     break;
                 case 8:     // Exit
                     System.exit(0);

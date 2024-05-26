@@ -38,7 +38,7 @@ public class KademliaClient {
 
     }
 
-    public void setup(int node_port, String node_ip) throws InvalidKeySpecException, NoSuchAlgorithmException{
+    public void setup(int node_port, String node_ip) {
         KademliaClient.proof = 0;
         KademliaClient.port = node_port;
         KademliaClient.ip = node_ip;
@@ -130,6 +130,7 @@ public class KademliaClient {
 
      public static void startMining() {
          if (!alreadyRunningMineBlockThread) {
+             System.out.println("Started Mining");
              alreadyRunningMineBlockThread = true;
              KademliaClient.mineBlockThread.start();
          } else {
