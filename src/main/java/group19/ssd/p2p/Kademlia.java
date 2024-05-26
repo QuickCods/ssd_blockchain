@@ -59,7 +59,7 @@ public class Kademlia {
         user.addAll(users);
     }
 
-    //the distance between two node
+    //the distance between two nodes
     public static String xorDistance(String hashNode1, String hashNode2){
         hashNode1 = new BigInteger(hashNode1, 16).toString(2);
         hashNode2 = new BigInteger(hashNode2, 16).toString(2);

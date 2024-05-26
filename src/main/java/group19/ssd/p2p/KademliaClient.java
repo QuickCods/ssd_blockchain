@@ -27,8 +27,8 @@ public class KademliaClient {
     public static Blockchain blockchain;
     public static Ledger ledger;
     private static boolean alreadyRunningMineBlockThread = false;
-    public static MineBlockThread mineBlockThread = new MineBlockThread();
-    public static KeepAliveThread keepAliveThread = new KeepAliveThread();
+    private static final MineBlockThread mineBlockThread = new MineBlockThread();
+    public static final KeepAliveThread keepAliveThread = new KeepAliveThread();
 
     public String getHash() {
         return id;
@@ -42,17 +42,15 @@ public class KademliaClient {
         KademliaClient.proof = 0;
         KademliaClient.port = node_port;
         KademliaClient.ip = node_ip;
-        KademliaClient.publicKey = String.valueOf(KademliaClient.wallet.getPublicKey());  //porque publickey nao é to tipo string
+        KademliaClient.publicKey = String.valueOf(KademliaClient.wallet.getPublicKey());
         KademliaClient.ledger = new Ledger();
         KademliaClient.blockchain = new Blockchain();
 
-
         id = getNodeId();
-
 
         System.out.println(Configuration.knownNode);
 
-        if (Configuration.knownNode.equals("")) {
+        if (Configuration.knownNode.isEmpty()) {
             Configuration.knownNode = KademliaClient.id;
         } else {
             KademliaClient.kbucket.addNode(new Node(Configuration.knownNode, node_ip, 8080));
@@ -111,7 +109,7 @@ public class KademliaClient {
         ArrayList<Node> destinations = KademliaClient.kbucket.getCloneNodesList();
 
         try {
-            transaction.signTransaction(KademliaClient.wallet);        // podera ser generateSignature
+            transaction.signTransaction(KademliaClient.wallet);
         } catch (UnsupportedEncodingException | NoSuchAlgorithmException |
                  SignatureException | InvalidKeySpecException | InvalidKeyException e) {
             e.printStackTrace();
@@ -157,7 +155,6 @@ public class KademliaClient {
                  } catch (InterruptedException e) {
                      e.printStackTrace();
                  }
-
 
                  if (!KademliaClient.blockchain.getPendingList().isEmpty()) {
 

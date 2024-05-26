@@ -4,7 +4,9 @@ import group19.ssd.blockchain.transactions.Transaction;
 import group19.ssd.blockchain.utils.StringUtil;
 import group19.ssd.miscellaneous.Configuration;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Block {
 
@@ -21,10 +23,10 @@ public class Block {
     }
 
     public String previousHash;
-    public static ArrayList<Transaction> data = new ArrayList<>();
+    public ArrayList<Transaction> data = new ArrayList<>();
 
-    private String merkleRoot;
-    public int nonce;
+    //private String merkleRoot;
+    public int nonce = 0;
     public long timestamp;     //as number of milliseconds since 1/1/1970..
 
     //new block
@@ -52,44 +54,24 @@ public class Block {
         this.previousHash = previousHash;
         this.data = data;
         this.timestamp = new Date().getTime();
-        this.merkleRoot = calculateMerkleRoot(); // Calculate the Merkle Root
+        //this.merkleRoot = calculateMerkleRoot(); // Calculate the Merkle Root
         this.hash = calculateHash();
     }
 
-    private String calculateMerkleRoot() {
-        List<String> treeList = new ArrayList<>();
-        for (Transaction transaction : data) {
-            treeList.add(transaction.getFormattedData());
-        }
-        while (treeList.size() > 1) {
-            List<String> newTreeList = new ArrayList<>();
-            int index = 0;
-            while (index < treeList.size()) {
-                // Grab the left and right if available
-                String left = treeList.get(index);
-                String right = index+1 < treeList.size() ? treeList.get(index+1) : left;
-                // Combine and hash them, then add to new list
-                String combinedHash = StringUtil.applySha256(left + right);
-                newTreeList.add(combinedHash);
-                index += 2;
-            }
-            treeList = newTreeList;
-        }
-        return treeList.get(0); // Root of the tree
-    }
-
-    /// Calculate the block hash using Merkle Root
+    // Calculate the block hash using Merkle Root
     public String calculateHash() {
-        String calculatedHash = StringUtil.applySha256(
+        MerkleTree merkleTree = new MerkleTree(data);
+        merkleTree.calculateMerkleRoot();
+        return StringUtil.applySha256(
+                this.hashId +
                 previousHash +
                         Long.toString(timestamp) +
-                        merkleRoot +
+                        merkleTree.getRoot() +
                         Integer.toString(nonce)
         );
-        return calculatedHash;
     }
 
-    //create a hash with dificulty that i want to impose
+    //create a hash with a certain difficulty
     public void mineBlock() {
         String target = new String(new char[Configuration.MINING_DIFFICULTY]).replace('\0', '0'); //Create a string with difficulty * "0"
         System.out.println("Starting to mine with difficulty target: " + target);
@@ -100,38 +82,14 @@ public class Block {
         System.out.println("Block Mined!!! : " + hash + " with nonce: " + nonce);
     }
 
+    // Return a copy of the data array to prevent external modification.
     public ArrayList<Transaction> getTransactions() {
-        return data; // Return a copy of the data array to prevent external modification.
+        return data;
     }
 
     public boolean verifyBlock() {
         // Verify that the block's hash is correct
-        String recalculatedHash = calculateHash();
-        if (!hash.equals(recalculatedHash)) {
-            System.out.println("Block hash is invalid.");
-            return false;
-        }
-
-        /*
-        // Verify that each transaction is valid
-        for (Transaction transaction : data) {
-            PublicKey senderPublicKey = keyStore.getKeyPair(transaction.getSourceName()).getPublic();
-            if (!transaction.isValid(senderPublicKey)) {
-                System.out.println("Invalid transaction found in block.");
-                return false;
-            }
-        }
-        */
-
-        // Verify the Merkle root is accurate
-        String recalculatedMerkleRoot = calculateMerkleRoot();
-        if (!merkleRoot.equals(recalculatedMerkleRoot)) {
-            System.out.println("Merkle Root mismatch.");
-            return false;
-        }
-
-        System.out.println("verifyBlock pass!");
-        return true;
+        return calculateHash().equals(hash);
     }
 
     public void printBlock(){
@@ -144,9 +102,4 @@ public class Block {
             System.out.println();
         }
     }
-
-    public String getMerkleRoot() {
-        return calculateMerkleRoot();
-    }
 }
-

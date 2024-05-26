@@ -18,7 +18,7 @@ public class GRPCConverter {
         return BlockChain.newBuilder().addAllChain(Chain_of_blocks).setPendingTransactions(mkTransactionList(bChain.getPendingList())).build();
     }
 
-    //converter bloco
+    //convert block
     public static group19.ssd.p2p.grpc.Block mkBlock(Block block) {
 
         return group19.ssd.p2p.grpc.Block.newBuilder()
@@ -33,7 +33,7 @@ public class GRPCConverter {
                 .build();
     }
 
-    //converter lista de transações
+    //convert list of transactions
     public static TransactionsList mkTransactionList(ArrayList<group19.ssd.blockchain.transactions.Transaction> transactions) {
         ArrayList<Transaction> tlist = new ArrayList<>();
         for (group19.ssd.blockchain.transactions.Transaction t : transactions) {
@@ -49,7 +49,7 @@ public class GRPCConverter {
         }
         return TransactionsList.newBuilder().addAllTransactionList(tlist).build();
     }
-    // converter transação
+    // convert transaction
     public static Transaction mkTransaction(group19.ssd.blockchain.transactions.Transaction t) {
         Transaction new_t = Transaction.newBuilder()
                 .setHash(t.hash)

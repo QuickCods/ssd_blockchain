@@ -18,7 +18,7 @@ public class Transaction {
     public int amount;
     public byte[] signature; // This will store our signature;
     public String hash; // This will store the hash of the transaction
-    public String misc = ""; //info adicional
+    public String misc = ""; // additional info
     public long timestamp;
     private TransactionType type; // Include transaction type
 

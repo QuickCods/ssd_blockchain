@@ -16,9 +16,10 @@ import java.util.Base64;
 
 public class Blockchain {
 
-    public static ArrayList<Block> chain = new ArrayList<>(); //blocos em cadeia
+    // blocks in each chain
+    public static ArrayList<Block> chain = new ArrayList<>();
 
-    public static ArrayList<Transaction> pendingList = new ArrayList<>(); //before enter in the block
+    public static ArrayList<Transaction> pendingList = new ArrayList<>(); //before enter the block
 
     AuctionManager auctionManager = new AuctionManager();
 
@@ -45,7 +46,6 @@ public class Blockchain {
     public void setPendingTransactions(ArrayList<Transaction> oldTransactionArrayList) {
         for (Transaction curTransaction : oldTransactionArrayList) {
             pendingList.add(new Transaction(curTransaction.sender, curTransaction.receiver, curTransaction.signature, curTransaction.timestamp, curTransaction.amount, curTransaction.misc));
-                                                                                                // nao sei se é preciso dar algum encode aqui no signature
         }
     }
 
@@ -63,13 +63,10 @@ public class Blockchain {
 
     // Method to add a new block to the blockchain
     public void addBlock(Block block) {
-        // Calcular e exibir a Merkle Tree
-        System.out.println("Merkle Root: " + block.getMerkleRoot());
-
         //verify block
         block.verifyBlock();
 
-        // Minerar o bloco
+        // Mine the block
         block.mineBlock();
 
         if (chain.isEmpty()) {
@@ -93,7 +90,7 @@ public class Blockchain {
         if(transaction.isValid(transaction.getSource().getPublicKey())){
             pendingtransactions(transaction);
         }else {
-            System.out.println("the transaction not passed in the isValid function");
+            System.out.println("The transaction didn't pass in the validation");
             System.exit(1);     // Stops the execution of the program with an error code 1
         }
     }
@@ -104,7 +101,7 @@ public class Blockchain {
             Block nb = new Block(pendingList, getLatestBlock().getHash());
             addBlock(nb);
         }else{
-            System.out.println("o pending transaction ainda nao esta full");
+            System.out.println("Pending transaction ain't full yet");
             // continue the program
         }
     }
@@ -150,11 +147,11 @@ public class Blockchain {
         }
     }
 
-    //Minera as transações pendentes num bloco novo
+    //Mine pending transactions in a new block
     public Block minePendingTransaction(Wallet miner) {
         int pendingTransactionsLength = getPendingListSize();
         if (pendingTransactionsLength == 0) {
-            System.out.println("Não há transações pendentes");
+            System.out.println("No pending transactions!");
             return null;
         }
 
@@ -164,13 +161,13 @@ public class Blockchain {
                 newBlockTransactions.add(pendingList.get(i));
             }
         } else {
-            System.out.println("Não há transições suficientes (" + Configuration.MAX_TRANSACTIONS_PER_BLOCK + "), há apenas " + pendingTransactionsLength);
+            System.out.println("There is not enough transactions (" + Configuration.MAX_TRANSACTIONS_PER_BLOCK + "), only " + pendingTransactionsLength + " left.");
             newBlockTransactions.addAll(pendingList);
         }
 
-        //criar novo bloco com as transações pendentes e adicona á cadeia
+        //make new block with pending transactions and adds to the chain
         Block newBlock;
-        if (chain.size() == 0) {
+        if (chain.isEmpty()) {
             newBlock = new Block(0 + "", newBlockTransactions, "", Base64.getEncoder().encodeToString(KademliaClient.wallet.getPublicKey().getEncoded()));   // Base64... is to convert PublicKey to String
         } else {
             newBlock = new Block(chain.size() + "", newBlockTransactions, this.getLatestBlock().hash, Base64.getEncoder().encodeToString(KademliaClient.wallet.getPublicKey().getEncoded()));
@@ -178,7 +175,7 @@ public class Blockchain {
         newBlock.mineBlock();
         chain.add(newBlock);
         pendingList.subList(0, newBlockTransactions.size()).clear();
-        System.out.println("FEITO");
+        System.out.println("DONE");
         return newBlock;
     }
 

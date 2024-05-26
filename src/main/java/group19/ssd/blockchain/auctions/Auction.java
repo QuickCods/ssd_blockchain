@@ -1,7 +1,6 @@
 package group19.ssd.blockchain.auctions;
 
 import group19.ssd.blockchain.transactions.Wallet;
-import group19.ssd.blockchain.utils.StringUtil;
 
 import java.security.PublicKey;
 import java.security.Signature;
@@ -56,7 +55,7 @@ public class Auction {
     }
 
 
-    // quando criar um auction, adicionar ao auctionMap!!!!!
+    // when creating an auction, add to auctionMap!!!!!
 
     public byte[] getItemId() {
         return itemId;

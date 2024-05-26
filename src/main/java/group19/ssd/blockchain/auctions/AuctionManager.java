@@ -4,7 +4,6 @@ import group19.ssd.blockchain.Blockchain;
 import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.blockchain.utils.Pair;
 import group19.ssd.blockchain.transactions.Transaction;
-import group19.ssd.miscellaneous.Configuration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,10 +13,6 @@ public class AuctionManager {
     private final List<Pair<Auction, List<Bid>>> auctions = new ArrayList<>();
 
     public Blockchain blockchain;
-
-
-
-
 
     public void addAuction(Auction auction) {
         auctions.add(new Pair<>(auction, new ArrayList<>()));  // Add auction with an empty list of bids
