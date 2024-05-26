@@ -34,13 +34,21 @@ public class Auction {
     }
     public boolean isValidAuction() {
         try {
-            PublicKey publicKey = KeyFactory.getInstance("RSA")
-                    .generatePublic(new X509EncodedKeySpec(sellerPublicKey));
-            Signature signature = Signature.getInstance("SHA256withRSA");
+            // Decode the Base64 encoded public key
+            byte[] decodedPublicKey = Base64.getDecoder().decode(sellerPublicKey);
+
+            // Generate EC public key from the decoded key
+            KeyFactory keyFactory = KeyFactory.getInstance("EC");
+            X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(decodedPublicKey);
+            PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
+
+            // Verify the signature using ECDSA
+            Signature signature = Signature.getInstance("SHA256withECDSA");
             signature.initVerify(publicKey);
             signature.update(getAuctionData().getBytes());
-            boolean signatureValid = signature.verify(Base64.getDecoder().decode(this.signature));
+            boolean signatureValid = signature.verify(this.signature);
 
+            // Check if the auction has not timed out
             return signatureValid && System.currentTimeMillis() <= timeout;
         } catch (Exception e) {
             System.out.println("Validation error: " + e.getMessage());
@@ -72,6 +80,8 @@ public class Auction {
     public byte[] getSignature() {
         return signature;
     }
+
+    public byte[] getSellerPublicKey() { return sellerPublicKey;}
     // Helper method to consolidate auction data for hashing and signing
 
 

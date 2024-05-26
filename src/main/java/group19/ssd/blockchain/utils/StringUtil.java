@@ -2,6 +2,7 @@ package group19.ssd.blockchain.utils;
 import java.security.*;
 
 import java.security.MessageDigest;
+import java.security.spec.ECGenParameterSpec;
 import java.util.Base64;
 
 public class StringUtil {
@@ -53,9 +54,10 @@ public class StringUtil {
     }
 
     // serves to generate a keypair for each user
-    public static KeyPair generateKeyPair() throws NoSuchAlgorithmException {
-        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
-        keyGen.initialize(2048);
+    public static KeyPair generateKeyPair() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException {
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("EC");
+        ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256r1");
+        keyGen.initialize(ecSpec);
         return keyGen.generateKeyPair();
     }
 }

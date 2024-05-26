@@ -100,6 +100,16 @@ public class AuctionManager {
         return null;  // Auction not found
     }
 
+    public List<Auction> getAuctionsBySeller(byte[] sellerPublicKey) {
+        List<Auction> sellerAuctions = new ArrayList<>();
+        for (Pair<Auction, List<Bid>> pair : auctions) {
+            if (Arrays.equals(pair.getFirst().getSellerPublicKey(), sellerPublicKey)) {
+                sellerAuctions.add(pair.getFirst());
+            }
+        }
+        return sellerAuctions;
+    }
+
     public List<Pair<Auction, List<Bid>>> getAuctions() {
         return auctions;
     }

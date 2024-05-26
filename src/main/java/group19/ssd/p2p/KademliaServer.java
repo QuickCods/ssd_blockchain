@@ -53,7 +53,7 @@ public class KademliaServer {
             }
         });
     }
-    private void stop() throws InterruptedException {
+    public void stop() throws InterruptedException {
         if (server != null) {
             server.shutdown().awaitTermination(15, TimeUnit.SECONDS);
         }

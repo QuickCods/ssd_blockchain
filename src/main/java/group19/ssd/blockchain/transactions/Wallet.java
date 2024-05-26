@@ -10,6 +10,7 @@ import group19.ssd.blockchain.utils.StringUtil;
 
 import java.nio.charset.StandardCharsets;
 import java.security.*;
+import java.security.spec.ECGenParameterSpec;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.ArrayList;
@@ -40,6 +41,8 @@ public class Wallet {
             publicKey = keypair.getPublic();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Failed to initialize Wallet: Algorithm not found", e);
+        } catch (InvalidAlgorithmParameterException e) {
+            throw new RuntimeException(e);
         }
     }
 
