@@ -1,9 +1,7 @@
 package group19.ssd;
 
-import group19.ssd.blockchain.Block;
 import group19.ssd.blockchain.Blockchain;
 import group19.ssd.blockchain.transactions.Transaction;
-import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.blockchain.utils.Pair;
 import group19.ssd.blockchain.utils.StringUtil;
 import group19.ssd.miscellaneous.Configuration;
@@ -11,19 +9,22 @@ import group19.ssd.p2p.*;
 import group19.ssd.blockchain.auctions.AuctionManager;
 import group19.ssd.blockchain.auctions.Auction;
 import group19.ssd.blockchain.auctions.Bid;
-import group19.ssd.blockchain.utils.D;
 
 import java.net.Socket;
 import java.util.*;
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Objects;
 import java.util.Scanner;
 
 public class App {
+
+    public static Blockchain b = new Blockchain();
     public static AuctionManager auctionManager = new AuctionManager();
+
+
     public static ArrayList<Transaction> transactions = new ArrayList<>();
+    public static ArrayList<Auction> myAuctions = new ArrayList<>();
+
     public static void CreateMenu() {
         StringBuilder menu = new StringBuilder("Menu\n");
         menu.append("1 -> Personal Information\n")
@@ -37,7 +38,6 @@ public class App {
                 .append("Introduce a value between 1 and 8: ");
         System.out.println(menu);
     }
-
     public static void CreateAuctionMenu(KademliaClient client, Scanner scanner){
         try {
             System.out.println("Create Auction:");
@@ -51,15 +51,12 @@ public class App {
             String sellerPublicKeyBase64 = Base64.getEncoder().encodeToString(client.wallet.getPublicKey().getEncoded());
             String auctionData = itemName + timeout + sellerPublicKeyBase64;
             byte[] auctionHash = StringUtil.applySha256(auctionData).getBytes();
-            byte[] auctionSignature = StringUtil.applyECDSASig(client.wallet.getPrivateKey(), auctionData);
+            byte[] auctionSignature = StringUtil.applyECDSASig(client.wallet.getPrivateKey(), auctionData).getBytes();
             // Create Auction object
             Auction auction = new Auction(itemId, timeout, sellerPublicKeyBase64.getBytes(), auctionHash, auctionSignature);
-            boolean isAuctionValid = auction.isValidAuction();
-            // Call AuctionManager to start the auction
-            auctionManager.addAuction(auction);
-            //auctionManager.startAuction(auction,client.wallet);
-            System.out.println("Auction valid and created successfully!");
-
+            System.out.println("Auction valid and created successfully!!!!");
+            auctionManager.startAuction(auction, client.wallet);
+            myAuctions.add(auction);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -117,7 +114,7 @@ public class App {
 
     public static void CloseYAuctions(KademliaClient client, Scanner scanner){
         System.out.println("Your Auctions: ");
-        List<Auction> myAuctions = auctionManager.getAuctionsBySeller(client.wallet.getPublicKey().getEncoded());
+        //List<Auction> myAuctions = auctionManager.getAuctionsBySeller(client.wallet.getPublicKey().getEncoded());
         if (myAuctions.isEmpty()) {
             System.out.println("No auctions found.");
         } else {
@@ -135,16 +132,18 @@ public class App {
                 return; // Go back to main menu
             } else if (auctionIndex > 0 && auctionIndex <= myAuctions.size()) {
                 Auction auctionToClose = myAuctions.get(auctionIndex - 1);
-                auctionManager.endAuction(auctionToClose.getHash(), KademliaClient.wallet);
+                auctionManager.endAuction(auctionToClose.getHash(), client.wallet);
+                myAuctions.remove(auctionIndex-1);
                 System.out.println("Auction closed successfully!");
                 return; // Go back to main menu after closing the auction
-            } else {
+            }else {
                 System.out.println("Invalid index.");
             }
         }
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
+        auctionManager.blockchain = b;
         if (args.length > 0 && args[0].equals("--server")) {
             startServer();
         } else if (args.length > 0 && args[0].equals("--client")) {

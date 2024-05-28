@@ -41,8 +41,6 @@ public class Wallet {
             publicKey = keypair.getPublic();
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Failed to initialize Wallet: Algorithm not found", e);
-        } catch (InvalidAlgorithmParameterException e) {
-            throw new RuntimeException(e);
         }
     }
 

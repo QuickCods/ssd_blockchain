@@ -1,6 +1,8 @@
 package group19.ssd.p2p;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
@@ -70,23 +72,41 @@ public class KademliaServer {
         public void ping(Ping request, StreamObserver<Pong> responseObserver) {
             KademliaClient.kbucket.checkNode(new Node(request.getId(), request.getIp(), request.getPort()), request.getProof(), request.getPubKey());
             BlockChain blockchain = GRPCConverter.mkBlockChain(KademliaClient.blockchain);
-            responseObserver.onNext(Pong.newBuilder().setPong(true).setBlockchain(blockchain).build());
+            try {
+                responseObserver.onNext(Pong.newBuilder().setPong(true).setBlockchain(blockchain).build());
+            } catch (Exception e) {
+                e.printStackTrace();
+                responseObserver.onError(e);
+            }
             responseObserver.onCompleted();
         }
 
         @Override
         public void broadcastBlock(Block request, StreamObserver<Status> responseObserver) {
-            group19.ssd.blockchain.Block new_block = BCConverter.mkBlock(request);
-            if(!(KademliaClient.blockchain.getLatestBlock().hash).equals(new_block.getHash())) {
-                KademliaClient.blockchain.addBlock(new_block);
-                KademliaClient.kbucket.getNode(request.getNodeId()).addSuccessfullInterations();
-                KademliaClient.blockchain.addBlock(new_block);
-                KademliaClient.ledger.updateLedger(new_block);
-                KademliaClient.shareBlock(new_block, request.getNodeId());
-            }else{
-                responseObserver.onNext(Status.newBuilder().setStatus("Block already exists").build());
+            try {
+                group19.ssd.blockchain.Block newBlock = BCConverter.mkBlock(request);
+
+                // Get the current blockchain length
+                int initialLength = KademliaClient.blockchain.getChain().size();
+
+                // Add the block
+                KademliaClient.blockchain.addBlock(newBlock);
+
+                // Get the new blockchain length
+                int newLength = KademliaClient.blockchain.getChain().size();
+
+                // Check if the block was successfully added by comparing the lengths
+                if (newLength > initialLength) {
+                    // Successfully added block
+                    responseObserver.onNext(Status.newBuilder().setStatus("success").build());
+                } else {
+                    responseObserver.onNext(Status.newBuilder().setStatus("failure").build());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                responseObserver.onNext(Status.newBuilder().setStatus("error").build());
+            } finally {
                 responseObserver.onCompleted();
-                return;
             }
         }
 
@@ -107,8 +127,24 @@ public class KademliaServer {
         }
 
         @Override
-        public void broadcastBlockchain(BlockChain request, StreamObserver<Status> responseObserver){
-            super.broadcastBlockchain(request, responseObserver);
+        public void broadcastBlockchain(BlockChain request, StreamObserver<Status> responseObserver) {
+            try {
+                group19.ssd.blockchain.Blockchain receivedBlockchain = BCConverter.mkBlockchain(request);
+
+                if (receivedBlockchain != null && receivedBlockchain.isChainValid() &&
+                        receivedBlockchain.getChain().size() > KademliaClient.blockchain.getChain().size()) {
+                    KademliaClient.blockchain = receivedBlockchain;
+                    KademliaClient.ledger.restartLedger();
+                    responseObserver.onNext(Status.newBuilder().setStatus("success").build());
+                } else {
+                    responseObserver.onNext(Status.newBuilder().setStatus("failure").build());
+                }
+            } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
+                e.printStackTrace();
+                responseObserver.onNext(Status.newBuilder().setStatus("error").build());
+            } finally {
+                responseObserver.onCompleted();
+            }
         }
 
         @Override

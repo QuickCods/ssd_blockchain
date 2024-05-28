@@ -121,31 +121,31 @@ public class PeerOperations {
         }
     }
 
-    public Blockchain getBlockchain(){
-        try{
+    public Blockchain getBlockchain() {
+        try {
             Ping request = Ping.newBuilder()
-                .setId(KademliaClient.id)
-                .setIp(KademliaClient.ip)
-                .setPort(KademliaClient.port)
-                .setProof(KademliaClient.proof)
-                .setPubKey(KademliaClient.publicKey)
-                .build();
+                    .setId(KademliaClient.id)
+                    .setIp(KademliaClient.ip)
+                    .setPort(KademliaClient.port)
+                    .setProof(KademliaClient.proof)
+                    .setPubKey(KademliaClient.publicKey)
+                    .build();
             Pong response = blockingStub.ping(request);
-            if(response.getPong()){
+            if (response.getPong()) {
                 Blockchain blockchain_received = null;
-                try{
+                try {
                     blockchain_received = BCConverter.mkBlockchain(response.getBlockchain());
-                } catch (InvalidKeySpecException | NoSuchAlgorithmException e){
+                } catch (InvalidKeySpecException | NoSuchAlgorithmException e) {
                     e.printStackTrace();
                 }
-                return blockchain_received; 
+                return blockchain_received;
             } else {
                 return null;
             }
-        } finally{
-            try{
+        } finally {
+            try {
                 PeerOperations.this.shutdown();
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

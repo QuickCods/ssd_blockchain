@@ -53,17 +53,30 @@ public class Blockchain {
         return pendingList;
     }
 
+    public int getSize(){
+        return chain.size();
+    }
+
     public int getPendingListSize() {
         return pendingList.size();
     }
 
     public Block getLatestBlock() {
-        return chain.get(chain.size() - 1);
+        if (chain != null && !chain.isEmpty()) {
+            return chain.get(chain.size() - 1);
+        } else {
+            // Handle the case where the chain is empty
+            System.out.println("The blockchain is empty. Returning null.");
+            return null;
+            // Alternatively, you could throw an exception:
+            // throw new IllegalStateException("The blockchain is empty.");
+        }
     }
+
 
     // Method to add a new block to the blockchain
     public void addBlock(Block block) {
-        //verify block
+        /*//verify block
         block.verifyBlock();
 
         // Mine the block
@@ -80,6 +93,26 @@ public class Blockchain {
             block.mineBlock();
             // Add the new block to the blockchain
             chain.add(block);
+        }*/
+        // Verify the block
+        if (!block.verifyBlock()) {
+            // If block verification fails, print an error message
+            System.err.println("Block verification failed");
+            return;
+        }
+
+        // Mine the block
+        block.mineBlock();
+
+        if (chain.isEmpty()) {
+            // If the blockchain is empty, add the new block directly
+            chain.add(block);
+        } else {
+            // If the blockchain is not empty, set the previous hash of the new block
+            String previousHash = getLatestBlock().hash;
+            block.previousHash = previousHash;
+            // Add the new block to the blockchain
+            chain.add(block);
         }
     }
 
@@ -91,18 +124,17 @@ public class Blockchain {
             pendingtransactions(transaction);
         }else {
             System.out.println("The transaction didn't pass in the validation");
-            System.exit(1);     // Stops the execution of the program with an error code 1
         }
     }
     public void pendingtransactions(Transaction transaction){
         pendingList.add(transaction);
         //check if it enters to addBlock or not
-        if(pendingList.size() > 5){
-            Block nb = new Block(pendingList, getLatestBlock().getHash());
+        if(pendingList.size() == 4){
+            String previousHash = chain.isEmpty() ? "0" : getLatestBlock().getHash();
+            Block nb = new Block(new ArrayList<>(pendingList), previousHash);
             addBlock(nb);
-        }else{
-            System.out.println("Pending transaction ain't full yet");
-            // continue the program
+            pendingList.clear();
+            System.out.println("!*__________________________-------------------------------------______________-------___________-----_________----______------____-----____-- \n");
         }
     }
 

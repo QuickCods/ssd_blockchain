@@ -94,7 +94,7 @@ public final class BlockchainGRPCProto {
       "List\0220\n\017transactionList\030\001 \003(\0132\027.blockcha" +
       "in.Transaction\"\221\001\n\013Transaction\022\014\n\004hash\030\001" +
       " \001(\t\022\016\n\006sender\030\002 \001(\t\022\020\n\010receiver\030\003 \001(\t\022\021" +
-      "\n\tsignature\030\004 \001(\014\022\021\n\ttimestamp\030\005 \001(\003\022\016\n\006" +
+      "\n\tsignature\030\004 \001(\t\022\021\n\ttimestamp\030\005 \001(\003\022\016\n\006" +
       "amount\030\006 \001(\005\022\014\n\004misc\030\007 \001(\t\022\016\n\006nodeId\030\010 \001" +
       "(\t\"\030\n\006Status\022\016\n\006status\030\001 \001(\t\"a\n\010FindNode" +
       "\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002 \001(\t\022\014\n\004port\030\003 \001(\005\022\r" +

@@ -15,6 +15,9 @@ import group19.ssd.blockchain.transactions.Transaction;
 import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.miscellaneous.Configuration;
 import group19.ssd.miscellaneous.Miscellaneous;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 
 public class KademliaClient {
     public static String id;
@@ -29,6 +32,8 @@ public class KademliaClient {
     private static boolean alreadyRunningMineBlockThread = false;
     private static final MineBlockThread mineBlockThread = new MineBlockThread();
     public static final KeepAliveThread keepAliveThread = new KeepAliveThread();
+    private static final Gson gson = new Gson();
+
 
     public String getHash() {
         return id;

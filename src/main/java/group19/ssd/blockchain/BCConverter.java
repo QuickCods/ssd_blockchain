@@ -41,7 +41,7 @@ public class BCConverter {
         return new group19.ssd.blockchain.transactions.Transaction(
                 transaction.getSender(),
                 transaction.getReceiver(),
-                transaction.getSignature().toByteArray(),
+                transaction.getSignature(),
                 transaction.getTimestamp(),
                 transaction.getAmount(),
                 transaction.getMisc());

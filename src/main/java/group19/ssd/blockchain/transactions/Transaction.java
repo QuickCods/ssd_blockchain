@@ -16,7 +16,7 @@ public class Transaction {
     public String sender;
     public String receiver;
     public int amount;
-    public byte[] signature; // This will store our signature;
+    public String signature; // This will store our signature;
     public String hash; // This will store the hash of the transaction
     public String misc = ""; // additional info
     public long timestamp;
@@ -40,6 +40,7 @@ public class Transaction {
     public Transaction(Wallet source, TransactionType type) {
         this.source = source;
         this.type = type;
+        validateTransaction();
         this.timestamp = new Date().getTime();
     }
 
@@ -51,7 +52,7 @@ public class Transaction {
         this.misc = misc;
     }
 
-    public Transaction(String sender, String receiver, byte[] byteArray, long timestamp, int amount, String misc) {
+    public Transaction(String sender, String receiver, String byteArray, long timestamp, int amount, String misc) {
         this.sender = sender;
         this.receiver = receiver;
         this.signature = byteArray;
@@ -68,8 +69,7 @@ public class Transaction {
     // Method to generate a digital signature for the transaction
     public void generateSignature(PrivateKey senderprivateKey) {
         String srcEncoded = Base64.getEncoder().encodeToString(source.getPublicKey().getEncoded());
-        String destEncoded = Base64.getEncoder().encodeToString(destination.getPublicKey().getEncoded());
-        String data = srcEncoded + destEncoded + amount;
+        String data = srcEncoded + "0";
         signature = StringUtil.applyECDSASig(senderprivateKey, data);
     }
 
@@ -81,15 +81,14 @@ public class Transaction {
         System.out.println(signer.getPublicKey());
         System.out.println(this.sender);
 
-        this.signature = signer.sign(hash)[1];
+        this.signature = String.valueOf(signer.sign(hash)[1]);
         return true;
     }
 
     // Calculate the hash of the transaction which serves as its ID
     public String calculateHash() {
         String srcEncoded = Base64.getEncoder().encodeToString(source.getPublicKey().getEncoded());
-        String destEncoded = Base64.getEncoder().encodeToString(destination.getPublicKey().getEncoded());
-        String data = srcEncoded + destEncoded + amount + signature; // Include the signature to ensure integrity
+        String data = srcEncoded + amount + signature; // Include the signature to ensure integrity
         return StringUtil.applySha256(data);
     }
 
@@ -97,8 +96,7 @@ public class Transaction {
     // Method to verify the signature
     public boolean verifySignature(PublicKey publicKey) {
         String srcEncoded = Base64.getEncoder().encodeToString(source.getPublicKey().getEncoded());
-        String destEncoded = Base64.getEncoder().encodeToString(destination.getPublicKey().getEncoded());
-        String data = srcEncoded + destEncoded + amount;
+        String data = srcEncoded + amount;
         return StringUtil.verifyECDSASig(publicKey, data, signature);
     }
 

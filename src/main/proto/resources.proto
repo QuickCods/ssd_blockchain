@@ -58,7 +58,7 @@ message Transaction{
   string hash = 1;
   string sender = 2;
   string receiver = 3;
-  bytes signature = 4;
+  string signature = 4;
   int64 timestamp = 5;
   int32 amount = 6;
   string misc = 7;

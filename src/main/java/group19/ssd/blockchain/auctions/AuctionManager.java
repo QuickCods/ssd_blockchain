@@ -5,6 +5,7 @@ import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.blockchain.utils.Pair;
 import group19.ssd.blockchain.transactions.Transaction;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,7 +68,15 @@ public class AuctionManager {
         addAuction(auction);
         Transaction transaction = new Transaction(seller, Transaction.TransactionType.AUCTION_START);
         transaction.generateSignature(seller.getPrivateKey());  // Generate the signature
-        blockchain.addTransaction(transaction);
+        if (blockchain != null) {
+            if (transaction != null) {
+                blockchain.addTransaction(transaction);
+            } else {
+                System.out.println("transaction esta null!");
+            }
+        } else {
+            System.out.println("blockchain esta null!");
+        }
         System.out.println("Auction started with transaction: " + transaction.getTransactionId());
     }
 

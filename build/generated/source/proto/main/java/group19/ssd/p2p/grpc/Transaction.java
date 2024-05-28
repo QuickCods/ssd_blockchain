@@ -19,7 +19,7 @@ private static final long serialVersionUID = 0L;
     hash_ = "";
     sender_ = "";
     receiver_ = "";
-    signature_ = com.google.protobuf.ByteString.EMPTY;
+    signature_ = "";
     misc_ = "";
     nodeId_ = "";
   }
@@ -164,14 +164,41 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int SIGNATURE_FIELD_NUMBER = 4;
-  private com.google.protobuf.ByteString signature_;
+  private volatile java.lang.Object signature_;
   /**
-   * <code>bytes signature = 4;</code>
+   * <code>string signature = 4;</code>
    * @return The signature.
    */
   @java.lang.Override
-  public com.google.protobuf.ByteString getSignature() {
-    return signature_;
+  public java.lang.String getSignature() {
+    java.lang.Object ref = signature_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      signature_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string signature = 4;</code>
+   * @return The bytes for signature.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getSignatureBytes() {
+    java.lang.Object ref = signature_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      signature_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
   }
 
   public static final int TIMESTAMP_FIELD_NUMBER = 5;
@@ -295,8 +322,8 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiver_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 3, receiver_);
     }
-    if (!signature_.isEmpty()) {
-      output.writeBytes(4, signature_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signature_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, signature_);
     }
     if (timestamp_ != 0L) {
       output.writeInt64(5, timestamp_);
@@ -328,9 +355,8 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(receiver_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, receiver_);
     }
-    if (!signature_.isEmpty()) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeBytesSize(4, signature_);
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(signature_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, signature_);
     }
     if (timestamp_ != 0L) {
       size += com.google.protobuf.CodedOutputStream
@@ -539,7 +565,7 @@ private static final long serialVersionUID = 0L;
 
       receiver_ = "";
 
-      signature_ = com.google.protobuf.ByteString.EMPTY;
+      signature_ = "";
 
       timestamp_ = 0L;
 
@@ -643,8 +669,9 @@ private static final long serialVersionUID = 0L;
         receiver_ = other.receiver_;
         onChanged();
       }
-      if (other.getSignature() != com.google.protobuf.ByteString.EMPTY) {
-        setSignature(other.getSignature());
+      if (!other.getSignature().isEmpty()) {
+        signature_ = other.signature_;
+        onChanged();
       }
       if (other.getTimestamp() != 0L) {
         setTimestamp(other.getTimestamp());
@@ -702,7 +729,7 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 26
             case 34: {
-              signature_ = input.readBytes();
+              signature_ = input.readStringRequireUtf8();
 
               break;
             } // case 34
@@ -970,21 +997,47 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.google.protobuf.ByteString signature_ = com.google.protobuf.ByteString.EMPTY;
+    private java.lang.Object signature_ = "";
     /**
-     * <code>bytes signature = 4;</code>
+     * <code>string signature = 4;</code>
      * @return The signature.
      */
-    @java.lang.Override
-    public com.google.protobuf.ByteString getSignature() {
-      return signature_;
+    public java.lang.String getSignature() {
+      java.lang.Object ref = signature_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        signature_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
     }
     /**
-     * <code>bytes signature = 4;</code>
+     * <code>string signature = 4;</code>
+     * @return The bytes for signature.
+     */
+    public com.google.protobuf.ByteString
+        getSignatureBytes() {
+      java.lang.Object ref = signature_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        signature_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string signature = 4;</code>
      * @param value The signature to set.
      * @return This builder for chaining.
      */
-    public Builder setSignature(com.google.protobuf.ByteString value) {
+    public Builder setSignature(
+        java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
@@ -994,12 +1047,28 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>bytes signature = 4;</code>
+     * <code>string signature = 4;</code>
      * @return This builder for chaining.
      */
     public Builder clearSignature() {
       
       signature_ = getDefaultInstance().getSignature();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string signature = 4;</code>
+     * @param value The bytes for signature to set.
+     * @return This builder for chaining.
+     */
+    public Builder setSignatureBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      signature_ = value;
       onChanged();
       return this;
     }

@@ -26,11 +26,11 @@ public class StringUtil {
         }
     }
 
-    public static byte[] applyECDSASig(PrivateKey privateKey, String input) {
+    public static String applyECDSASig(PrivateKey privateKey, String input) {
         Signature dsa;
         byte[] output = new byte[0];
         try {
-            dsa = Signature.getInstance("SHA256withECDSA");
+            dsa = Signature.getInstance("SHA256withRSA");
             dsa.initSign(privateKey);
             byte[] strByte = input.getBytes();
             dsa.update(strByte);
@@ -38,11 +38,11 @@ public class StringUtil {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return output;
+        return  Base64.getEncoder().encodeToString(output);
     }
 
 
-    public static boolean verifyECDSASig(PublicKey publicKey, String data, byte[] signature) {
+    public static boolean verifyECDSASig(PublicKey publicKey, String data, String signature) {
         try {
             Signature ecdsaVerify = Signature.getInstance("SHA256withRSA");
             ecdsaVerify.initVerify(publicKey);
@@ -54,10 +54,9 @@ public class StringUtil {
     }
 
     // serves to generate a keypair for each user
-    public static KeyPair generateKeyPair() throws NoSuchAlgorithmException, InvalidAlgorithmParameterException {
-        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("EC");
-        ECGenParameterSpec ecSpec = new ECGenParameterSpec("secp256r1");
-        keyGen.initialize(ecSpec);
+    public static KeyPair generateKeyPair() throws NoSuchAlgorithmException {
+        KeyPairGenerator keyGen = KeyPairGenerator.getInstance("RSA");
+        keyGen.initialize(2048);
         return keyGen.generateKeyPair();
     }
 }

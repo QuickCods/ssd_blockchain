@@ -44,10 +44,16 @@ public interface TransactionOrBuilder extends
       getReceiverBytes();
 
   /**
-   * <code>bytes signature = 4;</code>
+   * <code>string signature = 4;</code>
    * @return The signature.
    */
-  com.google.protobuf.ByteString getSignature();
+  java.lang.String getSignature();
+  /**
+   * <code>string signature = 4;</code>
+   * @return The bytes for signature.
+   */
+  com.google.protobuf.ByteString
+      getSignatureBytes();
 
   /**
    * <code>int64 timestamp = 5;</code>

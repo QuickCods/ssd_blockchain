@@ -38,12 +38,12 @@ public class Auction {
             byte[] decodedPublicKey = Base64.getDecoder().decode(sellerPublicKey);
 
             // Generate EC public key from the decoded key
-            KeyFactory keyFactory = KeyFactory.getInstance("EC");
+            KeyFactory keyFactory = KeyFactory.getInstance("RSA");
             X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(decodedPublicKey);
             PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
 
             // Verify the signature using ECDSA
-            Signature signature = Signature.getInstance("SHA256withECDSA");
+            Signature signature = Signature.getInstance("SHA256withRSA");
             signature.initVerify(publicKey);
             signature.update(getAuctionData().getBytes());
             boolean signatureValid = signature.verify(this.signature);
