@@ -85,16 +85,12 @@ public class KademliaServer {
         public void broadcastBlock(Block request, StreamObserver<Status> responseObserver) {
             try {
                 group19.ssd.blockchain.Block newBlock = BCConverter.mkBlock(request);
-
                 // Get the current blockchain length
                 int initialLength = KademliaClient.blockchain.getChain().size();
-
                 // Add the block
                 KademliaClient.blockchain.addBlock(newBlock);
-
                 // Get the new blockchain length
                 int newLength = KademliaClient.blockchain.getChain().size();
-
                 // Check if the block was successfully added by comparing the lengths
                 if (newLength > initialLength) {
                     // Successfully added block

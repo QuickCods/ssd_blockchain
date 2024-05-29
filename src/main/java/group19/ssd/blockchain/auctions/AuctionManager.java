@@ -4,6 +4,7 @@ import group19.ssd.blockchain.Blockchain;
 import group19.ssd.blockchain.transactions.Wallet;
 import group19.ssd.blockchain.utils.Pair;
 import group19.ssd.blockchain.transactions.Transaction;
+import group19.ssd.p2p.KademliaClient;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -67,10 +68,12 @@ public class AuctionManager {
         }
         addAuction(auction);
         Transaction transaction = new Transaction(seller, Transaction.TransactionType.AUCTION_START);
+        //Transaction t_bidstart = new Transaction( KademliaClient.id,KademliaClient.id);
         transaction.generateSignature(seller.getPrivateKey());  // Generate the signature
         if (blockchain != null) {
             if (transaction != null) {
                 blockchain.addTransaction(transaction);
+                //blockchain.addTransaction(t_bidstart);
             } else {
                 System.out.println("transaction esta null!");
             }

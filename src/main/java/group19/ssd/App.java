@@ -10,7 +10,9 @@ import group19.ssd.blockchain.auctions.AuctionManager;
 import group19.ssd.blockchain.auctions.Auction;
 import group19.ssd.blockchain.auctions.Bid;
 
+import java.net.InetAddress;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.*;
 import java.io.IOException;
 import java.util.Objects;
@@ -48,14 +50,14 @@ public class App {
             long timeout = scanner.nextLong();
             scanner.nextLine(); // Consume newline
             byte[] itemId = Base64.getEncoder().encode(itemName.getBytes());
-            String sellerPublicKeyBase64 = Base64.getEncoder().encodeToString(client.wallet.getPublicKey().getEncoded());
+            String sellerPublicKeyBase64 = Base64.getEncoder().encodeToString(KademliaClient.wallet.getPublicKey().getEncoded());
             String auctionData = itemName + timeout + sellerPublicKeyBase64;
             byte[] auctionHash = StringUtil.applySha256(auctionData).getBytes();
-            byte[] auctionSignature = StringUtil.applyECDSASig(client.wallet.getPrivateKey(), auctionData).getBytes();
+            byte[] auctionSignature = StringUtil.applyECDSASig(KademliaClient.wallet.getPrivateKey(), auctionData).getBytes();
             // Create Auction object
             Auction auction = new Auction(itemId, timeout, sellerPublicKeyBase64.getBytes(), auctionHash, auctionSignature);
             System.out.println("Auction valid and created successfully!!!!");
-            auctionManager.startAuction(auction, client.wallet);
+            auctionManager.startAuction(auction, KademliaClient.wallet);
             myAuctions.add(auction);
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,6 +69,7 @@ public class App {
             int i = 1;
             System.out.println("Auctions available for bidding:\n");
             List<Pair<Auction, List<Bid>>> auctions = auctionManager.getAuctions();
+            Blockchain bc = KademliaClient.blockchain;
             if (auctions.isEmpty()) {
                 System.out.println("No auctions found!\n");
             } else {
@@ -132,7 +135,7 @@ public class App {
                 return; // Go back to main menu
             } else if (auctionIndex > 0 && auctionIndex <= myAuctions.size()) {
                 Auction auctionToClose = myAuctions.get(auctionIndex - 1);
-                auctionManager.endAuction(auctionToClose.getHash(), client.wallet);
+                auctionManager.endAuction(auctionToClose.getHash(), KademliaClient.wallet);
                 myAuctions.remove(auctionIndex-1);
                 System.out.println("Auction closed successfully!");
                 return; // Go back to main menu after closing the auction
@@ -160,7 +163,7 @@ public class App {
             port = 8080;
         }
 
-        KademliaServer server = new KademliaServer("localhost", port);
+        KademliaServer server = new KademliaServer("192.168.10.0", port);
         // Initialize the interceptor
         server.start();
 
@@ -176,18 +179,26 @@ public class App {
         System.out.println("Server stopped.");
     }
 
-    public static void startClient(KademliaClient client) {
+    public static void startClient(KademliaClient client) throws UnknownHostException {
         int port;
         if (Objects.equals(Configuration.knownNode, "")) {
             port = 8080;
         } else {
             port = 8888;
         }
-
-        client.setup(port, "localhost");
-        client.startPinging();
+        Random rand = new Random();
+        String firstThreeOctets = "192.60.10"; // Modify this as needed
+        // Generate a random number for the last octet
+        int lastOctet = rand.nextInt(256);
+        String Fip = firstThreeOctets + "." + lastOctet;
+        if(Fip.endsWith("0")){
+            lastOctet = rand.nextInt(256);
+            Fip = firstThreeOctets + "." + lastOctet;
+        }
+        client.setup(port, Fip);
+        KademliaClient.startPinging();
         System.out.println("Client started on port " + port);
-        Kademlia.findNode(client.id);
+        Kademlia.findNode(KademliaClient.id);
         // Start a thread to monitor the server status
         Thread serverMonitor = new Thread(() -> {
             while (true) {
@@ -214,23 +225,23 @@ public class App {
 
             switch (input) {
                 case 1:     // Personal Information
-                    System.out.println("ID: " + client.id);
-                    System.out.println(client.ip + ":" + client.port);
-                    System.out.println("Public Key: " + client.publicKey);
+                    System.out.println("ID: " + KademliaClient.id);
+                    System.out.println("IP: " + KademliaClient.ip + "; Port :" + KademliaClient.port);
+                    System.out.println("Public Key: " + KademliaClient.publicKey);
                     break;
                 case 2:     // Start Mining
-                    client.startMining();
+                    KademliaClient.startMining();
                     break;
                 case 3:     // See Blockchain
-                    client.blockchain.printBlockChain();
+                    KademliaClient.blockchain.printBlockChain();
                     break;
                 case 4:     // See KBucket
-                    client.kbucket.print();
+                    KademliaClient.kbucket.print();
                     break;
                 case 5: // Create Auction
                     CreateAuctionMenu(client, scanner);
                     break;
-                case 6: //See available Auctions and choose auction to play bid on
+                case 6: //See available Auctions and choose auction to play bid
                     SeeAuctions_n_Bid(client, scanner);
                     break;
                 case 7: //Close your Auctions

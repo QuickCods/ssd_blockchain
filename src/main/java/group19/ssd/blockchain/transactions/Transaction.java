@@ -44,11 +44,11 @@ public class Transaction {
         this.timestamp = new Date().getTime();
     }
 
-    public Transaction(String sender, String receiver, int amount) {
+    public Transaction(String sender, String receiver) {
         this.sender = sender;
         this.receiver = receiver;
-        this.amount = amount;
-        validateTransaction();
+        this.amount = 0;
+        validateTransaction1();
         this.misc = misc;
     }
 
@@ -59,6 +59,16 @@ public class Transaction {
         this.timestamp = timestamp;
         this.amount = amount;
         this.misc = misc;
+    }
+
+    public void validateTransaction1(){
+        this.timestamp = new Date().getTime();
+        this.hash = calculateHash1();
+    }
+
+    public String calculateHash1() {
+        String data =  amount + signature; // Include the signature to ensure integrity
+        return StringUtil.applySha256(data);
     }
 
     public void validateTransaction() {

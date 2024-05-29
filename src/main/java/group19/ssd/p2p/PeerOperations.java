@@ -66,7 +66,8 @@ public class PeerOperations {
     public void sendBlock(Block block){
         try{
             group19.ssd.p2p.grpc.Block request = GRPCConverter.mkBlock(block);
-            blockingStub.broadcastBlock(request);
+            Status response = blockingStub.broadcastBlock(request);
+            System.out.println("Broadcast blockchain status: " + response.getStatus());
         }finally{
             try{
                 PeerOperations.this.shutdown();
@@ -79,7 +80,8 @@ public class PeerOperations {
     public void sendTransaction(Transaction transaction){
         try{
             group19.ssd.p2p.grpc.Transaction request = GRPCConverter.mkTransaction(transaction);
-            blockingStub. broadcastTransaction(request);
+            Status response = blockingStub.broadcastTransaction(request);
+            System.out.println("Broadcast blockchain status: " + response.getStatus());
         }finally{
             try{
                 PeerOperations.this.shutdown();
@@ -142,6 +144,22 @@ public class PeerOperations {
             } else {
                 return null;
             }
+        } finally {
+            try {
+                PeerOperations.this.shutdown();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void sendBlockchain(Blockchain blockchain) {
+        try {
+            BlockChain request = GRPCConverter.mkBlockChain(blockchain);
+            Status response = blockingStub.broadcastBlockchain(request);
+            System.out.println("Broadcast blockchain status: " + response.getStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             try {
                 PeerOperations.this.shutdown();

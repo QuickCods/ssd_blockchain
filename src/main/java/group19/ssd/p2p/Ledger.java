@@ -31,26 +31,34 @@ public class Ledger {
     }
 
     public void updateLedger(Block block) {
-        for (Transaction transaction : block.getTransactions()) {
-            Long senderAmount, receiverAmount;
-            if (users.get(transaction.sender) != null) {        //source é o senderPK
-                senderAmount = users.get(transaction.sender);
-            } else {
-                senderAmount = minCoin;
-            }
-            if (users.get(transaction.receiver) != null) {
-                receiverAmount = users.get(transaction.receiver);
-            } else {
-                receiverAmount = minCoin;
-            }
-            users.put(transaction.sender, (senderAmount - transaction.amount));
-            users.put(transaction.receiver, (receiverAmount + transaction.amount));
-        }
-        if (users.get(block.publicKey) != null) {
-            users.put(block.publicKey, users.get(block.publicKey) + 1);
-        } else {
-            users.put(block.publicKey, minCoin + Configuration.MINING_REWARD);
+        if (block == null) {
+            System.out.println("Block is null, cannot update ledger.");
+            return;
         }
 
+        if (block.getTransactions() == null) {
+            System.out.println("Block transactions are null, cannot update ledger.");
+            return;
+        }
+
+        for (Transaction transaction : block.getTransactions()) {
+            if (transaction.sender == null || transaction.receiver == null) {
+                System.out.println("Transaction sender or receiver is null, skipping this transaction.");
+                continue;
+            }
+
+            Long senderAmount = users.getOrDefault(transaction.sender, minCoin);
+            Long receiverAmount = users.getOrDefault(transaction.receiver, minCoin);
+
+            users.put(transaction.sender, senderAmount - transaction.amount);
+            users.put(transaction.receiver, receiverAmount + transaction.amount);
+        }
+
+        if (block.publicKey != null) {
+            users.put(block.publicKey, users.getOrDefault(block.publicKey, minCoin) + Configuration.MINING_REWARD);
+        } else {
+            System.out.println("Block public key is null, cannot update miner's reward.");
+        }
     }
+
 }

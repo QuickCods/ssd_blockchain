@@ -101,17 +101,17 @@ public final class BlockchainGRPCProto {
       "\n\005proof\030\004 \001(\005\022\016\n\006pubKey\030\005 \001(\t\022\020\n\010targetI" +
       "d\030\006 \001(\t\"1\n\tNode_GRPC\022\n\n\002id\030\001 \001(\t\022\n\n\002ip\030\002" +
       " \001(\t\022\014\n\004port\030\003 \001(\005\"6\n\014KBucket_GRPC\022&\n\007kb" +
-      "ucket\030\001 \003(\0132\025.blockchain.Node_GRPC2\275\002\n\004P" +
+      "ucket\030\001 \003(\0132\025.blockchain.Node_GRPC2\272\002\n\004P" +
       "eer\022,\n\004ping\022\020.blockchain.Ping\032\020.blockcha" +
-      "in.Pong\"\000\022:\n\017broadcast_block\022\021.blockchai" +
-      "n.Block\032\022.blockchain.Status\"\000\022F\n\025broadca" +
-      "st_transaction\022\027.blockchain.Transaction\032" +
-      "\022.blockchain.Status\"\000\022D\n\024broadcast_block" +
-      "chain\022\026.blockchain.BlockChain\032\022.blockcha" +
-      "in.Status\"\000\022=\n\tfindNodes\022\024.blockchain.Fi" +
-      "ndNode\032\030.blockchain.KBucket_GRPC\"\000B2\n\024gr" +
-      "oup19.ssd.p2p.grpcB\023BlockchainGRPCProtoP" +
-      "\001\242\002\002BCb\006proto3"
+      "in.Pong\"\000\0229\n\016broadcastBlock\022\021.blockchain" +
+      ".Block\032\022.blockchain.Status\"\000\022E\n\024broadcas" +
+      "tTransaction\022\027.blockchain.Transaction\032\022." +
+      "blockchain.Status\"\000\022C\n\023broadcastBlockcha" +
+      "in\022\026.blockchain.BlockChain\032\022.blockchain." +
+      "Status\"\000\022=\n\tfindNodes\022\024.blockchain.FindN" +
+      "ode\032\030.blockchain.KBucket_GRPC\"\000B2\n\024group" +
+      "19.ssd.p2p.grpcB\023BlockchainGRPCProtoP\001\242\002" +
+      "\002BCb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

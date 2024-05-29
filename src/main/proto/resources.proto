@@ -11,9 +11,9 @@ service Peer {
 
   //Main server actions
   rpc ping (Ping) returns (Pong){};
-  rpc broadcast_block (Block) returns (Status){};
-  rpc broadcast_transaction (Transaction) returns (Status){};
-  rpc broadcast_blockchain (BlockChain) returns (Status){}
+  rpc broadcastBlock (Block) returns (Status){};
+  rpc broadcastTransaction (Transaction) returns (Status){};
+  rpc broadcastBlockchain (BlockChain) returns (Status){}
   rpc findNodes(FindNode) returns (KBucket_GRPC) {}
 }
 

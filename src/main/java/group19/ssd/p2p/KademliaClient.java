@@ -32,7 +32,6 @@ public class KademliaClient {
     private static boolean alreadyRunningMineBlockThread = false;
     private static final MineBlockThread mineBlockThread = new MineBlockThread();
     public static final KeepAliveThread keepAliveThread = new KeepAliveThread();
-    private static final Gson gson = new Gson();
 
 
     public String getHash() {
@@ -143,7 +142,23 @@ public class KademliaClient {
          }
      }
 
-     public static void startPinging(){
+    public static void shareBlockchain(Blockchain blockchain, String sender) {
+        ArrayList<Node> destinations = KademliaClient.kbucket.getCloneNodesList();
+
+        for (Node destination : destinations) {
+            if (!destination.id.equals(sender)) {
+                try {
+                    System.out.println("Sending blockchain to " + destination.ip + ":" + destination.port);
+                    new PeerOperations(destination.ip, destination.port).sendBlockchain(blockchain);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+    public static void startPinging(){
          KademliaClient.keepAliveThread.start();
      }
 
@@ -152,26 +167,40 @@ public class KademliaClient {
 
          @Override
          public void run() {
-
              while (true) {
                  try {
-
                      TimeUnit.MICROSECONDS.sleep(500);
-
                  } catch (InterruptedException e) {
                      e.printStackTrace();
                  }
 
                  if (!KademliaClient.blockchain.getPendingList().isEmpty()) {
-
                      String blockHashId = Miscellaneous.applyEncryption(String.valueOf(new Date().getTime()));
                      System.out.println("mining: " + blockHashId);
 
                      KademliaClient.blockchain.minePendingTransaction(KademliaClient.wallet);
-                     KademliaClient.ledger.updateLedger(KademliaClient.blockchain.getLatestBlock());
+                     Block latestBlock = KademliaClient.blockchain.getLatestBlock();
 
-                     KademliaClient.shareBlock(KademliaClient.blockchain.getLatestBlock(), KademliaClient.id);
-                     KademliaClient.blockchain.printBlockChain();
+                     if (latestBlock != null) {
+                         System.out.println("Latest block mined: " + latestBlock.getHash());
+
+                         if (latestBlock.getHash() != null) {
+                             try {
+                                 KademliaClient.ledger.updateLedger(latestBlock);
+                             } catch (Exception e) {
+                                 System.out.println("Error updating ledger: " + e.getMessage());
+                                 e.printStackTrace();
+                             }
+
+                             KademliaClient.shareBlock(latestBlock, KademliaClient.id);
+                             KademliaClient.shareBlockchain(KademliaClient.blockchain, KademliaClient.id);
+                             KademliaClient.blockchain.printBlockChain();
+                         } else {
+                             System.out.println("Latest block hash is null, skipping ledger update.");
+                         }
+                     } else {
+                         System.out.println("Latest block is null, skipping ledger update.");
+                     }
                  }
              }
          }
