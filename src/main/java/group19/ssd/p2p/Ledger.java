@@ -42,16 +42,16 @@ public class Ledger {
         }
 
         for (Transaction transaction : block.getTransactions()) {
-            if (transaction.sender == null || transaction.receiver == null) {
+            if (transaction.source == null) {
                 System.out.println("Transaction sender or receiver is null, skipping this transaction.");
                 continue;
             }
+            System.out.println("sender --------------------------------------------------------------------- " + transaction.source);
 
-            Long senderAmount = users.getOrDefault(transaction.sender, minCoin);
-            Long receiverAmount = users.getOrDefault(transaction.receiver, minCoin);
+            Long senderAmount = users.getOrDefault(transaction.source, minCoin);
 
-            users.put(transaction.sender, senderAmount - transaction.amount);
-            users.put(transaction.receiver, receiverAmount + transaction.amount);
+
+            users.put(transaction.sender, senderAmount - 0);
         }
 
         if (block.publicKey != null) {
